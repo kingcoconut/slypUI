@@ -1,0 +1,27 @@
+{
+  "name": "slypUI",
+  "version": "0.1.0",
+  "description": "web client UI for Slyp",
+  "main": "main.js",
+  "author": "Xander Groeneveld",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "latest",
+    "gulp": "latest",
+    "gulp-clean": "latest",
+    "gulp-compass": "latest",
+    "gulp-concat": "^2.5.2",
+    "gulp-include": "latest",
+    "gulp-jshint": "latest",
+    "gulp-livereload": "latest",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-rename": "latest",
+    "gulp-swig": "latest",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "latest",
+    "run-sequence": "latest",
+    "swig": "latest",
+    "gulp-template": "^3.0.0",
+    "gulp-coffee": "latest"
+  }
+}

@@ -1,0 +1,29 @@
+#logo{
+  width: 65px;
+}
+
+#header{
+  height: 56px;
+}
+
+#wrapper{
+  margin: 0px;
+}
+
+.fixed-navbar #wrapper {
+    top: 56px
+}
+
+.content-boxed {
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+}
+
+.blog-article-box .panel-heading {
+  padding: 40px 10px;
+}
+
+.hpanel{
+  margin-bottom:0px;
+}

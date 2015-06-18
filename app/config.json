@@ -1,0 +1,22 @@
+{
+  "development": {
+    "authHost": "http://auth-local.identity.com",
+    "adminHost": "https://id-local.identity.com/admin/api/1/",
+    "verificationHost": "http://verification-local.identity.com"
+  },
+  "beta": {
+    "authHost": "http://auth-beta.identity.com",
+    "adminHost": "https://web-admin-beta.identity.com/admin/api/1/",
+    "verificationHost": "http://verification-beta.identity.com"
+  },
+  "preprod": {
+    "authHost": "http://auth-pre.identity.com",
+    "adminHost": "https://web-admin-pre.com/admin/api/1/",
+    "verificationHost": "http://verification-pre.identity.com"
+  },
+  "production": {
+    "authHost": "http://auth.identity.com",
+    "adminHost": "https://web-admin.identity.com/admin/api/1/",
+    "verificationHost": "http://verification.identity.com"
+  }
+}

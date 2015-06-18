@@ -1,0 +1,24 @@
+{
+  "name": "id_card",
+  "version": "0.1.0",
+  "description": "assets for idcard",
+  "main": "index.js",
+  "author": "Drew Monroe",
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "moment": "~2.9.0",
+    "jquery-mockjax": "~1.6.2",
+    "datatables": "1.10.7",
+    "backbone": "latest",
+    "marionette": "latest",
+    "jquery.cookie": "latest",
+    "routefilter": "~0.2.1",
+    "requirejs": "latest"
+  }
+}
