@@ -13,6 +13,8 @@ require.config({
     'slimscroll': '../theme/vendor/slimScroll/jquery.slimscroll.min',
     'bootstrap':  '../theme/vendor/bootstrap/dist/js/bootstrap.min',
     'icheck': '../theme/vendor/iCheck/icheck.min',
+    'sticky': 'vendor/jquery.stick/jquery.sticky',
+    'waypoints': 'vendor/waypoints/lib/jquery.waypoints.min',
     'config': 'config',
     'app': 'app'
   },

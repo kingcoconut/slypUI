@@ -74,12 +74,15 @@
   <div id="wrapper" class="js-main">
     <!-- main page elements -->
   </div>
+
+  <div id="fullscreen">
+  </div>
 </script>
     <script type="text/template" id="js-feed-layout-tmpl">
   <div class="content animate-panel content-boxed">
     <div class="row">
-      <div class="col-sm-8 js-feed-left"></div>
-      <div class="col-sm-4 js-feed-right"></div>
+      <div class="col-sm-6 js-feed-left"></div>
+      <div class="col-sm-6 js-feed-right"></div>
     </div>
   </div>
 </script>
@@ -224,17 +227,16 @@
     <script type="text/template" id="js-top-nav-tmpl">
   <div id="logo" class="light-version">
       <span>
-          Slyp
+        <img src="assets/images/slyp-logo-8.png" />
       </span>
   </div>
   <nav role="navigation">
-      <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
       <div class="small-logo">
-          <span class="text-primary">Slyp</span>
+          <img src="assets/images/slyp-logo.png" />
       </div>
-      <form role="search" class="navbar-form-custom" method="post" action="#">
+      <form role="search" class="navbar-form-custom js-add-new-slip" method="post" action="#">
           <div class="form-group">
-              <input type="text" placeholder="Search something special" class="form-control" name="search">
+              <input type="text" placeholder="New slyp URL" class="form-control" name="search">
           </div>
       </form>
       <div class="navbar-right">
@@ -341,7 +343,8 @@
   <!-- END BODY -->
 </script>
     <script type="text/template" id="js-slyp-show-tmpl">
-  <div class="hpanel blog-article-box">
+  <div class="hpanel blog-article-box slyp">
+    <i class="pe-7s-close"></i>
     <div class="panel-heading">
         <h4><%= title %></h4>
         <small><%= sitename %></small>
@@ -351,13 +354,8 @@
         </div>
     </div>
     <div class="panel-body">
-        <%= text %>
-    </div>
-    <div class="panel-footer">
-      <span class="pull-right">
-        <i class="fa fa-comments-o"> </i> 22 comments
-      </span>
-      <i class="fa fa-eye"> </i> 142 views
+        <img src="<%= top_image %>" />
+        <p><%= text %></p>
     </div>
   </div>
 </script>

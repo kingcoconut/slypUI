@@ -5,11 +5,11 @@ define(["marionette"], function(){
     id: "js-top-nav",
 
     ui: {
-      options: ".js-top-nav-options",
+      addSlyp: ".js-add-new-slip",
     },
 
     events: {
-      "click @ui.options"  : "showOptions"
+      "submit @ui.addSlyp"  : "addSlyp"
     },
 
     initialize: function(options){
@@ -18,8 +18,9 @@ define(["marionette"], function(){
       this.render();
     },
 
-    showOptions: function(event) {
-      alert("gimmie the options!");
+    addSlyp: function(event) {
+      event.preventDefault();
+      alert(this.$el.find("input[name=search]")[0].value);
     }
   });
 

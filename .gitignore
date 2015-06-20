@@ -1,2 +1,3 @@
+public/
 app/scripts/config.js
-app/scripts/vendor/
+node_modules/

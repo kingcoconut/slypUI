@@ -1,17 +1,16 @@
 <script type="text/template" id="js-top-nav-tmpl">
   <div id="logo" class="light-version">
       <span>
-          Slyp
+        <img src="{{ 'images/slyp-logo-8.png' | assetPath }}" />
       </span>
   </div>
   <nav role="navigation">
-      <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
       <div class="small-logo">
-          <span class="text-primary">Slyp</span>
+          <img src="{{ 'images/slyp-logo.png' | assetPath }}" />
       </div>
-      <form role="search" class="navbar-form-custom" method="post" action="#">
+      <form role="search" class="navbar-form-custom js-add-new-slip" method="post" action="#">
           <div class="form-group">
-              <input type="text" placeholder="Search something special" class="form-control" name="search">
+              <input type="text" placeholder="New slyp URL" class="form-control" name="search">
           </div>
       </form>
       <div class="navbar-right">
