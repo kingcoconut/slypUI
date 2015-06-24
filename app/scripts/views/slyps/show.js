@@ -14,9 +14,19 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
     fullScreen: function(){
 
     },
+    initialize: function(){
+      var that = this;
+      this.model.collection.on("addingNewSlyp", function(){
+        that.$el.find(".blog-article-box").removeClass("fixed-slyp");
+
+      })
+    },
     onRender: function(){
       var that = this;
-
+      this.$el.find('.panel-body').slimScroll({
+             height: '500px'
+         });
+      
       setTimeout(function(){
         var waypoint = new Waypoint({
           element: that.$el,

@@ -3,7 +3,7 @@
     <i class="pe-7s-close"></i>
     <div class="panel-heading">
         <h4><%= title %></h4>
-        <small><%= sitename %></small>
+        <a href=<%= url %> ><%= site_name %></a>
         <div class="text-muted small">
             Created by: <span class="font-bold"><%= author %></span>
             <%= moment(date).format("MM/DD/YY hh:mm A") %>
@@ -11,7 +11,7 @@
     </div>
     <div class="panel-body">
         <img src="<%= top_image %>" />
-        <p><%= text %></p>
+        <%= description %>
     </div>
   </div>
 </script>

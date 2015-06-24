@@ -5,6 +5,7 @@ define(["marionette"], function(){
       author: "",
       date: Date.now,
       text: "",
+      description: "",
       top_image: "",
       sitename: ""
     }
