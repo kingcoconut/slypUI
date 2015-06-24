@@ -8,6 +8,9 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
       "click @ui.heading": "fullScreen",
       "click @ui.close": "closeScreen"
     },
+    modelEvents: {
+      "change": "render"
+    },
     fullScreen: function(){
 
     },

@@ -1,7 +1,7 @@
 define(["marionette", "views/interface/topNav", 'jquery-ui', 'icheck', 'bootstrap'], function(Marionette, jqueryui, topNav, icheck, bootstrap){
   var interfaceLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-interface-layout-tmpl",
-    el: "body",
+    el: "#js-body",
 
     regions: {
       topRegion : ".js-top-nav",
@@ -10,6 +10,7 @@ define(["marionette", "views/interface/topNav", 'jquery-ui', 'icheck', 'bootstra
 
     onRender: function(){
       $("body").removeClass().addClass("fixed-navbar");
+      $("#facebook-login").remove();
     }
   });
 

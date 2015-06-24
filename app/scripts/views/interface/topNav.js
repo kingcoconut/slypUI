@@ -12,6 +12,10 @@ define(["marionette"], function(){
       "submit @ui.addSlyp"  : "addSlyp"
     },
 
+    logout: function(){
+      FB.logout();
+    },
+
     initialize: function(options){
       this.options = options;
       var that = this;

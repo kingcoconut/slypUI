@@ -1,8 +1,6 @@
 {
   "development": {
-    "authHost": "http://auth-local.identity.com",
-    "adminHost": "https://id-local.identity.com/admin/api/1/",
-    "verificationHost": "http://verification-local.identity.com"
+    "apiHost": "http://api-dev.slyp.io/v1"
   },
   "beta": {
     "authHost": "http://auth-beta.identity.com",

@@ -11,10 +11,14 @@
     {% include './layout/feed.html' %}
     {% include './includes/sideNav.html' %}
     {% include './includes/topNav.html' %}
-    {% include './includes/authenticate.html' %}
     {% include './slyps/show.html' %}
   </head>
   <body>
+    <div id="facebook-login">
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+    </div>
+    <div id="js-body">
 
+    </div>
   </body>
 </html>

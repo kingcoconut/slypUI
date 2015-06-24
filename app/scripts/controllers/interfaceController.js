@@ -1,9 +1,10 @@
 define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", "layouts/interfaceLayout", "layouts/feedLayout"], function(Marionette, signinView, topNav, cookie, interfaceLayout, feedLayout){
+
   var InterfaceController = Marionette.Object.extend({
     initialize: function(){
-      // if($.cookie("authentication_token")){
+      if(App.authorized){
         this.renderLayout();
-      // }
+      }
     },
 
     layoutRendered: false,
@@ -16,6 +17,12 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
 
     signin: function(){
       var view = new signinView();
+    },
+
+    logout: function(){
+      $.removeCookie("api_token", {domain: ".slyp.io"});
+      $.removeCookie("user_id", {domain: ".slyp.io"});
+      window.location.href = "/";
     },
 
     renderLayout: function(){
