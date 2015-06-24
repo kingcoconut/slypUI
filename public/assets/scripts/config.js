@@ -1,1 +1,0 @@
-window.apiHost = "http://api-dev.slyp.io/v1";
