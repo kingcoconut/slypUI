@@ -7,15 +7,15 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     },
     createFromUrl: function(url){
 		$.ajax({
-	      url: "/blacksmith/v1/slyps",
+	      url: window.blacksmithHost + "/slyps",
 	      method: "POST",
 	      contentType: "application/json",
+	      crossDomain: true,
 	      data: JSON.stringify({slyp_url: url}),
 	      collection: this,
 	      success: function(response){
-
 	      	this.collection.trigger("addingNewSlyp"); // to bump off the current first slyp in feed
-	        this.collection.create(response, {at: 0});
+	        this.collection.add(response, {at: 0});
 	      },
 	      error: function(status, response){
 	        console.log(status)

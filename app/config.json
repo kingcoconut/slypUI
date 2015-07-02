@@ -1,6 +1,7 @@
 {
   "development": {
-    "apiHost": "http://api-dev.slyp.io/v1"
+    "apiHost": "http://api-dev.slyp.io/v1",
+    "blacksmithHost": "http://blacksmith-dev.slyp.io/v1"
   },
   "beta": {
     "authHost": "http://auth-beta.identity.com",
