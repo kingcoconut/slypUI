@@ -7,7 +7,8 @@ define(["marionette"], function(){
       text: "",
       description: "",
       top_image: "",
-      sitename: ""
+      sitename: "",
+      video_url: ""
     }
   });
 

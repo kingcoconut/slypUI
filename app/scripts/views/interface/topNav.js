@@ -5,7 +5,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     id: "js-top-nav",
 
     ui: {
-      addSlyp: ".js-add-new-slip",
+      addSlyp: ".js-add-new-slyp",
     },
 
     events: {
@@ -27,12 +27,11 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     },
 
     addSlyp: function(event) {
-      event.preventDefault();
-      slypUrl = this.$el.find("input[name=search]")[0].value
+      event.preventDefault()
+      slypUrl = this.$el.find("input[name=new_url]")[0].value
       if (this.validUrl(slypUrl)){
-        this.slyps.createFromUrl(slypUrl, function(){
-
-        });
+        this.slyps.createFromUrl(slypUrl);
+        this.$el.find("input[name=new_url]")[0].value = ''
       }else{
         alert('Not a valid url. ' + slypUrl)
       }
