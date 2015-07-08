@@ -22,7 +22,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       this.render();
       this.slyps = options.slyps
       this.slyps.on("reset", function(){
-        alert("ddd");
+        // alert("ddd");
       })
     },
 

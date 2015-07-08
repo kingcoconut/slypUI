@@ -1,17 +1,25 @@
 <script type="text/template" id="js-slyp-show-tmpl">
+<a href=<%= url %> target="_blank" >
   <div class="hpanel blog-article-box slyp">
     <i class="pe-7s-close"></i>
     <div class="panel-heading">
         <h4><%= title %></h4>
-        <a href=<%= url %> ><%= site_name %></a>
+        <a href=<%= url %> target="_blank"><%= site_name %></a>
         <div class="text-muted small">
-            Created by: <span class="font-bold"><%= author %></span>
-            <%= moment(date).format("MM/DD/YY hh:mm A") %>
+            Author: <span class="font-bold"><%= author!== '' ?  author : 'Unknown' %></span>
+            Date:
+            <%= moment(date).format("MM/DD/YY") !== 'Invalid date' ? moment(date).format("MM/DD/YY") : moment(_.now()).format("MM/DD/YY") %>
         </div>
     </div>
     <div class="panel-body">
-        <img src="<%= top_image %>" />
+        <% if (video_url !== ''){%>
+            <iframe allowfullscreen="" src=<%= video_url %>></iframe>
+        <% }else{ %>
+            <img src="<%= top_image %>" />
+        <% } %>
         <%= description %>
     </div>
   </div>
+</a>
+
 </script>
