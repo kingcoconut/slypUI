@@ -2,11 +2,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
   var slypsCollection = Backbone.Collection.extend({
     url: "slyps",
     model: Slyp,
-    
-    // initialize: function(){
-    // 	//get from server all slyps for this user
-    // },
-
+   
     parse: function(resp){
       return resp.response;
     },

@@ -1,5 +1,5 @@
 define(["marionette", "views/slyps/list"], function(Marionette, slypsView){
-  var interfaceLayout = Backbone.Marionette.LayoutView.extend({
+  var feedLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-feed-layout-tmpl",
 
     regions: {
@@ -14,5 +14,5 @@ define(["marionette", "views/slyps/list"], function(Marionette, slypsView){
     }
   });
 
-  return interfaceLayout;
+  return feedLayout;
 });

@@ -1,7 +1,7 @@
 define(["marionette", "models/slyp"], function(Marionette, Slyp){
   var topNav = Backbone.Marionette.ItemView.extend({
     template: "#js-top-nav-tmpl",
-    // className: "overlay",
+
     id: "js-top-nav",
 
     ui: {
@@ -18,12 +18,8 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
 
     initialize: function(options){
       this.options = options;
-      var that = this;
       this.render();
       this.slyps = options.slyps
-      this.slyps.on("reset", function(){
-        // alert("ddd");
-      })
     },
 
     addSlyp: function(event) {

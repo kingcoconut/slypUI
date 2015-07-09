@@ -9,7 +9,6 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
     layoutRendered: false,
 
     home: function(){
-      // refetch users collection
       var feed = new feedLayout({slyps: this.slyps});
       App.layout.mainRegion.show(feed);
     },
@@ -33,7 +32,7 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
         this.slyps = new slypsCollection(); 
         App.layout = new interfaceLayout();
         App.layout.render();
-        App.layout.topRegion.show(new topNav({slyps: this.slyps}));
+        App.layout.topRegion.show(new topNav({slyps: _this.slyps}));
         this.layoutRendered = true;
 
         $.ajax({
