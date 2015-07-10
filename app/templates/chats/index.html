@@ -1,20 +1,30 @@
-<script type='text/template' id="js-chat-template">
-	<div class="row">
-		<div class="col-md-10">
-			<div class="panel panel-default">
-			  <div class="panel-heading"> Lobby </div>
-			  <div class="panel-body">
-			    <div class="nano">
-			      <div class="content">
-							<div class="list-group" id="chatList"></div>
-						</div>
-			    </div>
-			    <form>
-			      <input class="form-control" type="text" id="chatInput"></input>
-			    </form>
-			    <p id="typingAlert"><%= alertMsg %></p>
-			  </div>
-			</div>
+<section class="section">
+	<div class="nomessages">
+
+		<img src="../img/unnamed.jpg" id="noMessagesImage" />
+
+		<div class="info">
+			<h2>You are chatting with <span class="nickname-chat"></span>.</h2>
+			<h5>Send them a message from the form below!</h5>
 		</div>
+
 	</div>
-</script>
+
+	<div class="chatscreen">
+
+		<ul class="chats">
+			<!-- The chat messages will go here -->
+		</ul>
+
+	</div>
+
+
+
+	<form id="chatform">
+
+		<textarea id="message" placeholder="Write something.."></textarea>
+		<input type="submit" id="submit" value="SEND"/>
+
+	</form>
+
+</section>

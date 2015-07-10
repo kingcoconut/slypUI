@@ -42,11 +42,11 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
         crossDomain: true,
         success: function(response){
           console.log(response);
-          if (response.length !== undefined) {
-            _this.slyps.reset(response);
-          } else {
+          if (response.length == undefined || response.length == 0) {
             alert('You must be a new user ;). We have given you a slyp on the drought in Cali to get you started!');
             _this.slyps.reset(slypies);
+          } else {
+            _this.slyps.reset(response);
           }
           },
         error: function(status, response){
