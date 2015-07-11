@@ -1,6 +1,5 @@
 define(["marionette", "controllers/interfaceController", "routers/interfaceRouter"], function(Marionette, interfaceController, interfaceRouter){
   App = new Marionette.Application();
-
   // app initializer
   App.addInitializer(function(options){
     // if(options.facebook_status == "not_authorized" || options.facebook_status == "unknown"){

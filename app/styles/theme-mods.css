@@ -1,3 +1,8 @@
+/* <<<<<<<<<<<<<<< css for Chat integration >>>>>>>>>>>>>>*/
+
+
+/* <<<<<<<<<<<<<<< css for Chat integration >>>>>>>>>>>>>>*/
+
 #logo{
   width: 65px;
 }
@@ -98,3 +103,7 @@
   width:40%;
 }
 /* END NAV BAR MOD */
+
+.interface-input{
+  width: 400%;
+}
