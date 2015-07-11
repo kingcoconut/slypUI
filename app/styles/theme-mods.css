@@ -85,3 +85,16 @@
   width: 20px;
   left: 20px;
 }
+
+/* START NAV BAR MOD */
+.navbar-form-custom .form-control {
+  height: 40px;
+  margin-top: 8px;
+  border: #ddd 1px solid;
+  padding-left: 10px;
+  border-radius: 1px;
+}
+.navbar-form-custom{
+  width:40%;
+}
+/* END NAV BAR MOD */
