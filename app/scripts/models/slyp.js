@@ -1,4 +1,4 @@
-define(["marionette"], function(){
+define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats){
   var Slyp = Backbone.Model.extend({
     defaults: {
       urlRoot: window.blacksmithHost + "/slyps",
@@ -11,8 +11,16 @@ define(["marionette"], function(){
       description: "",
       top_image: "",
       sitename: "",
-      video_url: ""
+      video_url: "",
+      id: 1
+    },
+
+    fetchChats: function(){
+      this.slypChats = new SlypChats(this.get('id'));
+      this.slypChats.reset([{id: 10, alertMsg: ''}, {id: 12, alertMsg: ''}])
+      //this.slypChats.fetch();
     }
+
   });
 
   return Slyp;
