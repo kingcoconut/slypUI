@@ -17,7 +17,8 @@ require.config({
     'waypoints': 'vendor/waypoints/lib/jquery.waypoints.min',
     'facebook': 'lib/facebook',
     'config': 'config',
-    'app': 'app'
+    'app': 'app',
+    'globals': 'globals'
   },
   shim: {
     underscore: {
@@ -38,7 +39,7 @@ require.config({
   deps: ['jquery', 'underscore']
 });
 
-require(['app', 'config'], function(App){
+require(['app', 'config', 'globals'], function(App){
   $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
     options.xhrFields = {
       withCredentials: true
