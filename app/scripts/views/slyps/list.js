@@ -1,11 +1,12 @@
-define(["marionette", "views/slyps/show", "waypoints"], function(Marionette, slypView){
+define(["marionette", "views/slyps/show", "waypoints"], function(Marionette, SlypView){
   var slypsView = Backbone.Marionette.CollectionView.extend({
-    childView: slypView,
+    childView: SlypView,
     onRender: function(){
       var that = this;
     }, 
     collectionEvents: {
-    	"change": "render"
+    	"change" : "render",
+      "sync" : "render"
     }
   });
 

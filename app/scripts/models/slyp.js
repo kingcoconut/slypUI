@@ -17,7 +17,7 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
 
     fetchChats: function(){
       this.slypChats = new SlypChats(this.get('id'));
-      this.slypChats.reset([{id: 10, alertMsg: ''}, {id: 12, alertMsg: ''}])
+      this.slypChats.reset([{id: 10, alertMsg: ''}])
       //this.slypChats.fetch();
     }
 

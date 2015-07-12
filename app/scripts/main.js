@@ -18,7 +18,8 @@ require.config({
     'facebook': 'lib/facebook',
     'config': 'config',
     'app': 'app',
-    'globals': 'globals'
+    'globals': 'globals',
+    'socket.io': 'lib/socket.io'
   },
   shim: {
     underscore: {

@@ -26,12 +26,11 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
     renderLayout: function(){
       if(!this.layoutRendered){
 
-        _this = this;
         this.slyps = new SlypsCollection();
         this.slyps.fetch();
-        App.layout = new interfaceLayout();
+        App.layout = new InterfaceLayout();
         App.layout.render();
-        App.layout.topRegion.show(new TopNav({slyps: _this.slyps}));
+        App.layout.topRegion.show(new TopNav({slyps: this.slyps}));
         this.layoutRendered = true;
 
       }

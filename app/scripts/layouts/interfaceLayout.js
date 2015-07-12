@@ -1,4 +1,4 @@
-define(["marionette", "views/interface/topNav", 'jquery-ui', 'icheck', 'bootstrap'], function(Marionette, jqueryui, topNav, icheck, bootstrap){
+define(["marionette", "views/interface/topNav", 'jquery-ui', 'icheck', 'bootstrap'], function(Marionette, jqueryui, TopNav, icheck, bootstrap){
   var interfaceLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-interface-layout-tmpl",
     el: "#js-body",
