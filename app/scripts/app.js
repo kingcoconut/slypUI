@@ -1,30 +1,22 @@
-
-define(["marionette", "controllers/interfaceController", "routers/interfaceRouter", "socket.io"], function(Marionette, interfaceController, interfaceRouter, io){
+define(["marionette", "controllers/interfaceController", "routers/interfaceRouter", "controllers/socketclient", "models/user"], function(Marionette, InterfaceController, InterfaceRouter, SocketClient, User){
   App = new Marionette.Application();
-
-  var socket = io.connect("http://127.0.0.1:3000");
-  socket.on("connect", function () {
-    console.log("Connected to chat server!");
-  });
-  socket.on("slyp", function(slyp) {
-
-    console.log("slyp from", slyp.username);
-    console.log("contents:", slyp.text);
-  });
 
   // app initializer
   App.addInitializer(function(options){
-    // if(options.facebook_status == "not_authorized" || options.facebook_status == "unknown"){
-    //   App.authorized = false;
-    // }else
     if ($.cookie("user_id") && $.cookie("api_token")){
       App.authorized = true;
+      App.user = new User({user_id: $.cookie("user_id"), api_token: $.cookie("api_token")});
     }else{
       App.authorized = false;
     }
-    new interfaceRouter({
-      controller: new interfaceController()
+    new InterfaceRouter({
+      controller: new InterfaceController()
     });
+
+    App.vent = _.extend({}, Backbone.Events);
+
+    App.socketclient = new SocketClient();
+    App.socketclient.connect();
 
     Backbone.history.start();
   });

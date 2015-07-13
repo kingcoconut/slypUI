@@ -11,6 +11,7 @@ define(["marionette", "views/auth/signin", "views/interface/topNav", "cookies", 
     home: function(){
       var feed = new FeedLayout({slyps: this.slyps});
       App.layout.mainRegion.show(feed);
+
     },
 
     signin: function(){

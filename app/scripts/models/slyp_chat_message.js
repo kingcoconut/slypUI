@@ -1,12 +1,11 @@
 define(["marionette"], function(){
-  var SlypChatMessage = Backbone.Model.extend({
+  var slypChatMessage = Backbone.Model.extend({
     defaults: {
-      user_id: 1,
-      user_name: "james",
-      id: 10,
-      message: "This is a message.",
-      message_html: "<p> This is a message. </p"
-    }
+      id: null,
+      slyp_chat_id: null,
+      content: ""
+    },
+    url: window.apiHost + "/slyp_chat_messages"
   });
-  return SlypChatMessage;
+  return slypChatMessage;
 })

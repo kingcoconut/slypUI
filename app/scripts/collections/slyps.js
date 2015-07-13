@@ -20,7 +20,28 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
           console.log(status);
         }
       });
+    },
+
+    initialize: function(options){
+      this.on("sync", function(){
+        var slyp = this.first();
+        if(slyp){
+          this.setDockedSlyp(slyp);
+        }
+      })
+    },
+
+    setDockedSlyp: function(slyp){
+      this.dockedSlypId = slyp.get("id");
+      slyp.fetchChats();
+      this.trigger("slypDocked")
+      console.log("DOCKED SLYP: " + slyp.get("id"));
+    },
+
+    getDockedSlyp: function(){
+      return this.get(this.dockedSlypId);
     }
+
   });
 
   return slypsCollection;

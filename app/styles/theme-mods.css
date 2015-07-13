@@ -36,13 +36,6 @@
   overflow: hidden;
 }
 
-.chatscreen{
-  display:none;
-  width:700px;
-  margin: 0 auto 200px;
-  overflow:hidden;
-}
-
 .chats {
   list-style-type: none;
   margin-top:10px;
@@ -231,4 +224,10 @@
 
 .interface-input{
   width: 400%;
+}
+
+.message {
+  background-color: white;
+  padding:15px;
+  margin-bottom:10px;
 }

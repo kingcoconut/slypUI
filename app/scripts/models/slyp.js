@@ -1,7 +1,7 @@
 define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats){
-  var Slyp = Backbone.Model.extend({
+  var slyp = Backbone.Model.extend({
     defaults: {
-      urlRoot: window.blacksmithHost + "/slyps",
+      urlRoot: window.apiHost + "/slyps",
       title: "",
       url: "",
       raw_url:"",
@@ -16,12 +16,15 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     },
 
     fetchChats: function(){
-      this.slypChats = new SlypChats(this.get('id'));
-      this.slypChats.reset([{id: 10, alertMsg: ''}])
-      //this.slypChats.fetch();
+      var slyp_id = this.get('id');
+      this.slypChats = new SlypChats();
+      this.slypChats.fetch({data: $.param({slyp_id: slyp_id})});
+    },
+
+    dock: function(){
+      if(this.collection)
+        this.collection.setDockedSlyp(this);
     }
-
   });
-
-  return Slyp;
+  return slyp;
 });

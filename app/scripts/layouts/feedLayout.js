@@ -1,4 +1,4 @@
-define(["marionette", "views/slyps/list", "views/slypchats/list", "collections/slyp_chats"], function(Marionette, SlypsView, SlypChatsView, SlypChats){
+define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/slyp_chats"], function(Marionette, SlypsView, SlypChatsView, SlypChats){
   var feedLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-feed-layout-tmpl",
 
@@ -8,22 +8,16 @@ define(["marionette", "views/slyps/list", "views/slypchats/list", "collections/s
     },
     onRender: function(){
       this.feedLeft.show(new SlypsView({collection: this.slyps}));
-      if (this.slyps.length > 0){
-        this.slyps.first().fetchChats();
-        this.feedRight.show(new SlypChatsView({collection: this.slyps.first().slypChats}));
-      }
     },
     initialize: function(options){
     	this.slyps = options.slyps;
-      this.renderFeedRight();
-      this.listenTo(this.slyps, "sync", this.renderFeedRight, this);
+      this.listenTo(this.slyps, "slypDocked", this.renderFeedRight, this);
+      //listen to activate, slyps.currentSlyp change this.renderFeedRight
     },
 
     renderFeedRight: function(){
-      if (this.slyps.length > 0){
-        this.slyps.first().fetchChats();
-        this.feedRight.show(new SlypChatsView({collection: this.slyps.first().slypChats}));
-      }      
+      var slyp = this.slyps.getDockedSlyp();
+      this.feedRight.show(new SlypChatsView({collection: slyp.slypChats, slyp_id: slyp.get("id")}));
     }
   });
 
