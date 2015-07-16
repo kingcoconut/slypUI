@@ -3,7 +3,9 @@ define(["marionette"], function(){
     defaults: {
       id: null,
       slyp_chat_id: null,
-      content: ""
+      content: "",
+      created_at: null,
+      sender_email: ""
     },
     url: window.apiHost + "/slyp_chat_messages"
   });

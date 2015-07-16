@@ -1,8 +1,8 @@
 define(["marionette"], function(){
   var user = Backbone.Model.extend({
     defaults: {
-      user_id: null,
-      user_name: "billy",
+      id: null,
+      email: "",
       api_token: null
     }
   });
