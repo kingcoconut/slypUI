@@ -1,10 +1,3 @@
-
-.fixed-feed-right {
-  position: fixed;
-  right: 0;
-  top: 80px;
-}
-
 /* <<<<<<<<<<<<<<< css for Chat integration >>>>>>>>>>>>>>*/
 .nomessages {
   text-align:center;
@@ -121,113 +114,19 @@
 
 /* <<<<<<<<<<<<<<< css for Chat integration >>>>>>>>>>>>>>*/
 
-#logo{
-  width: 65px;
-}
-
-#header{
-  height: 56px;
-}
-
-#wrapper{
-  margin: 0px;
-}
-
-.fixed-navbar #wrapper {
-    top: 56px
-}
-
-.content-boxed {
-  margin: 0;
-  max-width: 100%;
-  padding: 0;
-}
-
-.blog-article-box .panel-heading {
-  padding: 30px 10px;
-}
-
-.blog-article-box i {
-  display:none;
-  font-size:55px;
-  position: absolute;
-  left: 26px;
-  top: 37px;
-  z-index:9999;
-}
-
-.blog-article-box i:hover{
-  cursor:pointer;
-}
-
-.blog-article-box.slyp .panel-body{
-  max-height:550px;
-}
-
-.hpanel{
-  margin-bottom:0px;
-}
-
-.panel-body img{
-  display: block;
-  margin: auto;
-  max-width:100%;
-  max-height: 250px;
-  margin-bottom: 40px;
-}
-
-.fixed-slyp{
-  position: fixed;
-  width:49%;
-  top:56px;
-}
-
-#fullscreen{
-  position:fixed;
-  width: 100%;
-  z-index:9999;
-  top:0;
-}
-
-#fullscreen .slimScrollDiv{
-  background-color:white;
-}
-
-.js-feed-left{
-  position:relative;
-}
-
-#logo.light-version{
-  margin-right:15px;
-  background-color: white;
-}
-
-#logo img{
-  position: absolute;
-  top: 11px;
-  width: 20px;
-  left: 20px;
-}
-
-/* START NAV BAR MOD */
-.navbar-form-custom .form-control {
-  height: 40px;
-  margin-top: 8px;
-  border: #ddd 1px solid;
-  padding-left: 10px;
-  border-radius: 1px;
-}
-.navbar-form-custom{
-  width:40%;
-}
-/* END NAV BAR MOD */
-
 .interface-input{
   width: 400%;
 }
 
 .message {
   background-color: white;
-  /*padding:15px;
-  margin-bottom:10px;*/
+  padding:15px;
+  margin-bottom:10px;
+}
+
+.profile-picture{
+  width:46px;
+  height:46px;
+  border-radius:25px;
+  padding:0px;
 }

@@ -1,10 +1,12 @@
 <script type="text/template" id="js-slypchat-show-tmpl">
-	
-  <h5> This is chat <%= id %></h5>
-  <div class="chatscreen">
-    <div class="js-slyp-chat-messages-container">
+  <div class="slyp-chat-user-container">
+    <span class="icon-container">
+      <img src="{{ 'theme/images/a4.jpg' | assetPath }}" />
+    </span>
+    <span class="user-email">
 
-    </div>
+    </span>
+    <span class="icon-status active"></span>
   </div>
   <form class="js-slyp-chat-message-form">
     <input class="form-control js-new-slyp-chat-message" type="text" placeholder="write something..."></input>

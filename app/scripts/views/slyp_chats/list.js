@@ -1,11 +1,14 @@
 define(["marionette", "views/slyp_chats/show", "waypoints"], function(Marionette, SlypChatView){
   var slypChatsView = Backbone.Marionette.CompositeView.extend({
     template: "#js-slypchats-tmpl",
-    childViewContainer: "#js-slypchat-container",
+    childViewContainer: "#js-slyp-chat-container",
   	childView: SlypChatView,
     collectionEvents:{
       "render":"render",
       "sync":"render"
+    },
+    ui:{
+      rightSidebar: ".right-sidebar"
     },
     events: {
       "submit #slypbotform": "parseCommand"
@@ -15,7 +18,13 @@ define(["marionette", "views/slyp_chats/show", "waypoints"], function(Marionette
       this.slyp_id = options.slyp_id;
     },
 
-    parseCommand: function(evt){
+    onRender: function(){
+      $('#js-slyp-chat-container').slimScroll({
+        height: window.innerHeight - 56
+      });
+    },
+
+    parseInput: function(evt){
       evt.preventDefault();
       var query = this.$('#slypBotInput').val();
       if (query.indexOf('@') >= 0){

@@ -2,12 +2,13 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
     ui:{
-      heading: '.panel-heading',
+      container: '.list-view-slyp',
     },
     events:{
       "click @ui.heading": "fullScreen",
       "click @ui.close": "closeScreen",
       "click .js-slyp-delete": "deleteSlyp"
+      "click @ui.container": "select",
     },
     modelEvents: {
       "change": "render"
@@ -30,6 +31,11 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
              height: '500px'
          });
     },
+    select: function(){
+      $(".slyp-text").hide();
+      this.$el.find(".slyp-text").toggle();
+      this.model.dock();
+    }
   });
 
   return slypView;
