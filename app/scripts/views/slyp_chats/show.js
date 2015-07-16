@@ -31,6 +31,7 @@ define(["marionette", "views/slyp_chat_messages/show"], function(Marionette, Sly
       // This will update the slyp_chat_messages view and request off to the grape api
       this.model.get("slyp_chat_messages").create(message, {
         success: function(response){
+          that.hasAlert = false;
           var sockMessage = {
             content: response.get('content'),
             slyp_chat_id: response.get('slyp_chat_id'),
