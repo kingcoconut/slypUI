@@ -1,14 +1,19 @@
 <script type="text/template" id="js-slyp-show-tmpl">
 <a href=<%= url %> target="_blank" >
   <div class="hpanel blog-article-box slyp">
+    <a class="js-slyp-delete"> DELETE </a>
     <i class="pe-7s-close"></i>
     <div class="panel-heading">
         <h4><%= title %></h4>
         <a href=<%= url %> target="_blank"><%= site_name %></a>
         <div class="text-muted small">
-            Author: <span class="font-bold"><%= author!== '' ?  author : 'Unknown' %></span>
-            Date:
-            <%= moment(date).format("MM/DD/YY") !== 'Invalid date' ? moment(date).format("MM/DD/YY") : moment(_.now()).format("MM/DD/YY") %>
+            <% if (author!== '') {%>
+                Author: <span class="font-bold"><%= author %></span>
+            <% } %>
+            <% if (moment(date).format("MM/DD/YY") !== 'Invalid date') {%>
+                Date:
+                <%=  moment(date).format("MM/DD/YY") %>
+            <% } %>
         </div>
     </div>
     <div class="panel-body">
