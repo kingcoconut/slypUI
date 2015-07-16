@@ -1,0 +1,75 @@
+#logo{
+  width: 65px;
+}
+
+#header{
+  height: 56px;
+}
+
+#wrapper{
+  margin: 0px;
+}
+
+.fixed-navbar{
+  #wrapper {
+    top: 56px
+  }
+}
+
+.feed-left{
+  padding-right:0;
+  position: relative;
+}
+
+.feed-right{
+  padding-left:0;
+}
+
+#logo{
+  img{
+    position: absolute;
+    top: 11px;
+    width: 20px;
+    left: 20px;
+  }
+}
+
+.navbar-form-custom{
+  width:40%;
+
+  .form-control {
+    height: 40px;
+    margin-top: 8px;
+    border: #ddd 1px solid;
+    padding-left: 10px;
+    border-radius: 1px;
+  }
+}
+
+.right-sidebar{
+  padding:5px 0 0 5px;
+  background-color:white;
+  border-left: 1px #ddd solid;
+  position: absolute;
+  right: 0px;
+  width: 90%;
+  transition: width 1s;
+  -moz-transition: width 1s; /* Firefox 4 */
+  -webkit-transition: width 1s; /* Safari and Chrome */
+  -o-transition: width 1s; /* Opera */
+  -ms-transition: width 1s; /* IE9 (maybe) */
+
+  &:hover{
+    width:200%;
+  }
+}
+
+.slyp-chat-user-container{
+  margin-bottom:5px;
+  .icon-container{
+    img{
+      border-radius: 1px;
+      width:45px;
+    }
+  }
+}

@@ -1,3 +1,4 @@
 public/
 app/scripts/config.js
 node_modules/
+.sass-cache/

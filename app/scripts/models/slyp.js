@@ -8,6 +8,7 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       author: "",
       date: Date.now,
       text: "",
+      summary: "",
       description: "",
       top_image: "",
       sitename: "",

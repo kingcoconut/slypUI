@@ -9,7 +9,6 @@ define(["marionette", "views/interface/topNav", 'jquery-ui', 'icheck', 'bootstra
     },
 
     onRender: function(){
-      $("body").removeClass().addClass("fixed-navbar");
       $("#facebook-login").remove();
     }
   });

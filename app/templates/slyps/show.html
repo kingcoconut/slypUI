@@ -1,25 +1,28 @@
 <script type="text/template" id="js-slyp-show-tmpl">
-<a href=<%= url %> target="_blank" >
-  <div class="hpanel blog-article-box slyp">
-    <i class="pe-7s-close"></i>
-    <div class="panel-heading">
-        <h4><%= title %></h4>
-        <a href=<%= url %> target="_blank"><%= site_name %></a>
-        <div class="text-muted small">
-            Author: <span class="font-bold"><%= author!== '' ?  author : 'Unknown' %></span>
-            Date:
-            <%= moment(date).format("MM/DD/YY") !== 'Invalid date' ? moment(date).format("MM/DD/YY") : moment(_.now()).format("MM/DD/YY") %>
+  <div class="list-view-slyp">
+    <div class="row">
+      <div class="slyp-heading col-sm-9">
+        <div class="slyp-title truncate"><%= title %></div>
+        <div class="slyp-details row">
+          <div class="col-sm-5">
+            <a class="text-muted" href=<%= url %> target="_blank"><%= site_name %></a>
+          </div>
         </div>
-    </div>
-    <div class="panel-body">
+      </div>
+      <div class="slyp-media col-sm-3">
         <% if (video_url !== ''){%>
-            <iframe allowfullscreen="" src=<%= video_url %>></iframe>
+          <iframe allowfullscreen="" src=<%= video_url %>></iframe>
         <% }else{ %>
-            <img src="<%= top_image %>" />
+          <img src="<%= top_image %>" />
         <% } %>
-        <%= description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="slyp-text col-sm-12">
+        <div class="fade-text">
+          <%= summary || description || text %>
+        </div>
+      </div>
     </div>
   </div>
-</a>
-
 </script>

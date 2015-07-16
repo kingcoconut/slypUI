@@ -1,9 +1,23 @@
 <script type="text/template" id="js-slypchats-tmpl">
-  <h5> Use this input to add users to the current slyp </h5>
-  <form id="slypbotform">
-    <input class="form-control" type="text" placeholder="issue a command to slypbot..." id="slypBotInput"></input>
-  </form>
+  <div class="row">
+    <div class="col-sm-10">
+      <h5> Use this input to add users to the current slyp </h5>
+      <form id="slypbotform">
+        <input class="form-control" type="text" placeholder="issue a command to slypbot..." id="slypBotInput"></input>
+      </form>
 
-  <div id="js-slypchat-container" ></div>
-    
+      <div class="slyp-chat-conversation">
+        <div class="js-slyp-chat-messages-container"></div>
+
+        <form class="js-slyp-chat-message-form slyp-chat-message-form">
+          <input class="form-control js-new-slyp-chat-message" type="text" placeholder="write something..."></input>
+        </form>
+      </div>
+
+    </div>
+    <div class="col-sm-2">
+      <div class="right-sidebar">
+        <div id="js-slyp-chat-container"></div>
+      </div>
+    </div>
 </script>

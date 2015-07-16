@@ -1,0 +1,44 @@
+.list-view-slyp{
+  background-color:white;
+  overflow: hidden;
+  border-bottom: 1px #ccc solid;
+
+  .slyp-heading{
+    padding:15px;
+    height:80px;
+    padding-left: 30px;
+    overflow: hidden;
+    border-right: 1px #ccc solid;
+
+    .slyp-title{
+      font-size:110%;
+      margin-bottom: 5px;
+      font-weight: 600;;
+    }
+
+    .slyp-details{
+      font-size:80%;
+    }
+  }
+
+  .slyp-text{
+    display:none;
+    overflow: hidden;
+    padding:10px 30px;
+  }
+
+  .slyp-media{
+    height:80px;
+    padding-left:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    img{
+      flex-shrink:0;
+      min-width:100%;
+      max-height:100%;
+    }
+  }
+}

@@ -9,8 +9,16 @@ define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/
     onRender: function(){
       this.feedLeft.show(new SlypsView({collection: this.slyps}));
     },
+    onShow: function(){
+      $('.js-feed-left').slimScroll({
+        height: window.innerHeight - 56
+      });
+      $('.js-feed-right').slimScroll({
+        height: window.innerHeight - 56
+      });
+    },
     initialize: function(options){
-    	this.slyps = options.slyps;
+      this.slyps = options.slyps;
       this.listenTo(this.slyps, "slypDocked", this.renderFeedRight, this);
       //listen to activate, slyps.currentSlyp change this.renderFeedRight
     },
