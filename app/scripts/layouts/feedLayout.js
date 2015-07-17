@@ -1,4 +1,4 @@
-define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/slyp_chats", "layouts/chatLayout"], function(Marionette, SlypsView, SlypChatsView, SlypChats, ChatLayout){
+define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/chatLayout"], function(Marionette, SlypsView, SlypChats, ChatLayout){
   var feedLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-feed-layout-tmpl",
 
