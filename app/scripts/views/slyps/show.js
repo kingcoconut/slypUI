@@ -7,8 +7,8 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
     events:{
       "click @ui.heading": "fullScreen",
       "click @ui.close": "closeScreen",
-      "click .js-slyp-delete": "deleteSlyp"
-      "click @ui.container": "select",
+      "click .js-slyp-delete": "deleteSlyp",
+      "click @ui.container": "select"
     },
     modelEvents: {
       "change": "render"

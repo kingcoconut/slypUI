@@ -15,6 +15,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
         success: function(response){
           this.collection.trigger("addingNewSlyp"); // to bump off the current first slyp in feed
           this.collection.add(response, {at: 0});
+          debugger
         },
         error: function(status, response){
           console.log(status);

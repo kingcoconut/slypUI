@@ -20,6 +20,7 @@ define(["marionette", "views/slyp_chat_messages/show"], function(Marionette, Sly
     },
 
     createMessage: function(ev){
+      debugger
       ev.preventDefault();
       var message = {
         content: this.$(".js-new-slyp-chat-message").val(),
