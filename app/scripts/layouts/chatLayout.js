@@ -16,7 +16,7 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
 
       if(slypChats.length > 0){
-        this.slypChat = this.slypChats.first;
+        this.slypChat = this.slypChats[0];
         this.slypChatMessages = slypChat.get("slyp_chat_messages");
         this.renderChat();
       }else{
