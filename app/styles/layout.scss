@@ -47,12 +47,12 @@
 }
 
 .right-sidebar{
-  padding:5px 0 0 5px;
+  /*padding:5px 0 0 5px;*/
   background-color:white;
   border-left: 1px #ddd solid;
   position: absolute;
   right: 0px;
-  width: 90%;
+  width: 70px;
   transition: width 1s;
   -moz-transition: width 1s; /* Firefox 4 */
   -webkit-transition: width 1s; /* Safari and Chrome */
@@ -65,11 +65,32 @@
 }
 
 .slyp-chat-user-container{
-  margin-bottom:5px;
+  position: relative;
+  padding:5px;
+
+
+  &:hover{
+    cursor:pointer;
+    background-color:#eee;
+  }
+
   .icon-container{
     img{
       border-radius: 1px;
       width:45px;
     }
   }
+  .user-email{
+    position: absolute;
+    top: 15px;
+    left:57px;
+  }
+}
+
+.chat-left{
+  padding:10px;
+}
+
+.chat-command-center{
+  margin-bottom:10px;
 }

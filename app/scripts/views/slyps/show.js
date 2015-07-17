@@ -11,7 +11,7 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
       "click @ui.container": "select"
     },
     modelEvents: {
-      "change": "render"
+      // "change": "render"
     },
     fullScreen: function(){
 
@@ -23,7 +23,7 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
       var that = this;
       this.model.collection.on("addingNewSlyp", function(){
         that.$el.find(".blog-article-box").removeClass("fixed-slyp");
-      })
+      });
     },
     onRender: function(){
       var that = this;
