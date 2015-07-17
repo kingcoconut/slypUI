@@ -1,4 +1,4 @@
-define(["marionette", "views/chat/sidebar", "collections/slyp_chats"], function(Marionette, ChatSidebar, SlypChats){
+define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "collections/slyp_chats"], function(Marionette, ChatSidebar, CommandCenter, SlypChats){
   var chatLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-chat-layout-tmpl",
 
@@ -9,6 +9,7 @@ define(["marionette", "views/chat/sidebar", "collections/slyp_chats"], function(
     },
     onBeforeShow: function(){
       this.sideBar.show(new ChatSidebar({collection: this.slyp.get("slyp_chats")}));
+      this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
       // this.feedLeft.show(new SlypsView({collection: this.slyps}));
     },
     onShow: function(){

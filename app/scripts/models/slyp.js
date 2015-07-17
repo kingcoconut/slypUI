@@ -26,6 +26,21 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     dock: function(){
       if(this.collection)
         this.collection.setDockedSlyp(this);
+    },
+    sendTo: function(emails){
+      var that = this;
+      $.ajax({
+        url: window.apiHost + "/slyp_chats",
+        data: {slyp_id: this.get("id"), emails: emails},
+        method: "POST",
+        success: function(){
+          that.get("slyp_chats").fetch({data: $.param({slyp_id: that.get("id")})});
+        },
+        error: function(error, msg, status){
+          alert(error.responseText);
+          console.log(error);
+        }
+      });
     }
   });
   return slyp;

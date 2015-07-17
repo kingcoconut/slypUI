@@ -3,9 +3,9 @@ define(["marionette", "views/slyps/show", "waypoints"], function(Marionette, Sly
     childView: SlypView,
     onRender: function(){
       var that = this;
-    }, 
+    },
     collectionEvents: {
-    	"change" : "render",
+    	// "change" : "render",
       "sync" : "render"
     }
   });
