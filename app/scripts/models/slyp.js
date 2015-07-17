@@ -18,8 +18,9 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
 
     fetchChats: function(){
       var slyp_id = this.get('id');
-      this.slypChats = new SlypChats();
-      this.slypChats.fetch({data: $.param({slyp_id: slyp_id})});
+      slypChats = new SlypChats();
+      slypChats.fetch({data: $.param({slyp_id: slyp_id})});
+      this.set("slyp_chats", slypChats);
     },
 
     dock: function(){

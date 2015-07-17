@@ -1,4 +1,4 @@
-define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/slyp_chats"], function(Marionette, SlypsView, SlypChatsView, SlypChats){
+define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/slyp_chats", "layouts/chatLayout"], function(Marionette, SlypsView, SlypChatsView, SlypChats, ChatLayout){
   var feedLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-feed-layout-tmpl",
 
@@ -6,7 +6,7 @@ define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/
       feedLeft : ".js-feed-left",
       feedRight : ".js-feed-right",
     },
-    onRender: function(){
+    onBeforeShow: function(){
       this.feedLeft.show(new SlypsView({collection: this.slyps}));
     },
     onShow: function(){
@@ -25,7 +25,9 @@ define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/
 
     renderFeedRight: function(){
       var slyp = this.slyps.getDockedSlyp();
-      this.feedRight.show(new SlypChatsView({collection: slyp.slypChats, slyp_id: slyp.get("id")}));
+      var chatLayout = new ChatLayout({slyp: slyp});
+      this.feedRight.show(chatLayout);
+      // this.feedRight.show(new SlypChatsView({collection: slyp.slypChats, slyp_id: slyp.get("id")}));
     }
   });
 
