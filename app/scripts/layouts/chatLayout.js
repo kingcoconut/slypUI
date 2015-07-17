@@ -1,4 +1,4 @@
-define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "collections/slyp_chats"], function(Marionette, ChatSidebar, CommandCenter, SlypChats){
+define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/chat/messages", "collections/slyp_chats"], function(Marionette, ChatSidebar, CommandCenter, Messages, SlypChats){
   var chatLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-chat-layout-tmpl",
 
@@ -8,22 +8,46 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "collect
       sideBar : ".js-chat-sidebar",
     },
     onBeforeShow: function(){
-      this.sideBar.show(new ChatSidebar({collection: this.slyp.get("slyp_chats")}));
+      var that = this;
+      // get what we need
+      this.slypChats = this.slyp.get("slyp_chats");
+      // display it
+      this.sideBar.show(new ChatSidebar({collection: slypChats}));
       this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
-      // this.feedLeft.show(new SlypsView({collection: this.slyps}));
+
+      if(slypChats.length > 0){
+        this.slypChat = this.slypChats.first;
+        this.slypChatMessages = slypChat.get("slyp_chat_messages");
+        this.renderChat();
+      }else{
+        slypChats.on("sync", function(){
+          if(this.length > 0){
+            that.slypChatMessages = this.models[0].get("slyp_chat_messages");
+            that.slypChat = this.models[0];
+            that.renderChat();
+          }
+        });
+      }
     },
     onShow: function(){
-      // $('.js-chat-main').slimScroll({
-      //   height: window.innerHeight - ($("#header").height() + $(".js-chat-sidebar").height())
-      // });
       $('.js-chat-sidebar').slimScroll({
         height: window.innerHeight - $("#header").height()
       });
     },
     initialize: function(options){
+      var that = this;
       this.slyp = options.slyp;
+      App.vent.on("select:chat", function(id){
+        that.slypChat = that.slypChats.get(id);
+        that.slypChatMessages = that.slypChat.get("slyp_chat_messages");
+        that.renderChat();
+      })
       //listen to activate, slyps.currentSlyp change this.renderFeedRight
+    },
+    renderChat: function(){
+      this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
     }
+
   });
 
   return chatLayout;

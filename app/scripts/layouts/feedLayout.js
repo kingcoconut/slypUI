@@ -25,9 +25,13 @@ define(["marionette", "views/slyps/list", "views/slyp_chats/list", "collections/
 
     renderFeedRight: function(){
       var slyp = this.slyps.getDockedSlyp();
-      var chatLayout = new ChatLayout({slyp: slyp});
-      this.feedRight.show(chatLayout);
-      // this.feedRight.show(new SlypChatsView({collection: slyp.slypChats, slyp_id: slyp.get("id")}));
+      if(this.feedRight.currentView){
+        this.feedRight.currentView.slyp = slyp;
+        this.feedRight.currentView.onBeforeShow();
+      }else{
+        var chatLayout = new ChatLayout({slyp: slyp});
+        this.feedRight.show(chatLayout);
+      }
     }
   });
 

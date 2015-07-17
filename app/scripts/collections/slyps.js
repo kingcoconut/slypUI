@@ -34,7 +34,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     setDockedSlyp: function(slyp){
       this.dockedSlypId = slyp.get("id");
       slyp.fetchChats();
-      this.trigger("slypDocked")
+      this.trigger("slypDocked");
       console.log("DOCKED SLYP: " + slyp.get("id"));
     },
 

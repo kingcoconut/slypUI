@@ -17,10 +17,12 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     },
 
     fetchChats: function(){
-      var slyp_id = this.get('id');
-      slypChats = new SlypChats();
-      slypChats.fetch({data: $.param({slyp_id: slyp_id})});
-      this.set("slyp_chats", slypChats);
+      // only make a new collection if one doesn't yet exist for this slyp
+      if(!this.get("slyp_chats")){
+        slypChats = new SlypChats();
+        this.set("slyp_chats", slypChats);
+      }
+      slypChats.fetch({data: $.param({slyp_id: this.get('id')})});
     },
 
     dock: function(){
