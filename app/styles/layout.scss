@@ -46,24 +46,6 @@
   }
 }
 
-.right-sidebar{
-  /*padding:5px 0 0 5px;*/
-  background-color:white;
-  border-left: 1px #ddd solid;
-  position: absolute;
-  right: 0px;
-  width: 70px;
-  transition: width 1s;
-  -moz-transition: width 1s; /* Firefox 4 */
-  -webkit-transition: width 1s; /* Safari and Chrome */
-  -o-transition: width 1s; /* Opera */
-  -ms-transition: width 1s; /* IE9 (maybe) */
-
-  &:hover{
-    width:200%;
-  }
-}
-
 .slyp-chat-user-container{
   position: relative;
   padding:5px;
@@ -87,8 +69,36 @@
   }
 }
 
+.chat-container{
+  position:relative;
+}
+
+.right-sidebar{
+  height:100%;
+  position: absolute;
+  top: 0;
+  right:0;
+  background-color:white;
+  border-left: 1px #ddd solid;
+  width:58px;
+  transition: width 1s;
+  -moz-transition: width 1s; /* Firefox 4 */
+  -webkit-transition: width 1s; /* Safari and Chrome */
+  -o-transition: width 1s; /* Opera */
+  -ms-transition: width 1s; /* IE9 (maybe) */
+
+  &:hover{
+    width:200px;
+  }
+}
+
 .chat-left{
   padding:10px;
+  padding-right:70px;
+
+  .chat-input-section{
+    margin-top:10px;
+  }
 }
 
 .chat-command-center{

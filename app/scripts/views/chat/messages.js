@@ -10,6 +10,12 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       "submit #js-chat-message-form": "createMessage"
     },
 
+    onShow: function(){
+      $('.js-chat-messages-container').slimScroll({
+        height: window.innerHeight - ($("#header").height() + $(".js-chat-command-center").height() + $(".chat-input-section").outerHeight(true) + 30) // 20 is for the padding on the chat-left
+      });
+    },
+
     createMessage: function(ev){
       ev.preventDefault();
       var input = this.$("#js-chat-message-input");

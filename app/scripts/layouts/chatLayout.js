@@ -13,11 +13,6 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
       this.renderChatMessages();
     },
-    onShow: function(){
-      $('.js-chat-sidebar').slimScroll({
-        height: window.innerHeight - $("#header").height()
-      });
-    },
     initialize: function(options){
       var that = this;
       this.slyp = options.slyp;

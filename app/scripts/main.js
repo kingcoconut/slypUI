@@ -10,7 +10,7 @@ require.config({
     'routefilter': 'vendor/routefilter/src/backbone.routefilter',
     'moment': 'vendor/moment/moment',
     'jquery-ui': '../theme/vendor/jquery-ui/jquery-ui.min',
-    'slimscroll': '../theme/vendor/slimScroll/jquery.slimscroll.min',
+    'slimscroll': 'lib/jquery.slimscroll',
     'bootstrap':  '../theme/vendor/bootstrap/dist/js/bootstrap.min',
     'icheck': '../theme/vendor/iCheck/icheck.min',
     'sticky': 'vendor/jquery.stick/jquery.sticky',

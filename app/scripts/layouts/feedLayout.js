@@ -13,9 +13,6 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
       $('.js-feed-left').slimScroll({
         height: window.innerHeight - 56
       });
-      $('.js-feed-right').slimScroll({
-        height: window.innerHeight - 56
-      });
     },
     initialize: function(options){
       this.slyps = options.slyps;
