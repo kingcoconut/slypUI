@@ -24,11 +24,16 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
     },
 
     renderFeedRight: function(){
-      var slyp = this.slyps.getDockedSlyp();
-      if(this.feedRight.currentView){
-        this.feedRight.currentView.slyp = slyp;
-        this.feedRight.currentView.onBeforeShow();
-      }else{
+      // only render the right feed if there are slyps
+      if(this.slyps.length > 0){
+        var slyp = this.slyps.getDockedSlyp();
+
+        // don't re render the right feed if it has already been rendered for that slyp
+        if(this.feedRight.currentView){
+          if(slyp === this.feedRight.currentView.slyp)
+            return;
+        }
+
         var chatLayout = new ChatLayout({slyp: slyp});
         this.feedRight.show(chatLayout);
       }

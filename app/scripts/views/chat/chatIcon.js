@@ -8,7 +8,7 @@ define(["marionette"], function(Marionette){
       return {email: this.model.get("users")[1].email, id: this.model.get("users")[1].id};
     },
     selectChat: function(){
-      App.vent.trigger("select:chat", this.model.get("id"));
+      this.model.collection.trigger("model:select", this.model.get("id"));
     }
   });
   return ChatIcon;

@@ -9,25 +9,9 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     },
     onBeforeShow: function(){
       var that = this;
-      // get what we need
-      this.slypChats = this.slyp.get("slyp_chats");
-      // display it
       this.sideBar.show(new ChatSidebar({collection: slypChats}));
       this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
-
-      if(slypChats.length > 0){
-        this.slypChat = this.slypChats[0];
-        this.slypChatMessages = slypChat.get("slyp_chat_messages");
-        this.renderChat();
-      }else{
-        slypChats.on("sync", function(){
-          if(this.length > 0){
-            that.slypChatMessages = this.models[0].get("slyp_chat_messages");
-            that.slypChat = this.models[0];
-            that.renderChat();
-          }
-        });
-      }
+      this.renderChatMessages();
     },
     onShow: function(){
       $('.js-chat-sidebar').slimScroll({
@@ -37,15 +21,26 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     initialize: function(options){
       var that = this;
       this.slyp = options.slyp;
-      App.vent.on("select:chat", function(id){
-        that.slypChat = that.slypChats.get(id);
-        that.slypChatMessages = that.slypChat.get("slyp_chat_messages");
-        that.renderChat();
-      })
-      //listen to activate, slyps.currentSlyp change this.renderFeedRight
+      this.slypChats = this.slyp.get("slyp_chats");
+
+      // if slypchats were populated yet, make sure messages view gets created when there is a
+      // slyp_chat_messages collection pulled in
+      this.slypChats.on("sync", function(){
+        that.renderChatMessages();
+      });
+
+      // when a chat is selected, make that chat's messages appear
+      this.slypChats.on("model:select", function(id){
+        this.renderChatMessages(id);
+      }, this);
     },
-    renderChat: function(){
-      this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
+    renderChatMessages: function(chat_id){
+      // if not chat_id was given, use the first slyp chat in the collection
+      this.slypChat = this.slypChats.get(chat_id) || this.slypChats.first();
+      if(this.slypChat){
+        this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
+        this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
+      }
     }
 
   });
