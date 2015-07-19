@@ -8,6 +8,9 @@ define(["marionette"], function(Marionette){
       return {email: this.model.get("users")[1].email, id: this.model.get("users")[1].id};
     },
     selectChat: function(){
+      $(".slyp-chat-user-container").removeClass("active");
+      this.$(".slyp-chat-user-container").addClass("active");
+
       this.model.collection.trigger("model:select", this.model.get("id"));
     }
   });

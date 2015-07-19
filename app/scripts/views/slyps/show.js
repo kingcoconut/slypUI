@@ -32,6 +32,8 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
          });
     },
     select: function(){
+      $(".list-view-slyp").removeClass("active");
+      this.$(".list-view-slyp").addClass("active");
       $(".slyp-text").hide();
       this.$el.find(".slyp-text").toggle();
       this.model.dock();

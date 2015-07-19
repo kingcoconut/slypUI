@@ -6,10 +6,11 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
       feedLeft : ".js-feed-left",
       feedRight : ".js-feed-right",
     },
-    onBeforeShow: function(){
-      this.feedLeft.show(new SlypsView({collection: this.slyps}));
-    },
     onShow: function(){
+      this.feedLeft.show(new SlypsView({collection: this.slyps}));
+      if(this.slyps.length > 0){
+        this.renderFeedRight();
+      }
       $('.js-feed-left').slimScroll({
         height: window.innerHeight - 56
       });
@@ -17,23 +18,22 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
     initialize: function(options){
       this.slyps = options.slyps;
       this.listenTo(this.slyps, "slypDocked", this.renderFeedRight, this);
-      //listen to activate, slyps.currentSlyp change this.renderFeedRight
     },
 
     renderFeedRight: function(){
-      // only render the right feed if there are slyps
-      if(this.slyps.length > 0){
-        var slyp = this.slyps.getDockedSlyp();
+      this.slyp = this.slyps.getDockedSlyp();
+      this.slypChats = this.slyp.get("slyp_chats");
 
-        // don't re render the right feed if it has already been rendered for that slyp
-        if(this.feedRight.currentView){
-          if(slyp === this.feedRight.currentView.slyp)
-            return;
-        }
-
-        var chatLayout = new ChatLayout({slyp: slyp});
-        this.feedRight.show(chatLayout);
+      if(this.slypChats.fetched){
+        this.renderChat();
+      }else{
+        this.slypChats.on("sync", function(){
+          this.renderChat();
+        }, this);
       }
+    },
+    renderChat: function(){
+      this.feedRight.show(new ChatLayout({slypChats: this.slypChats, slyp: this.slyp}));
     }
   });
 

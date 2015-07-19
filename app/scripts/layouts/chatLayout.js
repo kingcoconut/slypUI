@@ -7,25 +7,17 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       main : ".js-chat-main",
       sideBar : ".js-chat-sidebar",
     },
-    onBeforeShow: function(){
-      var that = this;
-      this.sideBar.show(new ChatSidebar({collection: slypChats}));
-      this.commandCenter.show(new CommandCenter({slyp: this.slyp}));
+    onShow: function(){
+      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp}));
       this.renderChatMessages();
     },
     initialize: function(options){
       var that = this;
-      this.slyp = options.slyp;
-      this.slypChats = this.slyp.get("slyp_chats");
-
-      // if slypchats were populated yet, make sure messages view gets created when there is a
-      // slyp_chat_messages collection pulled in
-      this.slypChats.on("sync", function(){
-        that.renderChatMessages();
-      });
+      this.slyp = this.options.slyp;
+      this.slypChats = options.slypChats;
 
       // when a chat is selected, make that chat's messages appear
-      this.slypChats.on("model:select", function(id){
+      this.listenTo(this.slypChats, "model:select", function(id){
         this.renderChatMessages(id);
       }, this);
     },

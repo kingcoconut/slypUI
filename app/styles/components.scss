@@ -3,6 +3,15 @@
   overflow: hidden;
   border-bottom: 1px #ccc solid;
 
+  &:hover{
+    cursor:pointer;
+    background-color: #eee;
+  }
+
+  &.active{
+    background-color:rgb(245, 249, 255);
+  }
+
   .slyp-heading{
     padding:15px;
     height:80px;
@@ -40,5 +49,33 @@
       min-width:100%;
       max-height:100%;
     }
+  }
+}
+
+.slyp-chat-user-container{
+  position: relative;
+  padding:5px;
+
+  &.active{
+    img{
+      box-shadow: 4px 4px 2px #888888;
+    }
+  }
+
+  &:hover{
+    cursor:pointer;
+    background-color:#eee;
+  }
+
+  .icon-container{
+    img{
+      border-radius: 1px;
+      width:45px;
+    }
+  }
+  .user-email{
+    position: absolute;
+    top: 15px;
+    left:57px;
   }
 }

@@ -12,7 +12,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     onShow: function(){
       $('.js-chat-messages-container').slimScroll({
-        height: window.innerHeight - ($("#header").height() + $(".js-chat-command-center").height() + $(".chat-input-section").outerHeight(true) + 30) // 20 is for the padding on the chat-left
+        height: window.innerHeight - ($("#header").height() + $(".chat-input-section").outerHeight(true) + 20) // 20 is for the padding on the chat-left
       });
     },
 
@@ -24,7 +24,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
         slyp_chat_id: this.model.get('id'),
         sender_email: App.user.get('email'),
         users: this.model.get('users')
-      }
+      };
       var that = this;
       // This will update the slyp_chat_messages view and request off to the grape api
       this.collection.create(message, {

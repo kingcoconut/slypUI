@@ -5,7 +5,6 @@ define(["marionette", "views/slyps/show", "waypoints"], function(Marionette, Sly
       var that = this;
     },
     collectionEvents: {
-    	// "change" : "render",
       "sync" : "render"
     }
   });

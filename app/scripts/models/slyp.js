@@ -19,10 +19,9 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     fetchChats: function(){
       // only make a new collection if one doesn't yet exist for this slyp
       if(!this.get("slyp_chats")){
-        slypChats = new SlypChats();
-        this.set("slyp_chats", slypChats);
+        this.set("slyp_chats", new SlypChats({slyp_id: this.get("id")}));
       }
-      slypChats.fetch({data: $.param({slyp_id: this.get('id')})});
+      this.get("slyp_chats").fetch();
     },
 
     dock: function(){
@@ -35,8 +34,8 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
         url: window.apiHost + "/slyp_chats",
         data: {slyp_id: this.get("id"), emails: emails},
         method: "POST",
-        success: function(){
-          that.get("slyp_chats").fetch({data: $.param({slyp_id: that.get("id")})});
+        success: function(resp){
+          that.get("slyp_chats").fetch();
         },
         error: function(error, msg, status){
           alert(error.responseText);
