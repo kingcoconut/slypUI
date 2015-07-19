@@ -2,7 +2,11 @@
   <div class="js-chat-messages-container chat-messages"></div>
   <div class="chat-input-section">
     <form id="js-chat-message-form" class="form-horizontal">
-      <input type="text" id="js-chat-message-input" class="form-control"/>
+      <% if(items.length > 0){ %>
+        <input type="text" id="js-chat-message-input" class="form-control" placeholder="leave a comment"/>
+      <% }else{ %>
+        <input type="text" id="js-chat-message-input" class="form-control" placeholder="Start the conversation..."/>
+      <% } %>
     </form>
   </div>
 </script>

@@ -5,16 +5,11 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
       container: '.list-view-slyp',
     },
     events:{
-      "click @ui.heading": "fullScreen",
-      "click @ui.close": "closeScreen",
       "click .js-slyp-delete": "deleteSlyp",
-      "click @ui.container": "select",
+      "click @ui.container": "select"
     },
     modelEvents: {
       // "change": "render"
-    },
-    fullScreen: function(){
-
     },
     deleteSlyp: function(){
       this.model.destroy();

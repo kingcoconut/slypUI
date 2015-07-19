@@ -1,25 +1,24 @@
 <script type="text/template" id="js-slyp-show-tmpl">
   <div class="list-view-slyp">
+    <div class="send-slyp">
+      <i class="pe-7s-note"></i>
+    </div>
     <div class="row">
-      <div class="slyp-heading col-sm-9">
-        <div class="slyp-title truncate"><%= title %></div>
-        <div class="slyp-details row">
-          <div class="col-sm-5">
-            <a class="text-muted" href=<%= url %> target="_blank"><%= site_name %></a>
-          </div>
-        </div>
-      </div>
-      <div class="slyp-media col-sm-3">
+      <div class="slyp-media col-sm-5">
         <% if (video_url !== ''){%>
           <iframe allowfullscreen="" src=<%= video_url %>></iframe>
         <% }else{ %>
           <img src="<%= top_image %>" />
         <% } %>
       </div>
-    </div>
-    <div class="row">
-      <div class="slyp-text col-sm-12">
-        <div class="fade-text">
+      <div class="slyp-heading col-sm-7">
+        <div class="slyp-title truncate"><a href=<%= url %> target="_blank"><%= title %></a></div>
+        <div class="slyp-details row">
+          <div class="col-sm-5">
+            <a class="text-muted" href=<%= url %> target="_blank"><%= site_name %></a>
+          </div>
+        </div>
+        <div class="slyp-summary">
           <%= summary || description || text %>
         </div>
       </div>

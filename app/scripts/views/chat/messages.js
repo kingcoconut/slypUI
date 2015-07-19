@@ -9,6 +9,9 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
     events: {
       "submit #js-chat-message-form": "createMessage"
     },
+    templateHelpers: function() {
+      return { items: this.collection.toJSON() };
+    },
 
     onShow: function(){
       $('.js-chat-messages-container').slimScroll({
