@@ -1,5 +1,9 @@
 <script type="text/template" id="js-chat-icon-tmpl">
-  <div class="slyp-chat-user-container">
+  <% if(selected){ %>
+    <div class="slyp-chat-user-container active">
+  <% }else{ %>
+    <div class="slyp-chat-user-container">
+  <% } %>
     <span class="icon-container">
       <img src="assets/theme/images/a<%= (id % 9) + 1 %>.jpg" />
     </span>

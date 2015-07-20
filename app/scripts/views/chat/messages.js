@@ -17,6 +17,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       $('.js-chat-messages-container').slimScroll({
         height: window.innerHeight - ($("#header").height() + $(".chat-input-section").outerHeight(true) + 20) // 20 is for the padding on the chat-left
       });
+      this.$("input").focus();
     },
 
     initialize: function(){

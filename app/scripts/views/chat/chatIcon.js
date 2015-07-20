@@ -5,13 +5,10 @@ define(["marionette"], function(Marionette){
       "click .slyp-chat-user-container": "selectChat"
     },
     serializeData: function(){
-      return {email: this.model.get("users")[1].email, id: this.model.get("users")[1].id};
+      return {email: this.model.get("users").last().get("email"), id: this.model.get("users").last().get("id"), selected: this.model.get("selected")};
     },
     selectChat: function(){
-      $(".slyp-chat-user-container").removeClass("active");
-      this.$(".slyp-chat-user-container").addClass("active");
-
-      this.model.collection.trigger("model:select", this.model.get("id"));
+      this.model.setSelected();
     }
   });
   return ChatIcon;

@@ -1,4 +1,4 @@
-define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slimscroll){
+define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp"], function(Marionette, moment, slimscroll, sendSlypView){
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
     ui:{
@@ -26,12 +26,21 @@ define(["marionette", "moment", "slimscroll"], function(Marionette, moment, slim
              height: '500px'
          });
     },
-    select: function(){
+    select: function(ev){
       $(".list-view-slyp").removeClass("active");
       this.$(".list-view-slyp").addClass("active");
       $(".slyp-text").hide();
       this.$el.find(".slyp-text").toggle();
       this.model.dock();
+      if($(ev.target).hasClass("send-slyp")){
+        var sendSlyp = new sendSlypView({model: this.model});
+        $("#modals").append(sendSlyp.$el.show());
+        sendSlyp.render();
+        sendSlyp.on("closeMe", function(){
+          this.destroy();
+          $("#modals").html('');
+        });
+      }
     }
   });
 

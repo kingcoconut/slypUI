@@ -4,7 +4,8 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
     childView: ChatIcon,
     childViewContainer: ".js-chat-sidebar-icons",
     collectionEvents: {
-      "reset": "render"
+      "reset": "render",
+      "change": "render"
     },
     events: {
       "submit #js-command-center-form": "parseInput"
