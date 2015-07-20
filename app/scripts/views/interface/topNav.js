@@ -5,11 +5,11 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     id: "js-top-nav",
 
     ui: {
-      addSlyp: ".js-add-new-slyp",
+      form: "#js-add-new-slyp",
     },
 
     events: {
-      "submit @ui.addSlyp"  : "addSlyp"
+      "submit @ui.form"  : "addSlyp"
     },
 
     logout: function(){
@@ -19,17 +19,16 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     initialize: function(options){
       this.options = options;
       this.render();
-      this.slyps = options.slyps
+      this.slyps = options.slyps;
     },
 
     addSlyp: function(event) {
-      event.preventDefault()
-      slypUrl = this.$el.find("input[name=new_url]")[0].value
-      if (this.validUrl(slypUrl)){
+      debugger
+      event.preventDefault();
+      if(this.ui.form.valid()){
+        slypUrl = this.ui.form.find("input[name=new_url]")[0].value;
         this.slyps.createFromUrl(slypUrl);
-        this.$el.find("input[name=new_url]")[0].value = ''
-      }else{
-        alert('Not a valid url. ' + slypUrl)
+        this.$el.find("input[name=new_url]")[0].value = '';
       }
     },
 
@@ -50,6 +49,28 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       } else {
         return true;
       }
+    },
+    onShow: function(){
+      this.$("#js-add-new-slyp").validate({
+        rules:{
+          new_url:{
+            required: true,
+            url: true
+          }
+        },
+        onkeyup: function(e){
+          e.stopPropagation();
+        },
+        onfocusout: function(e){
+          e.stopPropagation();
+        },
+        errorPlacement: function(error, element) {
+          var el = error.insertAfter(element.parent().parent());
+          setTimeout(function(){
+            el.remove();
+          },3000);
+        }
+      });
     }
   });
 

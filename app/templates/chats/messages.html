@@ -3,9 +3,9 @@
   <div class="chat-input-section">
     <form id="js-chat-message-form" class="form-horizontal">
       <% if(items.length > 0){ %>
-        <input type="text" id="js-chat-message-input" class="form-control" placeholder="leave a comment"/>
+        <input type="text" id="js-chat-message-input" class="form-control" placeholder="leave a comment" required/>
       <% }else{ %>
-        <input type="text" id="js-chat-message-input" class="form-control" placeholder="Start the conversation..."/>
+        <input type="text" id="js-chat-message-input" class="form-control" placeholder="Start the conversation..." required/>
       <% } %>
     </form>
   </div>

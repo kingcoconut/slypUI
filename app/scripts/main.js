@@ -17,6 +17,7 @@ require.config({
     'waypoints': 'vendor/waypoints/lib/jquery.waypoints.min',
     'toastr':'vendor/toastr/toastr.min',
     'typeahead':'vendor/jquery-typeahead/dist/jquery.typeahead.min',
+    'jquery.validate':'vendor/jquery.validate/dist/jquery.validate.min',
     'facebook': 'lib/facebook',
     'config': 'config',
     'app': 'app',

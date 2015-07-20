@@ -12,6 +12,12 @@
 #header{
   height: 56px;
   border-bottom: none;
+
+  label.has-error{
+    margin-top: 14px;
+    font-size: 14px;
+    color: #a94442;
+  }
 }
 
 #wrapper{
@@ -71,7 +77,6 @@
 
   .sidebar-send{
     padding-left:60px;
-    height:30px;
 
     i{
       font-size: 25px;

@@ -23,6 +23,7 @@
     "jquery.sticky": "1.0.0",
     "jquery-typeahead": "2.0.0",
     "waypoints": "latest",
-    "toastr": "2.1.1"
+    "toastr": "2.1.1",
+    "jquery.validate": "1.13.0"
   }
 }
