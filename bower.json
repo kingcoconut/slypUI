@@ -21,6 +21,7 @@
     "routefilter": "~0.2.1",
     "requirejs": "2.1.18",
     "jquery.sticky": "1.0.0",
+    "jquery-typeahead": "2.0.0",
     "waypoints": "latest",
     "toastr": "2.1.1"
   }

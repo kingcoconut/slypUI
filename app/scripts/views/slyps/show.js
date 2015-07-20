@@ -25,6 +25,16 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp"], function
       this.$el.find('.panel-body').slimScroll({
              height: '500px'
          });
+
+      // $('#the-basics .typeahead').typeahead({
+      //   hint: true,
+      //   highlight: true,
+      //   minLength: 1
+      // },
+      // {
+      //   name: 'friends',
+      //   source: substringMatcher(App.friends.getEmails())
+      // });
     },
     select: function(ev){
       $(".list-view-slyp").removeClass("active");

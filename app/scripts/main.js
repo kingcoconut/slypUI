@@ -16,6 +16,7 @@ require.config({
     'sticky': 'vendor/jquery.stick/jquery.sticky',
     'waypoints': 'vendor/waypoints/lib/jquery.waypoints.min',
     'toastr':'vendor/toastr/toastr.min',
+    'typeahead':'vendor/jquery-typeahead/dist/jquery.typeahead.min',
     'facebook': 'lib/facebook',
     'config': 'config',
     'app': 'app',

@@ -79,6 +79,11 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
     recSockMsg: function(data){
       if (this.model.get('id') == data.slyp_chat_id){
         this.model.get("slyp_chat_messages").add(data);
+        // scroll down the slimscroll
+        msgs = $(".js-chat-messages-container .message");
+        lastMsg = msgs[msgs.length-1];
+        $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
+      
       } else{
         //TODO: notify of sockMsg for different slyp_chat_id
       }
