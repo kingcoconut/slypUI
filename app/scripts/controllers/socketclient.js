@@ -33,7 +33,7 @@ define(["marionette", "socket.io"], function(Marionette, io){
 
     self.setResponseListeners = function(socket) {
       socket.on('recSlyp', function(data){
-        toastr.success('Recieved ' + data.slyp_title + ' from ' + data.sender_email);
+        toastr.success('Recieved \"' + data.slyp_title + '\"" from ' + data.sender_email);
         App.vent.trigger("recSlyp", data);
       });
 

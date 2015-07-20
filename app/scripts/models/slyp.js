@@ -35,20 +35,22 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
         data: {slyp_id: this.get("id"), emails: emails},
         method: "POST",
         success: function(resp){
+          resp.forEach(function(slypChat){
+            slypChat.users.forEach(function(user){
+              if (user.email == App.user.get('email')) { return }
+              var sockSlyp = {
+                slyp_id: that.get('id'),
+                user_id: user.id,
+                sender_email: App.user.get('email'),
+                slyp_title: that.get('title')
+              }
+              App.socketclient.pushSlyp(sockSlyp);  
+            })
+          });
+
           var slypChats = that.get("slyp_chats");
           slypChats.add(resp, {parse: true, at: 0});
           slypChats.first().setSelected();
-
-          resp.forEach(function(slypChat){
-            debugger
-            var sockSlyp = {
-              slyp_id: that.get('id'),
-              user_id: slypChat.user_id,
-              sender_email: App.user.get('email'),
-              slyp_title: that.get('title')
-            }
-            App.socketclient.pushSlyp(sockSlyp);
-        });
         },
         error: function(error, msg, status){
           alert(error.responseText);

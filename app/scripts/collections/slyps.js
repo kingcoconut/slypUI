@@ -14,7 +14,8 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
         collection: this,
         success: function(response){
           this.collection.trigger("addingNewSlyp"); // to bump off the current first slyp in feed
-          this.collection.add(response, {at: 0});
+          this.collection.fetch();
+          // this.collection.add(response, {at: 0});
         },
         error: function(status, response){
           console.log(status);
@@ -33,7 +34,8 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     },
 
     addSlyp: function(data){
-      this.collection.add(data, {at: 0});
+      this.fetch();
+      // this.collection.add(data, {at: 0});
     },
 
     setDockedSlyp: function(slyp){
