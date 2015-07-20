@@ -7,7 +7,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       "reset": "render"
     },
     events: {
-      "submit #js-chat-message-form": "createMessage"
+      "submit #js-chat-message-form": "createMessage",
+      "keyup #js-chat-message-input": "pushTypingUsr"
     },
     templateHelpers: function() {
       return { items: this.collection.toJSON() };
@@ -23,6 +24,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     initialize: function(){
       this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
+      this.listenTo(App.vent, "recTypingUsr", this.recTypingUsr, this);
+      this.listenTo(App.vent, "recRemTypingUsr", this.remTypingUsr, this);
     },
 
     createMessage: function(ev){
@@ -40,7 +43,6 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       // This will update the slyp_chat_messages view and request off to the grape api
       this.collection.create(message, {
         success: function(response){
-          that.hasAlert = false;
           var sockMessage = {
             content: response.get('content'),
             slyp_chat_id: response.get('slyp_chat_id'),
@@ -60,6 +62,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
       input.val('');
     },
+
     recTypingUsr: function(data){
       if (this.model.get('id') == data.slyp_chat_id){
         this.$(".js-typing-alert").html('<b>' + data.sender_email + '</b> is typing');
@@ -72,8 +75,23 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       }
     },
 
+    pushTypingUsr: function(evt){
+      var keycode = evt.keyCode;
+      if (keycode !== 13){
+        var to_users = $.map(this.model.get('users').models, function(user) { return user.attributes })
+        var data = {
+          to_users: to_users,
+          keycode: keycode,
+          slyp_chat_id: this.model.get('id'),
+          sender_email: App.user.get('email')
+        }
+        App.socketclient.pushTypingUsr(data);
+      }
+    },
+
     pushSockMsg: function(data){
       App.socketclient.pushChatMsg(data);
+      this.remTypingUsr({slyp_chat_id: this.model.get('id')});
     },
 
     recSockMsg: function(data){

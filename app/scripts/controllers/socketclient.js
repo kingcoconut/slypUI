@@ -47,7 +47,7 @@ define(["marionette", "socket.io"], function(Marionette, io){
       });
 
       socket.on('recRemTypingUsr', function(data){
-        App.vent.trigger("remTypingUsr", data);
+        App.vent.trigger("recRemTypingUsr", data);
       })
     }
 }
