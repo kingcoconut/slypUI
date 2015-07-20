@@ -15,6 +15,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     onShow: function(){
       $('.js-chat-messages-container').slimScroll({
+        start: 'bottom',
+        alwaysVisible: true,
         height: window.innerHeight - ($("#header").height() + $(".chat-input-section").outerHeight(true) + 20) // 20 is for the padding on the chat-left
       });
       this.$("input").focus();
@@ -32,7 +34,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
         slyp_chat_id: this.model.get('id'),
         sender_email: App.user.get('email'),
         users: this.model.get('users'),
-        user_id: $.cookie("user_id")
+        user_id: $.cookie("user_id"),
+        created_at: Date.now()
       };
       var that = this;
       // This will update the slyp_chat_messages view and request off to the grape api
@@ -48,6 +51,11 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
             users: that.model.get('users')
           };
           that.pushSockMsg(sockMessage);
+
+          // scroll down the slimscroll
+          msgs = $(".js-chat-messages-container .message");
+          lastMsg = msgs[msgs.length-1];
+          $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
         }
       });
 
