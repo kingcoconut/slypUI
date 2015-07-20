@@ -35,7 +35,9 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
         data: {slyp_id: this.get("id"), emails: emails},
         method: "POST",
         success: function(resp){
-          that.get("slyp_chats").fetch();
+          var slypChats = that.get("slyp_chats");
+          slypChats.add(resp, {parse: true, at: 0});
+          slypChats.first().setSelected();
         },
         error: function(error, msg, status){
           alert(error.responseText);

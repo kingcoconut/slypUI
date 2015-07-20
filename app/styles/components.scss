@@ -1,7 +1,7 @@
 .list-view-slyp{
   background-color:white;
   overflow: hidden;
-  padding: 10px 25px;
+  padding: 15px 25px;
   position:relative;
 
   &:hover{
@@ -13,6 +13,10 @@
     background-color:rgb(245, 249, 255);
   }
 
+  .row{
+    margin-right:0;
+  }
+
   .send-slyp{
     position: absolute;
     right: 7px;
@@ -21,7 +25,7 @@
   }
 
   .slyp-heading{
-    padding:15px;
+    padding-right:0px;
     height:170px;
     padding-left: 30px;
     overflow: hidden;
@@ -73,7 +77,8 @@
 
   &.active{
     img{
-      box-shadow: 4px 4px 2px #888888;
+      /*box-shadow: 4px 4px 2px #888888;*/
+      border-right:5px solid #0AF200;
     }
   }
 
