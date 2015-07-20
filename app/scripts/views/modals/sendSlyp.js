@@ -1,4 +1,4 @@
-define(["marionette"], function(Marionette, moment, slimscroll){
+define(["marionette", "jquery.validate"], function(Marionette, validate){
   var sendSlypView = Backbone.Marionette.ItemView.extend({
     template: "#js-send-slyp-modal-tmpl",
     className: "overlay",
@@ -8,13 +8,17 @@ define(["marionette"], function(Marionette, moment, slimscroll){
     },
     parseInput: function(evt){
       evt.preventDefault();
-      var input = this.$el.find("#js-send-slyp-input");
-      var query = input.val();
+      var form = this.$("#js-send-slyp-modal-form");
+      if(form.valid()){
+        var input = form.find("[name=email]");
 
-      var user_email = App.user.get('email');
-      var emails = query.replace(user_email, '').split(' ');
-      this.model.sendTo(emails);
-      this.$(".js-close-modal").click();
+        var query = input.val();
+
+        var user_email = App.user.get('email');
+        var emails = query.replace(user_email, '').split(' ');
+        this.model.sendTo(emails);
+        this.$(".js-close-modal").click();
+      }
     },
     onRender: function(){
       var that = this;
@@ -24,7 +28,18 @@ define(["marionette"], function(Marionette, moment, slimscroll){
       });
       setTimeout(function(){
         that.$("input").focus();
+
+        that.$("#js-send-slyp-modal-form").validate({
+        rules:{
+          email:{
+            email: true,
+            required: true
+          },
+        }
+      });
       },1000);
+    },
+    onShow: function(){
     }
   });
 

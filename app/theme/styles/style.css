@@ -2758,7 +2758,7 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 }
 
 .form-control {
-    border-color: #e4e5e7 !important
+    border-color: #e4e5e7;
 }
 
 .input-group-addon {
