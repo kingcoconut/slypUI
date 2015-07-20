@@ -31,7 +31,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
         content: input.val(),
         slyp_chat_id: this.model.get('id'),
         sender_email: App.user.get('email'),
-        users: this.model.get('users')
+        users: this.model.get('users'),
+        user_id: $.cookie("user_id")
       };
       var that = this;
       // This will update the slyp_chat_messages view and request off to the grape api

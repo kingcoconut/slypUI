@@ -99,3 +99,25 @@
     left:57px;
   }
 }
+
+.message-container{
+  overflow: auto;
+}
+
+.message {
+  padding:15px;
+  margin-bottom:10px;
+
+  &.owner{
+    background-color: rgb(228, 243, 252);
+    margin-left:30px;
+    text-align: right;
+    float:right;
+  }
+
+  &.other{
+    background: whitesmoke;
+    margin-right:30px;
+    display: inline-block;
+  }
+}
