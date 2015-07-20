@@ -1,6 +1,6 @@
-define(["marionette", "controllers/interfaceController", "routers/interfaceRouter", "controllers/socketclient", "models/user"], function(Marionette, InterfaceController, InterfaceRouter, SocketClient, User){
+define(["marionette", "controllers/interfaceController", "routers/interfaceRouter", "controllers/socketclient", "models/user", "toastr"], function(Marionette, InterfaceController, InterfaceRouter, SocketClient, User, toastr){
   App = new Marionette.Application();
-
+  window.toastr = toastr;
   // app initializer
   App.addInitializer(function(options){
     if ($.cookie("user_id") && $.cookie("api_token")){

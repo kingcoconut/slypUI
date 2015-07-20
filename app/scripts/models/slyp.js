@@ -36,6 +36,15 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
         method: "POST",
         success: function(resp){
           that.get("slyp_chats").fetch();
+          resp.forEach(function(user){
+          var sockSlyp = {
+            slyp_id: that.get('id'),
+            user_id: user.id,
+            sender_email: App.user.get('email'),
+            slyp_title: that.get('title')
+          }
+          App.socketclient.pushSlyp(sockSlyp);
+        });
         },
         error: function(error, msg, status){
           alert(error.responseText);

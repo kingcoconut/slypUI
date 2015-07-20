@@ -19,6 +19,10 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       });
     },
 
+    initialize: function(){
+      this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
+    },
+
     createMessage: function(ev){
       ev.preventDefault();
       var input = this.$("#js-chat-message-input");
@@ -63,7 +67,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       App.socketclient.pushChatMsg(data);
     },
 
-    receiveSockMsg: function(data){
+    recSockMsg: function(data){
       if (this.model.get('id') == data.slyp_chat_id){
         this.model.get("slyp_chat_messages").add(data);
       } else{

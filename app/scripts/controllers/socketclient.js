@@ -15,6 +15,10 @@ define(["marionette", "socket.io"], function(Marionette, io){
       self.socket.emit("pushChatMsg", data);
     }
 
+    self.pushSlyp = function(data) {
+      self.socket.emit("pushSlyp", data);
+    }
+
     self.pushTypingUsr = function(data){
       self.socket.emit("pushTypingUsr", data);
     }
@@ -28,8 +32,13 @@ define(["marionette", "socket.io"], function(Marionette, io){
     }
 
     self.setResponseListeners = function(socket) {
+      socket.on('recSlyp', function(data){
+        toastr.success('Recieved ' + data.slyp_title + ' from ' + data.sender_email);
+        App.vent.trigger("recSlyp", data);
+      });
 
       socket.on('recChatMsg', function(data) {
+        toastr.success('Recieved chat message from ' + data.sender_email);
         App.vent.trigger("recChatMsg", data);
       });
 

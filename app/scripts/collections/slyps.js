@@ -28,7 +28,12 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
         if(slyp){
           this.setDockedSlyp(slyp);
         }
-      })
+      });
+      this.listenTo(App.vent, "recSlyp", this.addSlyp);
+    },
+
+    addSlyp: function(data){
+      this.collection.add(data, {at: 0});
     },
 
     setDockedSlyp: function(slyp){

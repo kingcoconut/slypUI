@@ -15,6 +15,7 @@ require.config({
     'icheck': '../theme/vendor/iCheck/icheck.min',
     'sticky': 'vendor/jquery.stick/jquery.sticky',
     'waypoints': 'vendor/waypoints/lib/jquery.waypoints.min',
+    'toastr':'vendor/toastr/toastr.min',
     'facebook': 'lib/facebook',
     'config': 'config',
     'app': 'app',
