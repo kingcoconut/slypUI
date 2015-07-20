@@ -1,9 +1,9 @@
 define(["marionette"], function(){
   var user = Backbone.Model.extend({
+    url: window.apiHost + "/users",
     defaults: {
       id: null,
-      email: "",
-      api_token: null
+      email: ""
     }
   });
   return user;

@@ -5,11 +5,8 @@ define(["marionette", "controllers/interfaceController", "routers/interfaceRoute
   App.addInitializer(function(options){
     if ($.cookie("user_id") && $.cookie("api_token")){
       App.authorized = true;
-      App.user = new User({
-        id: $.cookie("user_id"), 
-        api_token: $.cookie("api_token"),
-        email: $.cookie("email")
-      });
+      App.user = new User();
+      App.user.fetch()
       App.vent = _.extend({}, Backbone.Events);
       App.socketclient = new SocketClient();
       App.socketclient.connect();
