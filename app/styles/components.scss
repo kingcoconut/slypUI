@@ -90,7 +90,8 @@
   .icon-container{
     img{
       border-radius: 1px;
-      width:45px;
+      max-width: 40px;
+      max-height: 40px;
     }
   }
   .user-email{
