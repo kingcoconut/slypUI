@@ -2,12 +2,12 @@
   "development": {
     "apiHost": "http://api-dev.slyp.io/v1",
     "blacksmithHost": "http://blacksmith-dev.slyp.io/v1",
-    "chatHost": "http://chat-dev.slyp.io"
+    "socketHost": "http://socket-dev.slyp.io"
   },
   "alpha": {
     "apiHost": "http://api-alpha.slyp.io/v1",
     "blacksmithHost": "http://blacksmith-alpha.slyp.io/v1",
-    "chatHost": "http://socket-alpha.slyp.io"
+    "socketHost": "http://socket-alpha.slyp.io"
   },
   "beta": {
     "authHost": "http://auth-beta.identity.com",
