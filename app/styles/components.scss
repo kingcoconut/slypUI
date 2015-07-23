@@ -76,10 +76,7 @@
   padding:5px;
 
   &.active{
-    img{
-      /*box-shadow: 4px 4px 2px #888888;*/
-      border-right:5px solid #0AF200;
-    }
+    border-left:5px solid #0AF200;
   }
 
   &:hover{
