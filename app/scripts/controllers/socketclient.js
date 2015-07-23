@@ -3,7 +3,7 @@ define(["marionette", "socket.io"], function(Marionette, io){
     var self = this;
 
     self.connect = function() {
-      self.socket = io.connect("http://127.0.0.1:3000");
+      self.socket = io.connect(socketHost);
       self.socket.on("connect", function () {
         console.log("Connected to chat server!");
         self.socket.emit("user", {user_id: App.user.get('id')});
@@ -38,7 +38,6 @@ define(["marionette", "socket.io"], function(Marionette, io){
       });
 
       socket.on('recChatMsg', function(data) {
-        toastr.success('Recieved chat message from ' + data.sender_email);
         App.vent.trigger("recChatMsg", data);
       });
 

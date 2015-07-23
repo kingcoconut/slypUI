@@ -15,15 +15,20 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       var that = this;
       this.slyp = this.options.slyp;
       this.slypChats = options.slypChats;
+      this.slypChatID = options.slypChatID;
 
       // when a chat is selected, make that chat's messages appear
-      this.listenTo(this.slypChats, "model:select", function(id){
-        this.renderChatMessages(id);
-      }, this);
+      this.listenTo(this.slypChats, "model:select", this.setNewChatID, this);
+      this.listenTo(this.slypChatID, "change", this.renderChatMessages, this);
     },
-    renderChatMessages: function(chat_id){
+
+    setNewChatID: function(id){
+      this.slypChatID = id;
+    },
+
+    renderChatMessages: function(){
       // if not chat_id was given, use the first slyp chat in the collection
-      this.slypChat = this.slypChats.get(chat_id) || this.slypChats.first();
+      this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
       if(this.slypChat){
         this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
         this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));

@@ -7,9 +7,9 @@ define(["marionette", "controllers/interfaceController", "routers/interfaceRoute
   App.addInitializer(function(options){
     if ($.cookie("user_id") && $.cookie("api_token")){
       App.authorized = true;
-
+      
       App.user = new User();
-      App.user.fetch()
+      App.user.fetch();
       App.friends = new Friends();
       App.friends.fetch();
 

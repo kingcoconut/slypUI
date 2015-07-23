@@ -18,6 +18,7 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
     initialize: function(options){
       this.slyps = options.slyps;
       this.listenTo(this.slyps, "slypDocked", this.renderFeedRight, this);
+      this.listenTo(App.vent, "changeChatMsg", this.changeChatMsg, this);
     },
 
     renderFeedRight: function(){
@@ -32,8 +33,14 @@ define(["marionette", "views/slyps/list", "collections/slyp_chats", "layouts/cha
         }, this);
       }
     },
-    renderChat: function(){
-      this.feedRight.show(new ChatLayout({slypChats: this.slypChats, slyp: this.slyp}));
+
+    changeChatMsg: function(data) {
+      var newSlyp = this.slyps.get(data.slyp_id);
+      this.slyps.setDockedSlyp(newSlyp);
+    },
+
+    renderChat: function(slypChatID){
+      this.feedRight.show(new ChatLayout({slypChats: this.slypChats, slyp: this.slyp, slypChatID: slypChatID}));
     }
   });
 

@@ -49,7 +49,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
             id: response.get('id'),
             created_at: response.get('created_at'),
             sender_email: App.user.get('email'),
-            users: that.model.get('users')
+            users: that.model.get('users'),
+            slyp_id: that.model.get('slyp_id')
           };
           that.pushSockMsg(sockMessage);
 
@@ -77,7 +78,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     pushTypingUsr: function(evt){
       var keycode = evt.keyCode;
-      if (keycode !== 13){
+      if (keycode !== 13 && (keycode.between(48, 90) || keycode == 8)){
         var to_users = $.map(this.model.get('users').models, function(user) { return user.attributes })
         var data = {
           to_users: to_users,
@@ -102,10 +103,30 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
         lastMsg = msgs[msgs.length-1];
         $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
       
-      } else{
-        //TODO: notify of sockMsg for different slyp_chat_id
+      } else {
+        var that = this;
+        debugger
+        toastr.options.onclick = function() { 
+          App.vent.trigger("changeChatMsg", data);
+          toastr.options.onclick = null; 
+        }
+        toastr.success('Recieved chat message from ' + data.sender_email);
       }
     }
   });
   return Messages;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

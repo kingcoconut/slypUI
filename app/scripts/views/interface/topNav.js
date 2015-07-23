@@ -23,7 +23,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     },
 
     addSlyp: function(event) {
-      debugger
       event.preventDefault();
       if(this.ui.form.valid()){
         slypUrl = this.ui.form.find("input[name=new_url]")[0].value;
