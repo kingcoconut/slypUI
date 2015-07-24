@@ -43,13 +43,25 @@ require.config({
   deps: ['jquery', 'underscore']
 });
 
-require(['app', 'config', 'globals'], function(App){
-  $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-    options.xhrFields = {
-      withCredentials: true
-    };
+if((document.cookie.indexOf("email") < 0) || (document.cookie.indexOf("api_token") < 0)){
+  require(['views/auth/signin', 'config'], function(SigninView){
+    $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+      options.xhrFields = {
+        withCredentials: true
+      };
+    });
+    new SigninView();
   });
-  App.start();
+}else{
+  require(['app', 'config', 'globals'], function(App){
+    $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+      options.xhrFields = {
+        withCredentials: true
+      };
+    });
+    App.start();
+  });
+}
 
   // function statusChangeCallback(response) {
   //   console.log('statusChangeCallback');
@@ -108,4 +120,3 @@ require(['app', 'config', 'globals'], function(App){
   //       'Thanks for logging in, ' + response.name + '!';
   //   });
   // }
-});

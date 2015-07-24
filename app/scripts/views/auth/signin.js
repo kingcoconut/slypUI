@@ -1,4 +1,4 @@
-define(["marionette"], function(){
+define(["backbone"], function(){
   var signin = Backbone.View.extend({
 
     template: "#js-authenticate-tmpl",
@@ -46,7 +46,6 @@ define(["marionette"], function(){
           alert("Auth failed");
         },
         success: function(resp){
-          App.authorized = true;
           alert("check your email");
         }
       });

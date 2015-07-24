@@ -7,15 +7,8 @@ define(["marionette", "routefilter"], function(){
     },
     before: function(route, params){
       $("html, body").animate({ scrollTop: 0 }, "fast");
-      if(!App.authorized){
-        if(App.layout){
-          App.layout = undefined;
-        }
-        Backbone.history.navigate("/signin", true);
-        if(route !== "signin")
-          return false;
-      }else if(typeof(App.layout) === "undefined"){
-        this.options.controller.renderLayout();
+      if((document.cookie.indexOf("email") < 0) && (document.cookie.indexOf("api_token") < 0)){
+        window.location.href = "/";
       }
     }
   });
