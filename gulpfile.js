@@ -31,8 +31,8 @@ gulp.task('lint', function() {
 
 // Compile Our Sass
 gulp.task('theme', function() {
-    return gulp.src(['./app/theme/**/*'])
-      .pipe(gulp.dest('./public/' + ASSETS_PATH + "theme/"));
+    return gulp.src(['./app/theme/styles/**/*'])
+      .pipe(gulp.dest('./public/' + ASSETS_PATH + "styles/"));
 });
 
 gulp.task('config', function() {
@@ -81,6 +81,11 @@ gulp.task('compass', function() {
     }));
 });
 
+gulp.task('fonts', function(){
+  return gulp.src('./app/fonts/**/*.*')
+    .pipe(gulp.dest('./public/' + ASSETS_PATH + 'fonts'));
+});
+
 // Compile Templates
 gulp.task('index', function(){
   gulp.src(['./app/templates/index.html'])
@@ -122,7 +127,7 @@ gulp.task('watch', function() {
 gulp.task('default', function(){
   ENVIRONMENT = "development";
   ASSETS_PATH = 'assets/';
-  runSequence('clean', 'img', 'config', ['scripts', 'theme', 'css', 'compass'], 'index', 'watch');
+  runSequence('clean', 'img', 'config', ['scripts', 'theme', 'css', 'compass', 'fonts'], 'index', 'watch');
 });
 
 gulp.task('cdn', function(){
@@ -135,7 +140,7 @@ gulp.task('cdn', function(){
   }
   ENVIRONMENT = process.argv.slice(4)[0];
   ASSETS_PATH = "assets/" + Date.now() + '/';
-  runSequence('img', 'config', ['scripts', 'theme', 'css', 'compass'], 'index');
+  runSequence('img', 'config', ['scripts', 'theme', 'css', 'compass', 'fonts'], 'index');
 });
 
 assetPath = function (input) {
