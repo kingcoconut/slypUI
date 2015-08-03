@@ -105,7 +105,6 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       
       } else {
         var that = this;
-        debugger
         toastr.options.onclick = function() { 
           App.vent.trigger("changeChatMsg", data);
           toastr.options.onclick = null; 
