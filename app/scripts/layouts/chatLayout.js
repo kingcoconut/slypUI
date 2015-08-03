@@ -24,6 +24,7 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
 
     setNewChatID: function(id){
       this.slypChatID = id;
+      this.renderChatMessages();
     },
 
     renderChatMessages: function(){
