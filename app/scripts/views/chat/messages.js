@@ -26,6 +26,8 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
       this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
       this.listenTo(App.vent, "recTypingUsr", this.recTypingUsr, this);
       this.listenTo(App.vent, "recRemTypingUsr", this.remTypingUsr, this);
+
+      this.alertOut = false;
     },
 
     createMessage: function(ev){
@@ -78,7 +80,14 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     pushTypingUsr: function(evt){
       var keycode = evt.keyCode;
-      if (keycode !== 13 && (keycode.between(48, 90) || keycode == 8)){
+      if (keycode.between(48, 90) && alertOut){
+        return;
+      }else if (keycode.between(48, 90) || keycode == 8){
+        if (keycode == 8){ 
+          this.alertOut = false; 
+        }else{
+          this.alertOut = true;
+        }
         var to_users = $.map(this.model.get('users').models, function(user) { return user.attributes })
         var data = {
           to_users: to_users,
