@@ -84,17 +84,47 @@
     background-color:#eee;
   }
 
-  .icon-container{
-    img{
-      border-radius: 1px;
-      max-width: 40px;
-      max-height: 40px;
-    }
-  }
   .user-email{
     position: absolute;
     top: 15px;
     left:57px;
+  }
+}
+
+.user-icon{
+  display: inline-block;
+  text-transform: uppercase;
+  color: white;
+  font-size:20px;
+  width:30px;
+  height:30px;
+  border-radius: 20px;
+  text-align:center;
+  padding-top:1px;
+
+  &.red{
+    background-color:#d63b3b;
+  } 
+  &.green-light{
+    background-color:#a7bd2f;
+  }
+  &.green-dark{
+    background-color:#008b00;
+  }
+  &.blue-light{
+    background-color:#aaeeee;
+  } 
+  &.blue-dark{
+    background-color:#4169e1;
+  } 
+  &.orange{
+    background-color:#ff8100;
+  } 
+  &.purple{
+    background-color:#d63b71;
+  } 
+  &.violet{
+    background-color:#9781c3;
   }
 }
 

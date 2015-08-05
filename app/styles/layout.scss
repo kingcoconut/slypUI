@@ -61,15 +61,6 @@
   top: 0;
   right:0;
   width:58px;
-  transition: width 1s;
-  -moz-transition: width 1s; /* Firefox 4 */
-  -webkit-transition: width 1s; /* Safari and Chrome */
-  -o-transition: width 1s; /* Opera */
-  -ms-transition: width 1s; /* IE9 (maybe) */
-
-  &:hover{
-    width:200px;
-  }
 
   .js-chat-sidebar{
     background-color: white;

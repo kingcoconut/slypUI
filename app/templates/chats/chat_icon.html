@@ -4,10 +4,7 @@
   <% }else{ %>
     <div class="slyp-chat-user-container">
   <% } %>
-    <span class="icon-container">
-      <img src="<%= icon_url %>" />
-    </span>
-    <span class="user-email"><%= email %></span>
+    <span class="user-icon <%- icon_color %>" data-toggle="tooltip" data-placement="left" title="<%- email %>"><%- icon_letter %></span>
     <span class="icon-status active"></span>
   </div>
 </script>
