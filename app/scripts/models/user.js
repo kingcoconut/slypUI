@@ -6,7 +6,7 @@ define(["marionette"], function(){
       email: ""
     },
     getIconColor: function(){
-    	var index = this.emailToInt() % 7;
+    	var index = this.emailToInt() % 8;
     	colors = ["red", "green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
     	return colors[index];
     },
