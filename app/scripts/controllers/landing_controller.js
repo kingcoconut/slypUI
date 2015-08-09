@@ -2,14 +2,16 @@ define(["marionette", "views/auth/signin"], function(Mn, landingView){
   var landingController = Marionette.Object.extend({
 
     initialize: function() {
-      this.listenTo(App.user, "change", this.refresh);
+      this.listenTo(App.user, "change", this.renderView);
+      this.renderView();
     },
 
-    refresh: function(){
+    renderView: function(){
       if ( !_.isNull(App.user.get('id')) ){
          App.vent.trigger("myfeed");
+      } else {
+        this.initViews();
       }
-      this.initViews();
     },
 
     initViews: function() {

@@ -1,6 +1,7 @@
-define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp"], function(Marionette, moment, slimscroll, sendSlypView){
+define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, sendSlypView, Isotope){
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
+    className: 'js-single-slyp card',
 
     ui:{
       container: '.list-view-slyp',
@@ -11,35 +12,26 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp"], function
       "click @ui.container": "select"
     },
 
-    modelEvents: {
-      "change": "render"
-    },
+    // modelEvents: {
+    //   "change": "render"
+    // },
 
     deleteSlyp: function(){
       this.model.destroy();
     },
-    initialize: function(){
-      var that = this;
-      this.model.collection.on("addingNewSlyp", function(){
-        that.$el.find(".blog-article-box").removeClass("fixed-slyp");
-      });
-    },
-    onRender: function(){
-      var that = this;
-      this.$el.find('.panel-body').slimScroll({
-             height: '500px'
-         });
 
-      // $('#the-basics .typeahead').typeahead({
-      //   hint: true,
-      //   highlight: true,
-      //   minLength: 1
-      // },
-      // {
-      //   name: 'friends',
-      //   source: substringMatcher(App.friends.getEmails())
-      // });
+    onRender: function(){
+      // set up our isotope object here
+      if (_.isUndefined(App.iso)){
+        App.iso = new Isotope( '.js-slyps', {
+          itemSelector: '.js-single-slyp',
+          layoutMode: 'fitRows'
+        });
+      } else {
+        App.iso.insert('.js-single-slyp')
+      }
     },
+
     select: function(ev){
       $(".list-view-slyp").removeClass("active");
       this.$(".list-view-slyp").addClass("active");

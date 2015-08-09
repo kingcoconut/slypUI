@@ -1,25 +1,27 @@
 define(["marionette", "models/slyp"], function(Marionette, Slyp){
   var topNav = Backbone.Marionette.ItemView.extend({
     template: "#js-top-nav-tmpl",
-
-    id: "js-top-nav",
+    id: "header",
 
     ui: {
       form: "#js-add-new-slyp",
+      exit: '.js-logout'
     },
 
     events: {
-      "submit @ui.form"  : "addSlyp"
-    },
-
-    logout: function(){
-      FB.logout();
+      "submit @ui.form"  : "addSlyp",
+      "click @ui.logout" : "logout"
     },
 
     initialize: function(options){
       this.options = options;
       this.render();
       this.slyps = options.slyps;
+    },
+
+    logout: function(e){
+      e.preventDefault();
+      App.vent.trigger("logout")
     },
 
     addSlyp: function(event) {

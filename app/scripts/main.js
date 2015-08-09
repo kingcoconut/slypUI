@@ -22,7 +22,7 @@ require.config({
     'app': 'app',
     'globals': 'globals',
     'socket.io': 'lib/socket.io',
-    'isotope': 'vendor/isotope/dist/isotope.pkgd.min'
+    'isotope': 'vendor/isotope/dist/isotope.pkgd'
 
   },
   shim: {
@@ -38,6 +38,9 @@ require.config({
         deps: ['backbone']
     },
     mockjax: {
+      deps: ['jquery']
+    },
+    isotope: {
       deps: ['jquery']
     }
   },

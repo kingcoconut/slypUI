@@ -1,0 +1,19 @@
+<script type="text/template" id="js-slyp-show-tmpl">
+  <div class="action">
+    <a href="<%= url %>" target="_blank">
+      <h3><%- title %></h3>
+      <p class="text-muted" ><%= site_name %>
+    </a>
+  </div>
+  <div class="image">
+    <% if (video_url !== ''){%>
+      <iframe allowfullscreen="" src=<%= video_url %>></iframe>
+    <% }else{ %>
+      <img src="<%= top_image %>" />
+    <% } %>
+  </div>
+  <div class="content">
+    <%= summary || description || text %>
+  </div>
+</script>
+

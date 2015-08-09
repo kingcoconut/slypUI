@@ -1,4 +1,4 @@
-define(["marionette", "layouts/content_layout", "collections/slyps", "mocks/slyps_mock" ], function(Mn, contentLayout, slyps){
+define(["marionette", "views/interface/topNav", "layouts/content_layout", "collections/slyps", "mocks/slyps_mock" ], function(Mn, TopNav, contentLayout, slyps){
   var userFeedController = Marionette.Object.extend({
 
     initialize: function() {
@@ -8,6 +8,7 @@ define(["marionette", "layouts/content_layout", "collections/slyps", "mocks/slyp
     },
 
     initViews: function() {
+      App.header.show(new TopNav());
       App.body.show(new contentLayout({collection: App.slypCollection}))
     }
   });
