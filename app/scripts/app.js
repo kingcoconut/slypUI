@@ -23,7 +23,6 @@ define(["marionette",
     }
   });
 
-  // app initializer
   App.addInitializer(function(options){
     App.user = new User();
     if ($.cookie("user_id") && $.cookie("api_token")){
@@ -63,7 +62,6 @@ define(["marionette",
     footer: "#js-footer",
   });
 
-  // signin route listener
   App.vent.on("landing", function(){
     App.navigate("");
     App.mainRouter.controller.landingPage();
@@ -74,7 +72,6 @@ define(["marionette",
     App.mainRouter.controller.myFeed();
   });
 
-  // signup route listener
   App.vent.on("logout", function(){
     App.navigate("logout");
     App.mainRouter.controller.logout();

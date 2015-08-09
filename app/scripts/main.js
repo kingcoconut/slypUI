@@ -6,6 +6,7 @@ require.config({
     'backbone.babysitter': 'vendor/backbone.babysitter/lib/backbone.babysitter',
     'backbone.wreqr': 'vendor/backbone.wreqr/lib/backbone.wreqr',
     'marionette': 'vendor/marionette/lib/core/backbone.marionette',
+    'mockjax': 'vendor/jquery-mockjax/jquery.mockjax',
     'cookies': 'vendor/jquery.cookie/jquery.cookie',
     'routefilter': 'vendor/routefilter/src/backbone.routefilter',
     'moment': 'vendor/moment/moment',

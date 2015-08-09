@@ -1,15 +1,14 @@
-define(["marionette"], function(){
+define(["marionette", "layouts/content_layout", "collections/slyps", "mocks/slyps_mock" ], function(Mn, contentLayout, slyps){
   var userFeedController = Marionette.Object.extend({
 
     initialize: function() {
+      App.slypCollection = new slyps();
+      App.slypCollection.fetch();
       this.initViews();
     },
 
     initViews: function() {
-      debugger;
-      App.idCardRegion.show(new SharedViews.IDCardRenderer({model: App.coreInfo}));
-      App.bottomModulesRegion.show(new SharedViews.SignedOutBottomLayout({model: App.coreInfo}));
-      App.coverPhotoRegion.show(new PhotoViews.CoverPhoto({model: App.photos}));
+      App.body.show(new contentLayout({collection: App.slypCollection}))
     }
   });
 

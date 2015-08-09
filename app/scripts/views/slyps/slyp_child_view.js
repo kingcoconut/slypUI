@@ -1,16 +1,20 @@
 define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp"], function(Marionette, moment, slimscroll, sendSlypView){
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
+
     ui:{
       container: '.list-view-slyp',
     },
+
     events:{
       "click .js-slyp-delete": "deleteSlyp",
       "click @ui.container": "select"
     },
+
     modelEvents: {
-      // "change": "render"
+      "change": "render"
     },
+
     deleteSlyp: function(){
       this.model.destroy();
     },
