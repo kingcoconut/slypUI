@@ -11,7 +11,7 @@ define(["marionette", "collections/slyp_chat_messages", "collections/users"], fu
       this.set("users", new userCollection(response.users));
       delete response.slyp_chat_messages;
       delete response.users;
-      
+
       return response;
     },
 

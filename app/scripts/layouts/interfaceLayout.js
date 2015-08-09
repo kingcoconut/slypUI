@@ -9,6 +9,7 @@ define(["marionette", "views/interface/topNav", 'bootstrap'], function(Marionett
     },
 
     onRender: function(){
+      debugger;
       $("#facebook-login").remove();
     }
   });

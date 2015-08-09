@@ -1,59 +1,31 @@
-define(["backbone"], function(){
-  var signin = Backbone.View.extend({
-
+define(["marionette"], function(Mn){
+  var signin = Backbone.Marionette.ItemView.extend({
     template: "#js-authenticate-tmpl",
 
-    el: "#js-body",
+    ui: {
+      submit : ".js-auth-submit",
+      emailInput : ".js-email-input"
+    },
 
     events: {
-      "click .js-authenticate-submit"  : "submit",
-      "submit form": "submit",
-      "click .js-facebook-connect": "fbLogin",
+      "click @ui.submit" : "submitForm",
     },
 
-    initialize: function(){
-      window.checkLoginState = function() {
-        FB.getLoginStatus(function(response) {
-          if(response.status === "connected"){
-            App.authorized = true;
-            Backbone.history.navigate("/", true);
-            $("#facebook-login").remove();
-          }
-          statusChangeCallback(response);
-        });
-      };
-      $("body").removeClass().addClass("login");
-      this.render();
-    },
-
-    render: function(){
-      $("#js-body").html($(this.template).html());
-      $("#facebook-login").appendTo("#facebook-button-on-form");
-    },
-
-    submit: function(event) {
-      event.preventDefault();
-      var self = this;
-      var data = {
-        email: $("#signin-page [name=email]", this.el).val()
-      };
-
-      $.ajax({
-        type: "POST",
-        url: window.apiHost + "/users",
-        data: data,
-        error: function(req, resp){
-          alert("Auth failed");
-        },
-        success: function(resp){
-          alert("check your email");
-        }
+    submitForm: function() {
+      this.model.save(this.ui.emailInput.val(),{
+        error: function(){ this.errorCb(req, resp); },
+        success: function(){ this.successCb(resp); },
       });
     },
 
-    close: function(){
-      alert("successful authentication");
+    errorcb: function(req, resp){
+      alert("Auth failed");
+    },
+
+    success: function(resp){
+      alert("check your email");
     }
+
   });
 
   return signin;
