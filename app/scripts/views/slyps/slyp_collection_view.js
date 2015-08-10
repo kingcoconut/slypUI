@@ -7,7 +7,7 @@ define(["marionette", "views/slyps/slyp_child_view", "waypoints", "isotope"], fu
       App.iso._create();
       App.iso.shuffle();
       setTimeout(function() {
-        App.iso.shuffle()
+        App.iso.shuffle();
       }, 1000);
     },
 

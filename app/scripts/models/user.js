@@ -19,16 +19,16 @@ define(["marionette"], function(){
     	return val;
     },
 
-    save: function (key, val, options) {
-     this.beforeSave(key, val, options);
-     return Backbone.Model.prototype.save.call(this, key, val, options);
-    },
+    // save: function (key, val, options) {
+    //  this.beforeSave(key, val, options);
+    //  return Backbone.Model.prototype.save.call(this, key, val, options);
+    // },
 
-    beforeSave: function (key, val, options) {
-      // format the params for the api
-      key = { email: key };
-      return key;
-    }
+    // beforeSave: function (key, val, options) {
+    //   // format the params for the api
+    //   key = { email: key };
+    //   return key;
+    // }
   });
   return user;
 });

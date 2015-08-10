@@ -16,6 +16,27 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       id: 1
     },
 
+    genUserIcons: function(){
+      var self = this,
+          arr = [];
+      _.each(this.get('users'), function(user){
+         arr.push({ user_color: self.getIconColor(user.email), user_letter: user.email[0] })
+      })
+      return arr
+    },
+
+    getIconColor: function(email){
+      var index = this.emailToInt(email) % 8;
+      colors = ["red", "green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
+      return colors[index];
+    },
+
+    emailToInt: function(str){
+      var length = str.length;
+      var val = str.charCodeAt(length-1) + str.charCodeAt(1) + str.charCodeAt(length/2)
+      return val;
+    },
+
     fetchChats: function(){
       // only make a new collection if one doesn't yet exist for this slyp
       if(!this.get("slyp_chats")){

@@ -12,9 +12,11 @@ define(["marionette"], function(Mn){
     },
 
     submitForm: function() {
+      var self = this;
       this.model.save(this.ui.emailInput.val(),{
-        error: function(){ this.errorCb(req, resp); },
-        success: function(){ this.successCb(resp); },
+        wait: true,
+        error: function(){ self.errorCb(req, resp); },
+        success: function(){ self.successCb(resp); },
       });
     },
 
