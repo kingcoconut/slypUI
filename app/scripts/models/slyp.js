@@ -13,7 +13,9 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       top_image: "",
       sitename: "",
       video_url: "",
-      id: 1
+      id: 1,
+      engaged: false,
+      users: []
     },
 
     genUserIcons: function(){
