@@ -4,7 +4,8 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     className: 'js-single-slyp card',
     ui: {
       singleSlyp: '.js-card',
-      send : '.js-send-slyp'
+      send : '.js-send-slyp',
+      content: ".content"
     },
 
     events: {
@@ -13,17 +14,8 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     },
 
     onRender: function(){
-      // set up our isotope object here
-      if (_.isUndefined(App.iso)){
-        App.iso = new Isotope( '.js-slyps', {
-          itemSelector: '.js-single-slyp',
-          layoutMode: 'masonry'
-        });
-        $(this.ui.singleSlyp).parent().addClass(this.model.get('id').toString());
-      } else {
-        App.iso.prepended('.js-single-slyp')
-        $(this.ui.singleSlyp).parent().addClass(this.model.get('id').toString());
-      }
+      // add isotopes here
+      App.iso.prepended('.js-single-slyp')
     },
 
     // FIXME- will remove this once we generate userIcons after fetching data
@@ -41,23 +33,22 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       }
     },
 
-    chosenByUser: function(event){
-      var targ = $(event.currentTarget).parent();
-      if ($(event.currentTarget).parent().hasClass('gigante')) {
-        this.filterAll(event);
+    // choose a slyp and expand it to right then open chat
+    chosenByUser: function(){
+      if (this.$el.hasClass('gigante')) {
+        this.filterAll();
       }
-      var slyp_id = targ[0].classList[2]
-      App.iso.arrange({ filter: ['.',slyp_id].join('') });
-      targ.addClass('gigante')
-      targ.find('.content').html(App.slypCollection.where({id: Number(slyp_id)})[0].get('text'))
+    
+      App.iso.arrange({ filter: this.$el });
+      this.$el.addClass('gigante')
+      this.ui.content.html(this.model.get('text'))
       App.vent.trigger('slyp:picked', slyp_id)
     },
 
-    filterAll: function(event){
-      var targ = $(event.currentTarget).parent();
-      var slyp_id = targ[0].classList[2]
-      targ.removeClass('gigante');
-      targ.find('.content').html(App.slypCollection.where({id: Number(slyp_id)})[0].get('summary'))
+    // display all of the slyps again
+    filterAll: function(){
+      this.$el.removeClass('gigante');
+      this.ui.content.html(this.model.get('summary'))
       App.iso.arrange({ filter: '.js-single-slyp' });
       event.stopPropogation();
     },
