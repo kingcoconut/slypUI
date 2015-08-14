@@ -13,20 +13,21 @@ define(["marionette"], function(Mn){
 
     submitForm: function() {
       var self = this;
-      this.model.save(this.ui.emailInput.val(),{
-        wait: true,
-        error: function(){ self.errorCb(req, resp); },
-        success: function(){ self.successCb(resp); },
+      data = {email: this.ui.emailInput.val() }
+      $.ajax({
+        type: 'POST',
+        url: self.model.url,
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(data),
+        error: function(req, resp){
+          alert("Auth failed");
+        },
+        success: function(resp){
+          alert("check your email");
+        },
       });
     },
-
-    errorcb: function(req, resp){
-      alert("Auth failed");
-    },
-
-    success: function(resp){
-      alert("check your email");
-    }
 
   });
 

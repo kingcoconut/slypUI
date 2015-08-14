@@ -3,6 +3,10 @@ define(["marionette", "views/slyps/slyp_child_view", "waypoints", "isotope"], fu
     childView: SlypView,
     className: 'js-slyps js-isotope',
 
+    onSlypClicked: function (args) {
+      alert('Clicked');
+    },
+
     createIsotope: function(){
       App.iso._create();
       App.iso.shuffle();

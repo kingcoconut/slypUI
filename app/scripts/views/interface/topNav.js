@@ -16,7 +16,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     initialize: function(options){
       this.options = options;
       this.render();
-      this.slyps = options.slyps;
     },
 
     logout: function(e){
@@ -28,7 +27,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       event.preventDefault();
       if(this.ui.form.valid()){
         slypUrl = this.ui.form.find("input[name=new_url]")[0].value;
-        this.slyps.createFromUrl(slypUrl);
+        App.slypCollection.createFromUrl(slypUrl);
         this.$el.find("input[name=new_url]")[0].value = '';
       }
     },

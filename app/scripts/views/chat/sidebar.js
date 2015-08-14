@@ -2,14 +2,18 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
   var sidebarView = Backbone.Marionette.CompositeView.extend({
     template: "#js-chat-sidebar-tmpl",
     childView: ChatIcon,
+
     childViewContainer: ".js-chat-sidebar-icons",
+
     collectionEvents: {
       "reset": "render",
       "change": "render"
     },
+
     events: {
       "submit #js-sidebar-form": "parseInput"
     },
+
     initialize: function(options){
       this.slyp = this.options.slyp;
     },

@@ -2,10 +2,14 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
+    ui: {
+      singleSlyp: '.js-card',
+      send : '.js-send-slyp'
+    },
 
-
-    initialize: function(){
-      $(this.el).on("click", this.chosenByUser);
+    events: {
+      "click @ui.singleSlyp" : "chosenByUser",
+      "click @ui.send" : 'sendSlyp'
     },
 
     onRender: function(){
@@ -15,11 +19,14 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
           itemSelector: '.js-single-slyp',
           layoutMode: 'masonry'
         });
+        $(this.ui.singleSlyp).parent().addClass(this.model.get('id').toString());
       } else {
         App.iso.prepended('.js-single-slyp')
+        $(this.ui.singleSlyp).parent().addClass(this.model.get('id').toString());
       }
     },
-    // FIXME- will remove this once i generate userIcons after fetching data
+
+    // FIXME- will remove this once we generate userIcons after fetching data
     serializeData: function(){
       return {
         title: this.model.get('title'),
@@ -35,29 +42,32 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     },
 
     chosenByUser: function(event){
-      App.iso.on( 'click', '.js-single-slyp', function() {
-        $(this).toggleClass('gigante');
-        // trigger layout after item size changes
-        $grid.isotope('layout');
-      });
+      var targ = $(event.currentTarget).parent();
+      if ($(event.currentTarget).parent().hasClass('gigante')) {
+        this.filterAll(event);
+      }
+      var slyp_id = targ[0].classList[2]
+      App.iso.arrange({ filter: ['.',slyp_id].join('') });
+      targ.addClass('gigante')
+      targ.find('.content').html(App.slypCollection.where({id: Number(slyp_id)})[0].get('text'))
+      App.vent.trigger('slyp:picked', slyp_id)
     },
 
-    // select: function(ev){
-    //   $(".list-view-slyp").removeClass("active");
-    //   this.$(".list-view-slyp").addClass("active");
-    //   $(".slyp-text").hide();
-    //   this.$el.find(".slyp-text").toggle();
-    //   this.model.dock();
-    //   if($(ev.target).hasClass("send-slyp")){
-    //     var sendSlyp = new sendSlypView({model: this.model});
-    //     $("#modals").append(sendSlyp.$el.show());
-    //     sendSlyp.render();
-    //     sendSlyp.on("closeMe", function(){
-    //       this.destroy();
-    //       $("#modals").html('');
-    //     });
-    //   }
-    // }
+    filterAll: function(event){
+      var targ = $(event.currentTarget).parent();
+      var slyp_id = targ[0].classList[2]
+      targ.removeClass('gigante');
+      targ.find('.content').html(App.slypCollection.where({id: Number(slyp_id)})[0].get('summary'))
+      App.iso.arrange({ filter: '.js-single-slyp' });
+      event.stopPropogation();
+    },
+
+    sendSlyp: function(){
+      var sendSlyp = new sendSlypView({model: this.model});
+      $("#modals").append(sendSlyp.$el.show());
+      sendSlyp.render();
+    }
+
   });
 
   return slypView;

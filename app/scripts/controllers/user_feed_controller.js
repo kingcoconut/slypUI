@@ -1,4 +1,4 @@
-define(["marionette", "views/interface/topNav", "layouts/content_layout", "collections/slyps", "mocks/slyps_mock" ], function(Mn, TopNav, contentLayout, slyps){
+define(["marionette", "views/interface/topNav", "layouts/content_layout", "collections/slyps" ], function(Mn, TopNav, contentLayout, slyps){
   var userFeedController = Marionette.Object.extend({
 
     initialize: function() {

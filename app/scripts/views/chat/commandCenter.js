@@ -1,6 +1,7 @@
 define(["marionette"], function(Marionette){
   var CommandCenter = Backbone.Marionette.ItemView.extend({
     template: "#js-command-center-tmpl",
+
     events: {
       "submit #js-command-center-form": "parseInput"
     },

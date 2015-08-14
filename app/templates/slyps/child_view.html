@@ -1,37 +1,38 @@
 <script type="text/template" id="js-slyp-show-tmpl">
-  <div class="cta--container">
+  <div class="cta--container js-send-slyp">
     <div class="cta--icon-holder">
       <i class="fa fa-paper-plane cta--icon"></i>
-      <i class="fa fa-times cta--icon"></i>
     </div>
   </div>
-  <div class="action">
-      <div>
-        <% _.each(users, function(user, index){%>
-          <% if (index < 3) {%>
-            <span class="user-icon <%- user.user_color %>"><%- user.user_letter %></span>
+  <div class="js-card">
+    <div class="action">
+        <div>
+          <% _.each(users, function(user, index){%>
+            <% if (index < 3) {%>
+              <span class="user-icon <%- user.user_color %>"><%- user.user_letter %></span>
+            <% } %>
+          <% }) %>
+          <% if (_.size(users) > 3 ) {%>
+            <span class="text-muted">+ <%-users.length - 3 %> more</span>
           <% } %>
-        <% }) %>
-        <% if (_.size(users) > 3 ) {%>
-          <span class="text-muted">+ <%-users.length - 3 %> more</span>
-        <% } %>
-        <div class="cta--hover-expand">
-          <i class="fa fa-expand"></i>
+          <div class="cta--hover-expand js-expand-slyp">
+            <i class="fa fa-expand"></i>
+          </div>
         </div>
-      </div>
-      <h4><%- title %></h4>
-      <p class="text-muted" ><%= site_name %>
+        <h4><%- title %></h4>
+        <p class="text-muted" ><%= site_name %>
+    </div>
+    <div class="image">
+      <% if (video !== ''){%>
+        <iframe allowfullscreen="" src=<%= video%>></iframe>
+      <% }else{ %>
+        <img src="<%= image %>" />
+      <% } %>
+    </div>
+    <div class="content">
+      <%= summary || description || text %>
+    </div>
+    <a href="<%= url %>" target="_blank" style="display:none">Read More</a>
   </div>
-  <div class="image">
-    <% if (video !== ''){%>
-      <iframe allowfullscreen="" src=<%= video%>></iframe>
-    <% }else{ %>
-      <img src="<%= image %>" />
-    <% } %>
-  </div>
-  <div class="content">
-    <%= summary || description || text %>
-  </div>
-  <a href="<%= url %>" target="_blank" style="display:none">Read More</a>
 </script>
 

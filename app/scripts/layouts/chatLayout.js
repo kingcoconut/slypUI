@@ -7,19 +7,21 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       main : ".js-chat-main",
       sideBar : ".js-chat-sidebar",
     },
-    onShow: function(){
-      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp}));
-      this.renderChatMessages();
-    },
+
     initialize: function(options){
       var that = this;
-      this.slyp = this.options.slyp;
-      this.slypChats = options.slypChats;
+      this.slyp_id =  Number(this.options.slyp_id);
+      this.slypChats = App.slypCollection.findWhere({id: this.slyp_id}).get('slyp_chats');
       this.slypChatID = options.slypChatID;
 
       // when a chat is selected, make that chat's messages appear
       this.listenTo(this.slypChats, "model:select", this.setNewChatID, this);
       this.listenTo(this.slypChatID, "change", this.renderChatMessages, this);
+    },
+
+    onShow: function(){
+      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp_id}));
+      this.renderChatMessages();
     },
 
     setNewChatID: function(id){
