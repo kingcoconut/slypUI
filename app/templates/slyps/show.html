@@ -10,7 +10,11 @@
         <% } %>
       </div>
       <div class="slyp-heading col-sm-7">
+        <% if (engaged){%>
         <div class="slyp-title truncate"><a href=<%= url %> target="_blank"><%= title %></a></div>
+        <% }else{ %>
+          <div class="slyp-title truncate"><b><a href=<%= url %> target="_blank"><%= title %></a></b></div>
+        <% } %>
         <div class="slyp-details row">
           <div class="col-sm-5">
             <a class="text-muted" href=<%= url %> target="_blank"><%= site_name %></a>

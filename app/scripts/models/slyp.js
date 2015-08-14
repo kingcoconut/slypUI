@@ -1,6 +1,7 @@
 define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats){
   var slyp = Backbone.Model.extend({
     defaults: {
+      id: 1,
       urlRoot: window.apiHost + "/slyps",
       title: "",
       url: "",
@@ -13,7 +14,7 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       top_image: "",
       sitename: "",
       video_url: "",
-      id: 1
+      engaged: false
     },
 
     fetchChats: function(){
@@ -25,8 +26,22 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     },
 
     dock: function(){
-      if(this.collection)
+      if(this.collection){
         this.collection.setDockedSlyp(this);
+        if (!this.get('engaged')) {
+          var that = this;
+          $.ajax({
+            url: window.apiHost + "/slyps/engaged/"+this.get("id"),
+            method: "PUT",
+            success: function(resp){
+              that.set("engaged", true);
+            },
+            error: function(error, msg, status){
+              console.log(errror);
+            }
+          });
+        }
+      }
     },
     sendTo: function(emails){
       var that = this;
