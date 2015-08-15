@@ -4,6 +4,17 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
 
     model: Slyp,
 
+    initialize: function(options){
+      this.on("sync", function(){
+        var slyp = this.first();
+        if(slyp){
+          this.setDockedSlyp(slyp);
+        }
+      });
+      this.listenTo(App.vent, "recSlyp", this.addSlyp);
+    },
+
+
     createFromUrl: function(slyp_url){
       $.ajax({
         url: window.blacksmithHost + "/slyps",
@@ -21,16 +32,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
           console.log(status);
         }
       });
-    },
-
-    initialize: function(options){
-      this.on("sync", function(){
-        var slyp = this.first();
-        if(slyp){
-          this.setDockedSlyp(slyp);
-        }
-      });
-      this.listenTo(App.vent, "recSlyp", this.addSlyp);
     },
 
     addSlyp: function(data){

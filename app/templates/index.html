@@ -9,10 +9,9 @@
     {% include './layout/authenticate.html' %}
     {% include './layout/interface.html' %}
     {% include './layout/chat.html' %}
-    {% include './layout/feed.html' %}
     {% include './includes/sideNav.html' %}
     {% include './includes/topNav.html' %}
-    {% include './slyps/show.html' %}
+    {% include './slyps/child_view.html' %}
     {% include './chats/sidebar.html' %}
     {% include './chats/chat_icon.html' %}
     {% include './chats/command_center.html' %}
@@ -21,11 +20,10 @@
     {% include './modals/send_slyp.html' %}
   </head>
   <body>
-    <div id="facebook-login">
-      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-    </div>
-    <div id="js-body">
-
-    </div>
+    <div id="js-header"></div>
+    <div id="js-body"></div>
+    <div id="js-footer"></div>
+    <div id="modals"></div>
   </body>
 </html>
+
