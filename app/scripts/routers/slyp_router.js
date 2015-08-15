@@ -1,7 +1,7 @@
 define(["marionette",
   "controllers/landing_controller",
   "controllers/logout_controller",
-  "controllers/user_feed_Controller"
+  "controllers/user_feed_controller"
   ], function(
     Mn,
     landingController,

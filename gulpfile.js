@@ -144,5 +144,5 @@ gulp.task('cdn', function(){
 });
 
 assetPath = function (input) {
-  return ASSETS_PATH + input;
+  return "/" + ASSETS_PATH + input;
 };
