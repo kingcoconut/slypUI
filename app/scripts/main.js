@@ -22,7 +22,8 @@ require.config({
     'app': 'app',
     'globals': 'globals',
     'socket.io': 'lib/socket.io',
-    'isotope': 'vendor/isotope/dist/isotope.pkgd'
+    'isotope': 'vendor/isotope/dist/isotope.pkgd',
+    'imagesloaded': 'vendor/imagesloaded/imagesloaded.pkgd.min'
 
   },
   shim: {

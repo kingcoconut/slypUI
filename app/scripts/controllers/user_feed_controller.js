@@ -9,7 +9,7 @@ define(["marionette", "views/interface/topNav", "layouts/content_layout", "colle
 
     initViews: function() {
       App.header.show(new TopNav());
-      App.body.show(new contentLayout({collection: App.slypCollection}))
+      App.body.show(new contentLayout());
     }
   });
 

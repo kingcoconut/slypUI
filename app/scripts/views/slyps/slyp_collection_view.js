@@ -1,26 +1,23 @@
-define(["marionette", "views/slyps/slyp_child_view", "isotope"], function(Marionette, SlypView, Isotope){
+define(["marionette", "views/slyps/slyp_child_view", "isotope", 'imagesloaded'], function(Marionette, SlypView, Isotope, imagesloaded){
   var slypCollectionView = Backbone.Marionette.CollectionView.extend({
     childView: SlypView,
     className: 'js-slyps js-isotope',
-
-    onShow: function(){
+    initialize: function(){
+      this.on("show", this.setupIso, this);
+    },
+    setupIso: function(){
       // setup isotope
-      App.iso = new Isotope( '.js-slyps', {
+      App.iso = new Isotope( ".js-slyps", {
         itemSelector: '.js-single-slyp',
         layoutMode: 'masonry'
       });
-    },
-
-    createIsotope: function(){
       App.iso._create();
       App.iso.shuffle();
-    },
-
-    onAddChild : function() {
-      var self = this;
-      if ( this.children.length == this.collection.length ) {
-        self.createIsotope();
-      }
+      
+      // reshuffle the slyps once all the images have loaded on page
+      imagesloaded(this.$el, function(){
+        App.iso.shuffle();
+      });
     }
   });
 

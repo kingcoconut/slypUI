@@ -9,7 +9,7 @@
         <div>
           <% _.each(users, function(user, index){%>
             <% if (index < 3) {%>
-              <span class="user-icon <%- user.user_color %>"><%- user.user_letter %></span>
+              <span class="user-icon <%- user.user_color %>" data-toggle="tooltip" data-placement="left" title="<%- user.email %>"><%- user.user_letter %></span>
             <% } %>
           <% }) %>
           <% if (_.size(users) > 3 ) {%>
