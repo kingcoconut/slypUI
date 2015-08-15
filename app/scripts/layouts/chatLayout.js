@@ -11,6 +11,7 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     initialize: function(options){
       var that = this;
       this.slyp_id =  Number(this.options.slyp_id);
+      debugger
       this.slypChats = App.slypCollection.findWhere({id: this.slyp_id}).get('slyp_chats');
       this.slypChatID = options.slypChatID;
 
@@ -31,10 +32,13 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
 
     renderChatMessages: function(){
       // if not chat_id was given, use the first slyp chat in the collection
-      this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
-      if(this.slypChat){
-        this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
-        this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
+      if (this.slypChats){
+        this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
+        debugger
+        if(this.slypChat){
+          this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
+          this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
+        } 
       }
     }
 

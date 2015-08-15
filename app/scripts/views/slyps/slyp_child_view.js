@@ -40,9 +40,10 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       }
     
       App.iso.arrange({ filter: this.$el });
-      this.$el.addClass('gigante')
-      this.ui.content.html(this.model.get('text'))
-      App.vent.trigger('slyp:picked', slyp_id)
+      this.$el.addClass('gigante');
+      this.ui.content.html(this.model.get('text'));
+      var slyp_id = this.model.get('id');
+      App.vent.trigger('slyp:picked', slyp_id);
     },
 
     // display all of the slyps again

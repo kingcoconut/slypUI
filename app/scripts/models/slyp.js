@@ -37,7 +37,6 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       var length = str.length;
       var val = str.charCodeAt(length-1) + str.charCodeAt(1) + str.charCodeAt(length/2)
       return val;
->>>>>>> content_feed
     },
 
     fetchChats: function(){
