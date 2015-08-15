@@ -9,7 +9,6 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
     },
 
     onRender: function(){
-      debugger;
       var that = this;
       $("#myModal").modal();
       $("#myModal").on("hidden.bs.modal", function(){

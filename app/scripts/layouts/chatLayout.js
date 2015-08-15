@@ -1,17 +1,16 @@
-define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/chat/messages", "collections/slyp_chats"], function(Marionette, ChatSidebar, CommandCenter, Messages, SlypChats){
+define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/chat/messages", "collections/slyp_chats", "views/chat/slyp_container"], function(Marionette, ChatSidebar, CommandCenter, Messages, SlypChats, SlypContainer){
   var chatLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-chat-layout-tmpl",
 
     regions: {
-      commandCenter : ".js-chat-command-center",
+      slypContainer: ".js-chat-slyp-container",
       main : ".js-chat-main",
       sideBar : ".js-chat-sidebar",
     },
 
     initialize: function(options){
       var that = this;
-      this.slyp_id =  Number(this.options.slyp_id);
-      this.slypChats = App.slypCollection.findWhere({id: this.slyp_id}).get('slyp_chats');
+      this.slypChats = App.slypCollection.currentSlyp().get('slyp_chats');
       this.slypChatID = options.slypChatID;
 
       // when a chat is selected, make that chat's messages appear
@@ -20,7 +19,8 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     },
 
     onShow: function(){
-      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp_id}));
+      this.slypContainer.show(new SlypContainer({model: App.slypCollection.currentSlyp()}))
+      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: App.slypCollection.currentSlyp()}));
       this.renderChatMessages();
     },
 

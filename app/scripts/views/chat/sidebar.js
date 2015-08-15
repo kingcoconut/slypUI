@@ -10,10 +10,6 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
       "change": "render"
     },
 
-    events: {
-      "submit #js-sidebar-form": "parseInput"
-    },
-
     initialize: function(options){
       this.slyp = this.options.slyp;
     },
@@ -37,19 +33,6 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
           $(element).parent().prepend(error);
         }
       });
-    },
-    parseInput: function(evt){
-      evt.preventDefault();
-      var form = this.$("#js-sidebar-form");
-      if(form.valid()){
-        var input = form.find("[name=email]");
-        var query = input.val();
-
-        var user_email = App.user.get('email');
-        var emails = query.replace(user_email, '').split(' ');
-        this.slyp.sendTo(emails);
-        input.val('');
-      }
     }
   });
   return sidebarView;

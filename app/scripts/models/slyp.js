@@ -42,14 +42,14 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     fetchChats: function(){
       // only make a new collection if one doesn't yet exist for this slyp
       if(!this.get("slyp_chats")){
-        this.set("slyp_chats", new SlypChats({slyp_id: this.get("id")}));
+        this.set("slyp_chats", new SlypChats(null, {slyp_id: this.get("id")}));
       }
       this.get("slyp_chats").fetch();
     },
 
-    dock: function(){
+    select: function(){
       if(this.collection)
-        this.collection.setDockedSlyp(this);
+        this.collection.setCurrent(this);
     },
     sendTo: function(emails){
       var that = this;
