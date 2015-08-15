@@ -52,7 +52,47 @@
 }
 
 .chat-container{
-  position:relative;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+
+  .row.chat-elements{
+    margin:20px;
+    background:white;
+  }
+
+  .chats{
+    border-left: 1px solid #ddd;
+  }
+}
+
+.chat-slyp-container{
+  padding: 40px 0 0 20px;
+
+  .close-button{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    &:hover{
+      cursor:pointer;
+    }
+  }
+
+  .js-card{
+    padding: 0 20px;
+  }
+
+  .image{
+    img{
+      max-width:50%;
+    }
+  }
+
+  .content{
+    padding: 25px 0;
+  }
 }
 
 .right-sidebar{
@@ -103,4 +143,9 @@
       font-weight: 200;
     }
   }
+}
+
+.no-scroll{
+  overflow-x: hidden; 
+  overflow-y: auto;
 }

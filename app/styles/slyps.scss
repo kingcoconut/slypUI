@@ -6,7 +6,6 @@
   overflow: hidden;
   margin: 10px;
   background: #FFF;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   color: #272727;
   border-radius: 2px;
 }
@@ -55,7 +54,9 @@
   color: #FFF;
 }
 
-.card {width: 350px;}
+.card {
+  width: 31.5%;
+}
 
 .cta--container {
   position: absolute;
@@ -84,7 +85,7 @@
   &.gigante {
     // -webkit-transition: width 2.5s ease;
     // transition: width 2.5s ease;
-    width: 40%;
+    width: 59%;
     .image {
       display: block!important;
     }

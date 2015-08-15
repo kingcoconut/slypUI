@@ -13,11 +13,6 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       "click @ui.send" : 'sendSlyp'
     },
 
-    onRender: function(){
-      // add isotopes here
-      App.iso.prepended('.js-single-slyp')
-    },
-
     // FIXME- will remove this once we generate userIcons after fetching data
     serializeData: function(){
       return {
@@ -34,24 +29,9 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     },
 
     // choose a slyp and expand it to right then open chat
-    chosenByUser: function(){
-      if (this.$el.hasClass('gigante')) {
-        this.filterAll();
-      }
-    
-      App.iso.arrange({ filter: this.$el });
-      this.$el.addClass('gigante');
-      this.ui.content.html(this.model.get('text'));
-      var slyp_id = this.model.get('id');
-      App.vent.trigger('slyp:picked', slyp_id);
-    },
-
-    // display all of the slyps again
-    filterAll: function(){
-      this.$el.removeClass('gigante');
-      this.ui.content.html(this.model.get('summary'))
-      App.iso.arrange({ filter: '.js-single-slyp' });
-      event.stopPropogation();
+    chosenByUser: function(event){
+      $('body').addClass("no-scroll");
+      this.model.select();
     },
 
     sendSlyp: function(){

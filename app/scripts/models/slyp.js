@@ -22,7 +22,7 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       var self = this,
           arr = [];
       _.each(this.get('users'), function(user){
-         arr.push({ user_color: self.getIconColor(user.email), user_letter: user.email[0] })
+         arr.push({ user_color: self.getIconColor(user.email), user_letter: user.email[0], email: user.email })
       })
       return arr
     },
@@ -42,27 +42,25 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
     fetchChats: function(){
       // only make a new collection if one doesn't yet exist for this slyp
       if(!this.get("slyp_chats")){
-        this.set("slyp_chats", new SlypChats({slyp_id: this.get("id")}));
+        this.set("slyp_chats", new SlypChats(null, {slyp_id: this.get("id")}));
       }
       this.get("slyp_chats").fetch();
     },
-
-    dock: function(){
-      if(this.collection){
-        this.collection.setDockedSlyp(this);
-        if (!this.get('engaged')) {
-          var that = this;
-          $.ajax({
-            url: window.apiHost + "/slyps/engaged/"+this.get("id"),
-            method: "PUT",
-            success: function(resp){
-              that.set("engaged", true);
-            },
-            error: function(error, msg, status){
-              console.log(errror);
-            }
-          });
-        }
+    select: function(){
+      if(this.collection)
+        this.collection.setCurrent(this);
+      if (!this.get('engaged')) {
+        var that = this;
+        $.ajax({
+          url: window.apiHost + "/slyps/engaged/"+this.get("id"),
+          method: "PUT",
+          success: function(resp){
+            that.set("engaged", true);
+          },
+          error: function(error, msg, status){
+            console.log(errror);
+          }
+        });
       }
     },
     sendTo: function(emails){

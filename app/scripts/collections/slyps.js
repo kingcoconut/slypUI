@@ -5,12 +5,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     model: Slyp,
 
     initialize: function(options){
-      this.on("sync", function(){
-        var slyp = this.first();
-        if(slyp){
-          this.setDockedSlyp(slyp);
-        }
-      });
       this.listenTo(App.vent, "recSlyp", this.addSlyp);
     },
 
@@ -26,7 +20,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
         success: function(response){
           this.collection.trigger("addingNewSlyp"); // to bump off the current first slyp in feed
           this.collection.fetch();
-          // this.collection.add(response, {at: 0});
         },
         error: function(status, response){
           console.log(status);
@@ -39,16 +32,16 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       // this.collection.add(data, {at: 0});
     },
 
-    setDockedSlyp: function(slyp){
-      if(this.dockedSlypId != slyp.get("id")){
-        this.dockedSlypId = slyp.get("id");
+    setCurrent: function(slyp){
+      if(this.currentSlypId != slyp.get("id")){
+        this.currentSlypId = slyp.get("id");
         slyp.fetchChats();
-        this.trigger("slypDocked");
       }
+      this.trigger("slypSet");
     },
 
-    getDockedSlyp: function(){
-      return this.get(this.dockedSlypId);
+    currentSlyp: function(){
+      return this.get(this.currentSlypId);
     }
 
   });
