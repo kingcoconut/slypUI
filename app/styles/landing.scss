@@ -16,9 +16,24 @@
   color: #fff;
   border-left: 2px solid #fff;
   padding-left: 10px;
+  display: inline-block;
+  &:after {
+    content: "";
+    background-image: url('/#{$assets_path}images/slyp-logo-small.png');
+    background-repeat: no-repeat;
+    position: relative;
+    top: 15px;
+    width: 34px;
+    max-width: 50px;
+    padding-right: 40px;
+    margin-left: 10px;
+    display: inline;
+  }
 }
 .col--offset {
-  left: 10px;
+  @media screen and (max-width: 768px){
+    left: -20px;
+  }
 }
 
 .img--offset {
@@ -27,7 +42,7 @@
 }
 
 .landing--image {
-  background: no-repeat 50% 50%;
+  background: no-repeat 50% 50% url('/#{$assets_path}images/sparkler.jpg');
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -38,21 +53,48 @@
   color: #fff;
   text-align: right;
   line-height: 22px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 100;
+  line-height: 22px;
 }
 
 .border--r-small {
   border-radius: 2px;
 }
-
+.logo-inline {
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  left: 150px;
+}
 .signin--content {
+  font-family: 'Lato', sans-serif;
   position: absolute;
   margin: 0 auto;
   right: 0;
   left: 0;
-  top: 30%;
+  top: 35%;
   bottom: 0;
   text-align: center;
   z-index: 4;
+}
+
+.enter--arrow {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 35px;
+  font-size: 14px;
+}
+
+.arrow--pulse {
+  display: block;
+  -webkit-animation: pulsate 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
 }

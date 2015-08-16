@@ -1,24 +1,21 @@
 <script type="text/template" id="js-authenticate-tmpl">
   <div class="opaque-cover"></div>
-  <div class="landing--image" style="background-image: url('{{ 'images/sparkler.jpg' | assetPath }}');"></div>
+  <div class="landing--image"></div>
   <div class="content signin--content" id="signin-page">
     <div class="row form-group">
-      <div class="col-md-3 col--center col--offset">
-        <div class="col-xs-4">
+      <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3 col--center col--offset">
+        <div class="col-xs-5 cols-sm-4 cold-md-4 col-lg-4">
           <h5 class="site--tagline-text">Engaging<br>the<br>world</h5>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 cols-sm-4 cold-md-4 col-lg-4">
           <h2 class="site--name-text">Slyp</h2>
-        </div>
-        <div class="col-xs-4 img--offset">
-          <img src="{{ 'images/slyp-logo-small.png' | assetPath }}"/>
         </div>
       </div>
     </div>
     <div class="row">
-      <form class="col-md-4 col--center col-sm-6">
-        <input class="border--r-small input-lg form-control form-control-solid placeholder-no-fix js-email-input" type="text" autocomplete="off" placeholder="Email" name="email">
-        <i class="fa fa-arrow-right"></i>
+      <form class="col-md-4 col--center col-sm-6 js-form">
+        <input class="border--r-small input-lg form-control form-control-solid placeholder-no-fix js-email-input" type="text" autocomplete="off" placeholder="email" name="email">
+        <i class="fa fa-arrow-right enter--arrow js-auth-submit u--pointer"></i>
       </form>
     </div>
   </div>

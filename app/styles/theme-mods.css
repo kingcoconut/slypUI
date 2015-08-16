@@ -8,3 +8,8 @@
   border-radius:25px;
   padding:0px;
 }
+
+/* for those fake a tags */
+.u--pointer {
+  cursor: pointer;
+}
