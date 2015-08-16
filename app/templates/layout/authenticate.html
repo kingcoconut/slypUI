@@ -1,18 +1,22 @@
 <script type="text/template" id="js-authenticate-tmpl">
-  <div class="menu-toggler sidebar-toggler">
-  </div>
-  <div class="logo"></div>
-  <div style="position: relative">
-    <div class="opaque-cover" style="position: absolute; background-color: black; width: 100%; height: 100%; opacity: 0.3;"></div>
-    <img src="{{ 'images/sparkler.jpg' | assetPath }}" style="width: 100%"/>
-  </div>
-  <div class="content" id="signin-page" style="position: absolute; margin: 0 auto; right: 0; left: 0; top: 40%; bottom: 0; text-align: center;">
-    <!-- BEGIN LOGIN FORM -->
-      <h3 class="form-title">Sign In</h3>
-      <div id="facebook-button-on-form"></div>
-      <form>
-        <input class="form-control form-control-solid placeholder-no-fix js-email-input" type="text" autocomplete="off" placeholder="Email" name="email">
+  <div class="opaque-cover"></div>
+  <div class="landing--image"></div>
+  <div class="content signin--content" id="signin-page">
+    <div class="row form-group">
+      <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3 col--center col--offset">
+        <div class="col-xs-5 cols-sm-4 cold-md-4 col-lg-4">
+          <h5 class="site--tagline-text">Engaging<br>the<br>world</h5>
+        </div>
+        <div class="col-xs-4 cols-sm-4 cold-md-4 col-lg-4">
+          <h2 class="site--name-text">Slyp</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <form class="col-md-4 col--center col-sm-6 js-form">
+        <input class="border--r-small input-lg form-control form-control-solid placeholder-no-fix js-email-input" type="text" autocomplete="off" placeholder="email" name="email">
+        <i class="fa fa-arrow-right enter--arrow js-auth-submit u--pointer"></i>
       </form>
-      <div class="btn btn-success uppercase js-auth-submit">Login/Signup</div>
+    </div>
   </div>
 </script>
