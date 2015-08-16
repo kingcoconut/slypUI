@@ -72,7 +72,7 @@ gulp.task('css', function(){
 });
 
 gulp.task('compass', function() {
-  // require('fs').writeFile('./assets/compass/sass/support/_asset_variables.scss', "$assets_path : '" + ASSETS_PATH + "';")
+  require('fs').writeFile('./app/styles/_asset_variables.scss', "$assets_path : '" + ASSETS_PATH + "';")
   return gulp.src('./app/styles/application.scss')
     .pipe(compass({
       sourcemap: true,
