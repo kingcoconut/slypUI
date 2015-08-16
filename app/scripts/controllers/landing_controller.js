@@ -15,6 +15,7 @@ define(["marionette", "views/auth/signin"], function(Mn, landingView){
     },
 
     initViews: function() {
+      App.header.reset();
       App.body.show(new landingView({model: App.user}));
     }
   });

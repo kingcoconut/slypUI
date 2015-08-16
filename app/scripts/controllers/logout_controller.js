@@ -4,7 +4,9 @@ define(["marionette"], function(){
     initialize: function() {
       $.removeCookie("api_token", {domain: ".slyp.io"});
       $.removeCookie("user_id", {domain: ".slyp.io"});
-      App.vent.trigger("landing")
+      // landing view is listening to change
+      App.user.set(App.user.defaults)
+      App.vent.trigger('logout:to:landing')
     },
 
   });

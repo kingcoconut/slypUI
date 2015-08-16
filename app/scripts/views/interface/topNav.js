@@ -5,7 +5,7 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
 
     ui: {
       form: "#js-add-new-slyp",
-      exit: '.js-logout'
+      logout: '.js-logout'
     },
 
     events: {
@@ -18,8 +18,8 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       this.render();
     },
 
-    logout: function(e){
-      e.preventDefault();
+    logout: function(event){
+      event.preventDefault();
       App.vent.trigger("logout")
     },
 

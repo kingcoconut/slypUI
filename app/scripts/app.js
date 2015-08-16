@@ -62,6 +62,10 @@ define(["marionette",
     footer: "#js-footer",
   });
 
+  App.vent.on("logout:to:landing", function(){
+    App.navigate("");
+  });
+
   App.vent.on("landing", function(){
     App.navigate("");
     App.mainRouter.controller.landingPage();
