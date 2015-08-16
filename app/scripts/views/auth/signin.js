@@ -23,9 +23,6 @@ define(["marionette", "jquery.validate"], function(Mn, validate){
             email: true,
             required: true
           },
-          tooltip_options: {
-            email: {trigger:'focus', placement:'right'},
-          },
         },
         showErrors: function(errorMap, errorList) {
           $.each(this.successList, function(index, value) {
@@ -74,7 +71,7 @@ define(["marionette", "jquery.validate"], function(Mn, validate){
             alert("Auth failed");
           },
           success: function(resp){
-            alert("check your email");
+            self.ui.form.html('<div class="email--success">Please check your email.</div>')
           },
         });
       }
