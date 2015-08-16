@@ -1,5 +1,5 @@
 .card {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   display: inline-block;
   vertical-align: top;
   position: relative;
@@ -7,7 +7,17 @@
   margin: 10px;
   background: #FFF;
   color: #272727;
-  border-radius: 2px;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  @media (min-width:960px) {
+    width: 30%;
+  }
+  @media (min-width:650px) and (max-width: 959px) {
+    width: 42%
+  }
+  @media (min-width:320px) and (max-width: 650px) {
+    width: 94%
+  }
 }
 .card .title {
   line-height: 48px;
@@ -23,7 +33,6 @@
   margin: 0;
 }
 .card .action {
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
   padding: 20px;
 }
 .card a {
@@ -52,10 +61,6 @@
   left: 0;
   padding: 20px;
   color: #FFF;
-}
-
-.card {
-  width: 31.5%;
 }
 
 .cta--container {
@@ -108,5 +113,8 @@
     display: block;
   }
 }
-.card:nth-of-type(2n) .image {display: none; }
-.card:nth-of-type(3n + 2) .content {display: none; }
+
+.hide--attr {
+  display: none;
+}
+.card:nth-of-type(3n) .image {display: none; }

@@ -5,12 +5,23 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     ui: {
       singleSlyp: '.js-card',
       send : '.js-send-slyp',
-      content: ".content"
+      content: ".content",
+      action: ".action"
     },
 
     events: {
       "click @ui.singleSlyp" : "chosenByUser",
       "click @ui.send" : 'sendSlyp'
+    },
+
+    onShow: function(){
+      this.checkVideoPresence();
+    },
+
+    checkVideoPresence: function(){
+      if ( _.size(this.model.get('video_url')) > 2 ) {
+        this.ui.action.find('h4').addClass('hide--attr')
+      }
     },
 
     // FIXME- will remove this once we generate userIcons after fetching data
