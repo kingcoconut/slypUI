@@ -3,14 +3,15 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
     ui: {
-      singleSlyp: '.js-card',
+      main: '.js-card-main',
       send : '.js-send-slyp',
       content: ".content",
       action: ".action"
     },
 
     events: {
-      "click @ui.singleSlyp" : "chosenByUser",
+      "click @ui.main" : "chosenByUser",
+      "click .js-expand-slyp" : "chosenByUser",
       "click @ui.send" : 'sendSlyp'
     },
 

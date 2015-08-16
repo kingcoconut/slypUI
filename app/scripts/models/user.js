@@ -6,10 +6,14 @@ define(["marionette"], function(){
       email: ""
     },
 
+    iconAttributes: function(){
+      return { user_color: this.getIconColor(), user_letter: this.get("email")[0], email: this.get("email") };
+    },
+
     getIconColor: function(){
     	var index = this.emailToInt() % 8;
-    	colors = ["red", "green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
-    	return colors[index];
+    	colors = ["green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
+      return colors[index];
     },
 
     emailToInt: function(){

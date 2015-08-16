@@ -1,4 +1,4 @@
-define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats){
+define(["marionette", "collections/slyp_chats", "collections/users"], function(Marionette, SlypChats, usersCollection){
   var slyp = Backbone.Model.extend({
     defaults: {
       id: null,
@@ -14,29 +14,26 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       top_image: "",
       sitename: "",
       video_url: "",
-      engaged: false,
-      users: []
+      engaged: false
+    },
+
+    parse: function(response){
+      this.set("users", new usersCollection(response.users));      
+      delete response.users;
+
+      return response;
     },
 
     genUserIcons: function(){
       var self = this,
           arr = [];
-      _.each(this.get('users'), function(user){
-         arr.push({ user_color: self.getIconColor(user.email), user_letter: user.email[0], email: user.email })
-      })
+      var users = this.get('users');          
+      if(users.length > 0){
+        _.each(users.models, function(user){
+           arr.push(user.iconAttributes());
+        })
+      }
       return arr
-    },
-
-    getIconColor: function(email){
-      var index = this.emailToInt(email) % 8;
-      colors = ["red", "green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
-      return colors[index];
-    },
-
-    emailToInt: function(str){
-      var length = str.length;
-      var val = str.charCodeAt(length-1) + str.charCodeAt(1) + str.charCodeAt(length/2)
-      return val;
     },
 
     fetchChats: function(){
