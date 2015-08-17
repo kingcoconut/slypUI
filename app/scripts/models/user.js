@@ -11,8 +11,8 @@ define(["marionette"], function(){
     },
 
     getIconColor: function(){
-    	var index = this.emailToInt() % 8;
-    	colors = ["green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
+    	var colors = ["green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
+      var index = this.emailToInt() % colors.length;
       return colors[index];
     },
 

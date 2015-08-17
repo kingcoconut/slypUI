@@ -49,6 +49,7 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
         this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
         if(this.slypChat){
           this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
+          App.slypCollection.currentSlypChat = this.slypChat;
           this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
         } 
       }

@@ -23,7 +23,6 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
     },
 
     initialize: function(){
-      this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
       this.listenTo(App.vent, "recTypingUsr", this.recTypingUsr, this);
       this.listenTo(App.vent, "recRemTypingUsr", this.remTypingUsr, this);
 
@@ -80,7 +79,7 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
 
     pushTypingUsr: function(evt){
       var keycode = evt.keyCode;
-      if (keycode.between(48, 90) && alertOut){
+      if (keycode.between(48, 90) && this.alertOut){
         return;
       }else if (keycode.between(48, 90) || keycode == 8){
         if (keycode == 8){ 
@@ -102,24 +101,6 @@ define(["marionette", "views/chat/message"], function(Marionette, Message){
     pushSockMsg: function(data){
       App.socketclient.pushChatMsg(data);
       this.remTypingUsr({slyp_chat_id: this.model.get('id')});
-    },
-
-    recSockMsg: function(data){
-      if (this.model.get('id') == data.slyp_chat_id){
-        this.model.get("slyp_chat_messages").add(data);
-        // scroll down the slimscroll
-        msgs = $(".js-chat-messages-container .message");
-        lastMsg = msgs[msgs.length-1];
-        $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
-      
-      } else {
-        var that = this;
-        toastr.options.onclick = function() { 
-          App.vent.trigger("changeChatMsg", data);
-          toastr.options.onclick = null; 
-        }
-        toastr.success('Recieved chat message from ' + data.sender_email);
-      }
     }
   });
   return Messages;
