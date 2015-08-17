@@ -39,6 +39,7 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
         var user_email = App.user.get('email');
         var emails = query.replace(user_email, '').split(' ');
         this.model.sendTo(emails);
+        input.val('')
         this.$(".js-close-modal").click();
       }
     },
