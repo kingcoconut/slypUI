@@ -1,0 +1,44 @@
+.popover {
+  background-color:#444;
+  color:white;
+  z-index:3;
+  line-height:1;
+  padding:0;
+  font-size:11px;
+  border-radius:3px;
+
+  &.bottom{
+  	margin-top:7px;
+  	.arrow{
+  		top:-7px;
+	  	&:after{
+	  		border-bottom-color:#444!important;
+	  	}
+	  }
+  }
+  &.right{
+  	.arrow{
+	  	&:after{
+	  		border-right-color:#444!important;
+	  	}
+	  }
+  }
+  &.left{
+  	.arrow{
+	  	&:after{
+	  		border-left-color:#444!important;
+	  	}
+	  }
+  }
+  &.top{
+  	.arrow{
+	  	&:after{
+	  		border-top-color:#444!important;
+	  	}
+	  }
+  }
+
+  .popover-content{
+  	padding:7px;
+  }
+}

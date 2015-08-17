@@ -5,12 +5,10 @@
   width: 31.5%;
   vertical-align: top;
   position: relative;
-  overflow: hidden;
   margin: 10px;
   background: #FFF;
   color: #272727;
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
-  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  border: 1px solid rgba(160, 160, 160, 0.2);
   @media (min-width:960px) {
     width: 30%;
   }
@@ -45,6 +43,7 @@
     text-decoration: none;
   }
   .image {
+    z-index:1;
     position: relative;
     margin: 10px -20px 0 -20px;
     
@@ -96,6 +95,39 @@
     &.no-users{
       .user-icon.add-user{
         display: block;
+      }
+      .excluded-friends-icons{
+        margin-top: 30px;  
+      }
+    }
+
+    .excluded-friends-icons{
+      z-index:2;
+      position: absolute;
+      left: 0;
+      width: 30px;
+      display: none;
+
+      .user-icon{
+        margin:4px 0;
+        opacity:0;
+      }
+
+      &.show-icons{
+        display: block;
+
+        @-webkit-keyframes showicon {
+          100% { opacity:1; }
+        }
+        .user-icon { animation: showicon 0s forwards; }
+        .user-icon:nth-child(1) { animation-delay: .05s; }
+        .user-icon:nth-child(2) { animation-delay: .1s; }
+        .user-icon:nth-child(3) { animation-delay: .15s; }
+        .user-icon:nth-child(4) { animation-delay: .2s; }
+        .user-icon:nth-child(5) { animation-delay: .25s; }
+        .user-icon:nth-child(6) { animation-delay: .3s; }
+        .user-icon:nth-child(7) { animation-delay: .35s; }
+        .user-icon:nth-child(8) { animation-delay: .4s; }
       }
     }
   }

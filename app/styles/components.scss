@@ -28,7 +28,7 @@
   height:30px;
   border-radius: 20px;
   text-align:center;
-  padding-top:1px;
+  margin: 0 2px;
 
   &.add-user{
     position: absolute;
@@ -108,4 +108,4 @@
     font-weight:600;
     color: rgb(164, 164, 164);
   }
-}
+}   

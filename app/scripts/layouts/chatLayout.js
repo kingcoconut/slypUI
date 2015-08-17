@@ -8,6 +8,20 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       sideBar : ".js-chat-sidebar",
     },
 
+    events: {
+      "click .chat-container": "close",
+      "click .close-button": "closeChat"
+    },
+
+    close: function(event){
+      if($(event.target).parents(".chat-container").length == 0)
+        this.closeChat();
+    },
+
+    closeChat: function(){
+      App.vent.trigger("closeChat");
+    },
+
     initialize: function(options){
       var that = this;
       this.slypChats = App.slypCollection.currentSlyp().get('slyp_chats');

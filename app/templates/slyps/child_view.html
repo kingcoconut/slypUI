@@ -1,5 +1,5 @@
 <script type="text/template" id="js-slyp-show-tmpl">
-  <div class="js-card">
+  <div class="js-card" attr-id="<%= id %>">
     <div class="action">
       <% if (users.length < 1) {%>
         <div class="slyp-user-icons-container no-users">
@@ -7,14 +7,19 @@
         <div class="slyp-user-icons-container">
       <% } %>
         <span class="user-icon add-user js-send-slyp">+</span>
-        <% _.each(users, function(user, index){%>
-          <% if (index < 3) {%>
-            <span class="user-icon <%- user.user_color %>" data-toggle="tooltip" data-placement="left" title="<%- user.email %>"><%- user.user_letter %></span>
-          <% } %>
-        <% }) %>
-        <% if (_.size(users) > 3 ) {%>
+        <span class="included-friends-icons">
+          <% _.each(users.slice(0,3), function(user, index){%>
+              <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- user.email %>"><%- user.user_letter %></span>
+          <% }) %>
+        </span>
+        <% if (users.length > 3 ) {%>
           <span class="text-muted">+ <%-users.length - 3 %> more</span>
         <% } %>
+        <div class="excluded-friends-icons">
+          <% _.each(excluded_friends.slice(0,8), function(user){%>
+            <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="<%- user.email %>" data-email="<%- user.email %>" data-id="<%- user.id %>"><%- user.user_letter %></span>
+          <% }) %>
+        </div>
       </div>
       <div class="cta--hover-expand js-expand-slyp">
         <i class="fa fa-expand"></i>
