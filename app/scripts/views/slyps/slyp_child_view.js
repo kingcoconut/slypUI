@@ -34,8 +34,7 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     sendSlyp: function(event){
       this.model.sendTo([$(event.target).data("email")]);
       this.model.excludeUser($(event.target).data("id"));
-      this.render();
-      // this.printIcon($(event.target));
+      this.printIcon($(event.target));
     },
 
     printIcon: function(icon){
@@ -58,6 +57,7 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       var self = this;
       this.timeout = setTimeout(function(){
         self.$(".excluded-friends-icons").removeClass("show-icons");
+        self.render();
       }, 300);
     },
 
