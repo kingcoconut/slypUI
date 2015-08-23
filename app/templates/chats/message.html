@@ -1,10 +1,13 @@
 <script type="text/template" id="js-chat-message-tmpl">
+  <div class="container--timestamp">
+    <span class="message-timestamp"><%= day_created %></span><br>
+    <span class="message-timestamp"><%= time_sent %></span>
+  </div>
   <% if(owner){ %>
     <div class="message owner">
   <% }else{ %>
     <div class="message other">
   <% } %>
-    <span class="message-timestamp"><%= moment(created_at).format("hh:mm A") %></span>
     <span class="message-content">
       <%= content %>
     </span>

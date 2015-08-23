@@ -1,9 +1,13 @@
 <script type="text/template" id="js-slyp-show-tmpl">
-  <div class="js-card" attr-id="<%= id %>">
+  <% if (engaged) { %>
+    <div class="js-card engaged--slyp" attr-id="<%= id %>">
+  <% } else { %>
+    <div class="js-card unengaged--slyp" attr-id="<%= id %>">
+  <% } %>
     <div class="action">
       <% if (users.length < 1) {%>
         <div class="slyp-user-icons-container no-users">
-      <% }else{ %>  
+      <% }else{ %>
         <div class="slyp-user-icons-container">
       <% } %>
         <span class="user-icon add-user js-send-slyp">+</span>
@@ -16,7 +20,7 @@
           <span class="text-muted">+ <%-users.length - 3 %> more</span>
         <% } %>
         <div class="excluded-friends-icons">
-          <% _.each(excluded_friends.slice(0,8), function(user){%>
+          <% _.each(excluded_friends, function(user){%>
             <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="<%- user.email %>" data-email="<%- user.email %>" data-id="<%- user.id %>"><%- user.user_letter %></span>
           <% }) %>
         </div>
@@ -40,6 +44,9 @@
           <%= summary || description || text %>
         </div>
       <% } %>
+    </div>
+    <div class="container--slyped-by">
+      <p>slyped by:</p>
     </div>
   </div>
 </script>
