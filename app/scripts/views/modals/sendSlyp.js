@@ -63,6 +63,9 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
         this.ui.input.val('');
         this.model.excludeUserByEmail(email);
         this.friends = _.pluck(this.model.get("excluded_friends"), 'email');
+        var icon = this.$el.parent().find(".excluded-friends-icons [data-email='" + email + "']");
+        if(icon)
+          icon.remove();
       }
     },
 
