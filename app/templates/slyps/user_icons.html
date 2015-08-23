@@ -1,0 +1,22 @@
+<script type="text/template" id="js-slyp-user-icons-tmpl">
+  <% if (users.length < 1) {%>
+    <div class="slyp-user-icons-container no-users">
+  <% }else{ %>  
+    <div class="slyp-user-icons-container">
+  <% } %>
+    <span class="user-icon add-user js-send-slyp">+</span>
+    <span class="included-friends-icons">
+      <% _.each(users.slice(0,3), function(user, index){%>
+          <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- user.email %>"><%- user.user_letter %></span>
+      <% }) %>
+    </span>
+    <% if (users.length > 3 ) {%>
+      <span class="text-muted">+ <%-users.length - 3 %> more</span>
+    <% } %>
+    <div class="excluded-friends-icons">
+      <% _.each(excluded_friends.slice(0,8), function(user){%>
+        <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="<%- user.email %>" data-email="<%- user.email %>" data-id="<%- user.id %>"><%- user.user_letter %></span>
+      <% }) %>
+    </div>
+  </div>
+</script>
