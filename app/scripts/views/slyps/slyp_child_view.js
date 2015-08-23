@@ -1,22 +1,29 @@
-define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, sendSlypView, Isotope){
+define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, addUserView, Isotope){
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
     ui: {
-      singleSlyp: '.js-card',
+      main: '.js-card-main',
       send : '.js-send-slyp',
       content: ".content",
-      action: ".action"
+      action: ".action",
+      addUser: ".excluded-friends-icons .user-icon"
     },
 
     events: {
-      "click @ui.singleSlyp" : "chosenByUser",
-      "click @ui.send" : 'sendSlyp'
+      "click @ui.main" : "chosenByUser",
+      "click .js-expand-slyp" : "chosenByUser",
+      "click @ui.send" : 'addUser',
+      "mouseenter @ui.send" : 'sendSlypHover',
+      "mouseout @ui.send" : 'sendSlypHoverOut',
+      "mouseenter @ui.addUser" : 'sendSlypHover',
+      "mouseout @ui.addUser" : 'sendSlypHoverOut',
+      "click @ui.addUser": "sendSlyp"
     },
 
-    onShow: function(){
-      this.checkVideoPresence();
-    },
+    onRender: function(){
+      this.$(".user-icon").popover({trigger: "hover"});
+    },  
 
     checkVideoPresence: function(){
       if ( _.size(this.model.get('video_url')) > 2 ) {
@@ -24,9 +31,40 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       }
     },
 
+    sendSlyp: function(event){
+      this.model.sendTo([$(event.target).data("email")]);
+      this.model.excludeUser($(event.target).data("id"));
+      this.printIcon($(event.target));
+    },
+
+    printIcon: function(icon){
+      var icons = this.$(".included-friends-icons .user-icon");
+      if(icons.length > 2){
+        icons[2].remove(); 
+      }
+      icon.remove();
+      this.$(".included-friends-icons").prepend(icon);
+    },
+
+    sendSlypHover: function(){
+      console.log("hover");
+      clearTimeout(this.timeout);
+      this.$(".excluded-friends-icons").addClass("show-icons");
+    },
+
+    sendSlypHoverOut: function(){
+      console.log("hover out");
+      var self = this;
+      this.timeout = setTimeout(function(){
+        self.$(".excluded-friends-icons").removeClass("show-icons");
+        self.render();
+      }, 300);
+    },
+
     // FIXME- will remove this once we generate userIcons after fetching data
     serializeData: function(){
       return {
+        id: this.model.id,
         title: this.model.get('title'),
         site_name: this.model.get('site_name'),
         video: this.model.get('video_url'),
@@ -35,7 +73,8 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
         description: this.model.get('description'),
         text: this.model.get('text'),
         url: this.model.get('url'),
-        users: this.model.genUserIcons(this.model.get('users'))
+        users: this.model.genUserIcons(this.model.get('users')),
+        excluded_friends: this.model.get("excluded_friends")
       }
     },
 
@@ -45,10 +84,10 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       this.model.select();
     },
 
-    sendSlyp: function(){
-      var sendSlyp = new sendSlypView({model: this.model});
-      $("#modals").append(sendSlyp.$el.show());
-      sendSlyp.render();
+    addUser: function(){
+      var addUser = new addUserView({model: this.model});
+      $("#modals").append(addUser.$el.show());
+      addUser.render();
     }
 
   });

@@ -10,14 +10,14 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
     initialize: function(options){
       this.listenTo(App.slypCollection, "slypSet", this.showChatLayout, this);
       this.listenTo(App.slypCollection, "sync", this.onShow, this);
-      // this.listenTo(App.vent, "changeChatMsg", this.changeChatMsg, this);
-      // this.listenTo(App.vent, 'slyp:picked', this.showChatLayout);
+      this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
       App.vent.on("closeChat", this.closeChat, this);
     },
 
     closeChat: function(){
       if(this.chatRegion.currentView){
         this.chatRegion.currentView.destroy();
+        App.slypCollection.currentSlypChat = undefined;
       }
     },
 
@@ -28,6 +28,23 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
 
     showChatLayout: function(){
       this.chatRegion.show(new chatLayout());
+    },
+    recSockMsg: function(data){
+      if (App.slypCollection.currentSlypChat && App.slypCollection.currentSlypChat.id == data.slyp_chat_id){
+        App.slypCollection.currentSlypChat.get("slyp_chat_messages").add(data);
+        // scroll down the slimscroll
+        msgs = $(".js-chat-messages-container .message");
+        lastMsg = msgs[msgs.length-1];
+        $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
+      
+      } else {
+        var that = this;
+        toastr.options.onclick = function() { 
+          App.vent.trigger("changeChatMsg", data);
+          toastr.options.onclick = null; 
+        }
+        toastr.success('Recieved chat message from ' + data.sender_email);
+      }
     }
   });
 

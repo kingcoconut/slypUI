@@ -7,7 +7,7 @@ define(["marionette"], function(Marionette){
     },
     onRender: function(){
     	this.$el.find('.js-card').slimScroll({
-        height: window.innerHeight - 80
+        height: window.innerHeight - (40 + parseInt(($(".chat-container .row.chat-elements").css("margin"))) * 2)
       });
     },
     closeChat: function(){

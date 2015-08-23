@@ -8,6 +8,20 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       sideBar : ".js-chat-sidebar",
     },
 
+    events: {
+      "click .chat-container": "close",
+      "click .close-button": "closeChat"
+    },
+
+    close: function(event){
+      if($(event.target).parents(".chat-container").length == 0)
+        this.closeChat();
+    },
+
+    closeChat: function(){
+      App.vent.trigger("closeChat");
+    },
+
     initialize: function(options){
       var that = this;
       this.slypChats = App.slypCollection.currentSlyp().get('slyp_chats');
@@ -35,6 +49,7 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
         this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
         if(this.slypChat){
           this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
+          App.slypCollection.currentSlypChat = this.slypChat;
           this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));
         } 
       }

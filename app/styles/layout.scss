@@ -21,7 +21,7 @@
 }
 
 .content-wrapper{
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 10px;
 }
@@ -53,6 +53,7 @@
 }
 
 .chat-container{
+  z-index:3;
   position: fixed;
   right: 0;
   top: 0;
@@ -60,26 +61,26 @@
   background-color: rgba(0,0,0,0.5);
 
   .row.chat-elements{
-    margin:20px;
+    margin:60px;
     background:white;
   }
 
   .chats{
     border-left: 1px solid #ddd;
   }
-}
-
-.chat-slyp-container{
-  padding: 40px 0 0 20px;
 
   .close-button{
     position: absolute;
     top: 15px;
-    left: 15px;
+    right: 15px;
     &:hover{
       cursor:pointer;
     }
   }
+}
+
+.chat-slyp-container{
+  padding: 40px 0 0 20px;
 
   .js-card{
     padding: 0 20px;

@@ -1,4 +1,4 @@
-define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats){
+define(["marionette", "collections/slyp_chats", "collections/users"], function(Marionette, SlypChats, usersCollection){
   var slyp = Backbone.Model.extend({
     defaults: {
       id: null,
@@ -14,36 +14,72 @@ define(["marionette", "collections/slyp_chats"], function(Marionette, SlypChats)
       top_image: "",
       sitename: "",
       video_url: "",
-      engaged: false,
-      users: []
+      engaged: false
+    },
+
+    parse: function(response){
+      this.response = response;
+      this.set("users", new usersCollection(response.users));
+      if(App.friends.length < 1){
+        this.listenTo(App.friends, "sync", this.makeExcludedFriends, this);
+      }else{
+        this.makeExcludedFriends();
+      }
+      this.set("slyp_chats", new SlypChats(null, {slyp_id: response.id}));
+
+      delete response.users;
+
+      return response;
+    },
+
+    makeExcludedFriends: function(){
+      var icons = [];
+      var users = this.get("users");
+      _.each(App.friends.models, function(user){
+        if(typeof(users.get(user.id)) === "undefined"){
+          // we only want to keep their icons, entire model is overkill
+          icons.push(user.iconAttributes());
+        }
+      });
+      this.set("excluded_friends", icons);
+
+      // When a new friend is added make sure their icon is added to this list
+      this.listenTo(App.friends, "addIcon", this.addExcludedFriend, this);
+    },
+
+    // This add a new friend icon to excluded friends
+    addExcludedFriend: function(icon){
+      this.get("excluded_friends").push(icon);
+    },
+
+    excludeUser: function(user_id){
+      // find the user from the App.friends and add it to the slyps users
+      this.get("users").add(App.friends.get(user_id), {at:0});
+
+      // remove the user from the excluded_friends list
+      var excluded = this.get("excluded_friends");
+      _.each(excluded, function(el, index){
+        if(el && el.id == user_id){
+          excluded.splice(index,1);
+          return;
+        }
+      });
     },
 
     genUserIcons: function(){
       var self = this,
           arr = [];
-      _.each(this.get('users'), function(user){
-         arr.push({ user_color: self.getIconColor(user.email), user_letter: user.email[0], email: user.email })
-      })
+      var users = this.get('users');          
+      if(users.length > 0){
+        _.each(users.models, function(user){
+           arr.push(user.iconAttributes());
+        })
+      }
       return arr
-    },
-
-    getIconColor: function(email){
-      var index = this.emailToInt(email) % 8;
-      colors = ["red", "green-light", "green-dark", "blue-light", "blue-dark", "orange", "purple", "violet"];
-      return colors[index];
-    },
-
-    emailToInt: function(str){
-      var length = str.length;
-      var val = str.charCodeAt(length-1) + str.charCodeAt(1) + str.charCodeAt(length/2)
-      return val;
     },
 
     fetchChats: function(){
       // only make a new collection if one doesn't yet exist for this slyp
-      if(!this.get("slyp_chats")){
-        this.set("slyp_chats", new SlypChats(null, {slyp_id: this.get("id")}));
-      }
       this.get("slyp_chats").fetch();
     },
     select: function(){

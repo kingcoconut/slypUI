@@ -16,7 +16,7 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
     onRender: function(){
       var that = this;
       $('.js-chat-sidebar').slimScroll({
-        height: window.innerHeight - $("#header").height()
+        height: window.innerHeight - (parseInt(($(".chat-container .row.chat-elements").css("margin"))) * 2)
       });
 
       this.$("#js-sidebar-form").validate({

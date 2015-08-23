@@ -1,14 +1,14 @@
 .card {
+  padding:20px 20px 0 20px;
   font-family: 'Lato', sans-serif;
   display: inline-block;
+  width: 31.5%;
   vertical-align: top;
   position: relative;
-  overflow: hidden;
   margin: 10px;
   background: #FFF;
   color: #272727;
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
-  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  border: 1px solid rgba(160, 160, 160, 0.2);
   @media (min-width:960px) {
     width: 30%;
   }
@@ -18,49 +18,129 @@
   @media (min-width:320px) and (max-width: 650px) {
     width: 94%
   }
-}
-.card .title {
-  line-height: 48px;
-  font-size: 24px;
-  font-weight: 300;
-}
-.card .content {
-  padding: 20px;
-  font-weight: 300;
-  border-radius: 0 0 2px 2px;
-}
-.card p {
-  margin: 0;
-}
-.card .action {
-  padding: 20px;
-}
-.card a {
-  // color: #ffab40;
-  margin-right: 20px;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.card .image {
-  position: relative;
-}
-.card .image img {
-  border-radius: 2px 2px 0 0;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-.card .image .title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
-  color: #FFF;
+  
+  .title {
+    margin-top:0;
+  }
+  .content {
+    margin: 20px 0;
+    padding: 0;
+    font-weight: 300;
+    border-radius: 0 0 2px 2px;
+  }
+  p {
+    margin: 0;
+  }
+  .action {
+    margin-bottom:20px;
+  }
+  a {
+    // color: #ffab40;
+    margin-right: 20px;
+    -webkit-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .image {
+    z-index:1;
+    position: relative;
+    margin: 10px -20px 0 -20px;
+    
+    iframe {
+      border:none;
+      width:100%;
+    }
+
+    img {
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+      color: #FFF;
+    }
+  }
+  &.gigante {
+    // -webkit-transition: width 2.5s ease;
+    // transition: width 2.5s ease;
+    width: 59%;
+    .image {
+      display: block!important;
+    }
+    .content {
+      display: block!important;
+    }
+  }
+
+  .slyp-user-icons-container{
+    display: inline-block;
+    position:relative;
+    padding-left:0;
+    height: 13px;
+    transition: padding-left 0.5s;
+    -moz-transition: padding-left 0.5s; /* Firefox 4 */
+    -webkit-transition: padding-left 0.5s; /* Safari and Chrome */
+    -o-transition: padding-left 0.5s; /* Opera */
+    -ms-transition: padding-left 0.5s; /* IE9 (maybe) */
+
+    &.no-users{
+      .user-icon.add-user{
+        display: block;
+      }
+      .excluded-friends-icons{
+        margin-top: 30px;  
+      }
+    }
+
+    .excluded-friends-icons{
+      z-index:2;
+      position: absolute;
+      left: 0;
+      width: 30px;
+      display: none;
+
+      .user-icon{
+        margin:4px 0;
+        opacity:0;
+      }
+
+      &.show-icons{
+        display: block;
+
+        @-webkit-keyframes showicon {
+          100% { opacity:1; }
+        }
+        .user-icon { animation: showicon 0s forwards; }
+        .user-icon:nth-child(1) { animation-delay: .05s; }
+        .user-icon:nth-child(2) { animation-delay: .1s; }
+        .user-icon:nth-child(3) { animation-delay: .15s; }
+        .user-icon:nth-child(4) { animation-delay: .2s; }
+        .user-icon:nth-child(5) { animation-delay: .25s; }
+        .user-icon:nth-child(6) { animation-delay: .3s; }
+        .user-icon:nth-child(7) { animation-delay: .35s; }
+        .user-icon:nth-child(8) { animation-delay: .4s; }
+      }
+    }
+  }
+
+  &:hover{
+    .slyp-user-icons-container{
+      padding-left:40px;
+
+      .user-icon.add-user{
+        display:inline-block;
+      }
+    }
+  }
 }
 
 .cta--container {
@@ -78,25 +158,10 @@
   text-align: center;
 }
 .cta--hover-expand{
-  display: inline-block;
   float: right;
   display: none;
   i{
     font-size: 18px;
-  }
-}
-
-.card {
-  &.gigante {
-    // -webkit-transition: width 2.5s ease;
-    // transition: width 2.5s ease;
-    width: 59%;
-    .image {
-      display: block!important;
-    }
-    .content {
-      display: block!important;
-    }
   }
 }
 
@@ -108,13 +173,15 @@
 
 .card:hover {
   cursor: pointer;
-  .cta--container,
-  .cta--hover-expand {
+  
+  .cta--container {
     display: block;
+  }
+  .cta--hover-expand {
+    display: inline-block;
   }
 }
 
 .hide--attr {
   display: none;
 }
-.card:nth-of-type(3n) .image {display: none; }
