@@ -47,13 +47,11 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     },
 
     sendSlypHover: function(){
-      console.log("hover");
       clearTimeout(this.timeout);
       this.$(".excluded-friends-icons").addClass("show-icons");
     },
 
     sendSlypHoverOut: function(){
-      console.log("hover out");
       var self = this;
       this.timeout = setTimeout(function(){
         self.$(".excluded-friends-icons").removeClass("show-icons");
@@ -89,8 +87,6 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       $("#modals").append(addUser.$el.show());
       addUser.render();
     }
-
   });
-
   return slypView;
 });

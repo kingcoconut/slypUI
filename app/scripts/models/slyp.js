@@ -14,7 +14,8 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       top_image: "",
       sitename: "",
       video_url: "",
-      engaged: false
+      engaged: false,
+      topic: ""
     },
 
     parse: function(response){
@@ -26,7 +27,6 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
         this.makeExcludedFriends();
       }
       this.set("slyp_chats", new SlypChats(null, {slyp_id: response.id}));
-
       delete response.users;
 
       return response;

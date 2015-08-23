@@ -23,6 +23,20 @@ define(["marionette", "collections/slyp_chat_messages", "collections/users"], fu
       }
       this.set("selected", true);
       this.collection.trigger("model:select", this.get("id"));
+      this.markAsRead()
+    },
+
+    markAsRead: function(){
+      $.ajax({
+        url: window.apiHost + "/slyp_chats/read/"+this.get('id'),
+        method: "PUT",
+        success: function(response){
+          
+        },
+        error: function(status, response){
+          console.log(response);
+        }
+      });
     }
   });
   return SlypChat;
