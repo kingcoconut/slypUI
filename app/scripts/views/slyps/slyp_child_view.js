@@ -29,7 +29,10 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       this.render();
     },
     onRender: function(){
-      this.$(".user-icon").popover({trigger: "hover"});
+      this.$(".user-icon").popover({trigger: "hover"});      
+      this.$el.attr('data-engaged', +this.model.get("engaged"));
+      this.$el.attr('data-unread-messages', this.model.get("unread_messages"));
+      this.$el.attr('data-created-at', moment(this.model.get("created_at")).format('X'));
     },  
 
     checkVideoPresence: function(){
@@ -71,6 +74,7 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       return {
         id: this.model.id,
         title: this.model.get('title'),
+        created_at: this.model.get('created_at'),
         site_name: this.model.get('site_name'),
         video: this.model.get('video_url'),
         image: this.model.get('top_image'),

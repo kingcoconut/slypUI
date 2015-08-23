@@ -9,14 +9,24 @@ define(["marionette", "views/slyps/slyp_child_view", "isotope", 'imagesloaded'],
       // setup isotope
       App.iso = new Isotope( ".js-slyps", {
         itemSelector: '.js-single-slyp',
-        layoutMode: 'masonry'
+        layoutMode: 'masonry',
+        getSortData: {
+          engaged: '[data-engaged]',
+          unread_messages: '[data-unread-messages]',
+          created_at: '[data-created-at]'
+        },
+        sortBy: ['engaged', 'unread_messages', 'created_at'],
+        sortAscending: {
+          engaged: true,
+          unread_messages: false,
+          created_at: false
+        }
       });
       App.iso._create();
-      App.iso.shuffle();
       
       // reshuffle the slyps once all the images have loaded on page
       imagesloaded(this.$el, function(){
-        App.iso.shuffle();
+        App.iso.arrange();
       });
     }
   });
