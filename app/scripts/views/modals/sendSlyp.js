@@ -49,10 +49,6 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
       }
     },
 
-    onShow: function(){
-      this.ui.input.focus()
-    },
-
     onRender: function(){
       var that = this;
       
@@ -73,6 +69,7 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
       },750);
     },
 
+    // try to use the string in the input field to send the slyp
     parseInput: function(){
       if(this.ui.form.valid()){
         var email = this.ui.input.val();
@@ -81,6 +78,8 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
       }
     },
 
+    // clear the email address out of the input field and remove it from the 
+    // excluded friends list - if it exists on that list
     clearInputField: function(email){
         // clear the input field
         this.ui.input.val('');

@@ -36,7 +36,7 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
         msgs = $(".js-chat-messages-container .message");
         lastMsg = msgs[msgs.length-1];
         $(".js-chat-messages-container").slimscroll({ scrollBy: $(lastMsg).outerHeight(true) });
-      
+        App.slypCollection.currentSlypChat.markAsRead();
       } else {
         var that = this;
         toastr.options.onclick = function() { 
