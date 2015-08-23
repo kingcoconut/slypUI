@@ -1,15 +1,8 @@
 <script type="text/template" id="js-send-slyp-modal-tmpl">
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <form id="js-send-slyp-modal-form">
-            <div class="form-group">
-              <input type="text" name="email" class="form-control" placeholder="Send to email"/>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+  <div class="send-slyp-tooltip">
+    <form id="js-send-slyp-form" autocomplete="off">
+      <input id="js-send-slyp-email-input" type="text" name="email" class="form-control" placeholder="Send to email"/>
+      <input type="text" class="input-dup form-control" placeholder="" disabled/>
+    </form>
   </div>
 </script>

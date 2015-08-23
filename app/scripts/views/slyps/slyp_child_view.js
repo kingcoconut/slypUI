@@ -1,4 +1,4 @@
-define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, addUserView, Isotope){
+define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, userIconsView, addUserView, Isotope){
   var slypView = Backbone.Marionette.ItemView.extend({
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
@@ -13,14 +13,21 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
     events: {
       "click @ui.main" : "chosenByUser",
       "click .js-expand-slyp" : "chosenByUser",
-      "click @ui.send" : 'addUser',
+      "click @ui.send" : 'showAddUser',
       "mouseenter @ui.send" : 'sendSlypHover',
       "mouseout @ui.send" : 'sendSlypHoverOut',
       "mouseenter @ui.addUser" : 'sendSlypHover',
       "mouseout @ui.addUser" : 'sendSlypHoverOut',
-      "click @ui.addUser": "sendSlyp"
+      "click @ui.addUser": "sendSlyp",
+      "mouseleave": "removeSendSlyp"
     },
-
+    removeSendSlyp: function(){ 
+      if(this.addUser){
+        this.addUser.destroy();
+        delete this.addUser;
+      }
+      this.render();
+    },
     onRender: function(){
       this.$(".user-icon").popover({trigger: "hover"});
     },  
@@ -35,6 +42,7 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       this.model.sendTo([$(event.target).data("email")]);
       this.model.excludeUser($(event.target).data("id"));
       this.printIcon($(event.target));
+      this.slypSent = true;
     },
 
     printIcon: function(icon){
@@ -57,7 +65,6 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       var self = this;
       this.timeout = setTimeout(function(){
         self.$(".excluded-friends-icons").removeClass("show-icons");
-        self.render();
       }, 300);
     },
 
@@ -84,10 +91,15 @@ define(["marionette", "moment", "slimscroll", "views/modals/sendSlyp", "isotope"
       this.model.select();
     },
 
-    addUser: function(){
-      var addUser = new addUserView({model: this.model});
-      $("#modals").append(addUser.$el.show());
-      addUser.render();
+    showAddUser: function(){
+      if(this.addUser){
+        this.addUser.destroy();
+        this.addUser = null;
+      }else{
+        this.addUser = new addUserView({model: this.model});
+        this.$(".action").prepend(this.addUser.$el.show());
+        this.addUser.render();
+      }
     }
 
   });

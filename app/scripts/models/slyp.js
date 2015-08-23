@@ -66,6 +66,12 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       });
     },
 
+    excludeUserByEmail: function(email){
+      var match = _.select(this.get("excluded_friends"), function(el){ return el.email == email })[0];
+      if(match)
+        this.excludeUser(match.id);      
+    },
+
     genUserIcons: function(){
       var self = this,
           arr = [];

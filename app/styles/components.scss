@@ -35,7 +35,7 @@
     left:0;
     line-height:26px;
     font-size:20px;
-    background-color:#d63b3b;
+    background-color:$red;
     display:none;
     &:hover{
       -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -45,7 +45,7 @@
   }
 
   &.red{
-    background-color:#d63b3b;
+    background-color:$red;
   } 
   &.green-light{
     background-color:#a7bd2f;

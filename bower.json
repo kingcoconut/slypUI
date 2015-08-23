@@ -18,16 +18,16 @@
     "backbone": "latest",
     "marionette": "latest",
     "jquery.cookie": "latest",
+    "jquery": "2.1.4",
     "routefilter": "~0.2.1",
     "requirejs": "2.1.18",
     "jquery.sticky": "1.0.0",
-    "jquery-typeahead": "2.0.0",
     "waypoints": "latest",
     "toastr": "2.1.1",
     "jquery.validate": "1.13.0",
     "bootstrap": "3.3.2",
     "font-awesome": "4.3.0",
     "isotope": "~2.2.1",
-    "imagesloaded": "3.1.8"
+    "imagesloaded": "3.1.8",
   }
 }
