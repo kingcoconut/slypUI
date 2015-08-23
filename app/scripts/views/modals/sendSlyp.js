@@ -98,9 +98,6 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
         if(icon)
           icon.remove();
       }
-    },
-
-  });
-
+    });
   return sendSlypView;
 });
