@@ -52,6 +52,7 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       this.get("excluded_friends").push(icon);
     },
 
+    // remove a user from the exlucded_friends list
     excludeUser: function(user_id){
       // find the user from the App.friends and add it to the slyps users
       this.get("users").add(App.friends.get(user_id), {at:0});
@@ -65,7 +66,7 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
         }
       });
     },
-
+    // check if an email is in the excluded_friends list and remove it if it is
     excludeUserByEmail: function(email){
       var match = _.select(this.get("excluded_friends"), function(el){ return el.email == email })[0];
       if(match)
@@ -88,6 +89,7 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       // only make a new collection if one doesn't yet exist for this slyp
       this.get("slyp_chats").fetch();
     },
+
     select: function(){
       if(this.collection)
         this.collection.setCurrent(this);
@@ -105,6 +107,7 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
         });
       }
     },
+    
     sendTo: function(emails){
       var that = this;
       $.ajax({
