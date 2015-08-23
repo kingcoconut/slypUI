@@ -9,7 +9,12 @@
         <span class="user-icon add-user js-send-slyp">+</span>
         <span class="included-friends-icons">
           <% _.each(users.slice(0,3), function(user, index){%>
-              <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- user.email %>"><%- user.user_letter %></span>
+              <span class="user-icon <%- user.user_color %>" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- user.email %>">
+                <%- user.user_letter %>
+                <% if(user.unread_messages > 0){ %>
+                  <span class="icon-unread-messages"><%- user.unread_messages %></span>
+                <% } %>
+              </span>
           <% }) %>
         </span>
         <% if (users.length > 3 ) {%>

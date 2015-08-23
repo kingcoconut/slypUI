@@ -20,7 +20,15 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
 
     parse: function(response){
       this.response = response;
-      this.set("users", new usersCollection(response.users));
+
+      // order the users by unread messages so they display in correct order on slyp
+      var users = new usersCollection();
+      users.comparator = function(user) {
+        return -user.get("unread_messages"); // Note the minus!
+      };
+      users.add(response.users);
+      this.set("users", users);
+      
       if(App.friends.length < 1){
         this.listenTo(App.friends, "sync", this.makeExcludedFriends, this);
       }else{
