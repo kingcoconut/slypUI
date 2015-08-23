@@ -81,25 +81,23 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
     // clear the email address out of the input field and remove it from the 
     // excluded friends list - if it exists on that list
     clearInputField: function(email){
-        // clear the input field
-        this.ui.input.val('');
-        
-        // clear the placeholder of the duplicate input
-        this.ui.dupInput.attr("placeholder", '');
-        
-        // remove the email from the excluded friends list - this checks if email is in list
-        this.model.excludeUserByEmail(email);
-        
-        // recalculate the friend for autocomplete
-        this.friends = _.pluck(this.model.get("excluded_friends"), 'email');
+      // clear the input field
+      this.ui.input.val('');
+      
+      // clear the placeholder of the duplicate input
+      this.ui.dupInput.attr("placeholder", '');
+      
+      // remove the email from the excluded friends list - this checks if email is in list
+      this.model.excludeUserByEmail(email);
+      
+      // recalculate the friend for autocomplete
+      this.friends = _.pluck(this.model.get("excluded_friends"), 'email');
 
-        // remove the users icon if it was in the excluded users dropdown
-        var icon = this.$el.parent().find(".excluded-friends-icons [data-email='" + email + "']");
-        if(icon)
-          icon.remove();
-      }
-    },
-
+      // remove the users icon if it was in the excluded users dropdown
+      var icon = this.$el.parent().find(".excluded-friends-icons [data-email='" + email + "']");
+      if(icon)
+        icon.remove();
+    }
   });
 
   return sendSlypView;
