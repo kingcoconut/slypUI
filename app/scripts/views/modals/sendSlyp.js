@@ -99,6 +99,5 @@ define(["marionette", "jquery.validate"], function(Marionette, validate){
         icon.remove();
     }
   });
-
   return sendSlypView;
 });
