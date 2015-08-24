@@ -18,8 +18,9 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
         data: JSON.stringify({slyp_url: slyp_url}),
         collection: this,
         success: function(response){
-          this.collection.trigger("addingNewSlyp"); // to bump off the current first slyp in feed
-          this.collection.fetch();
+          response.users = [];
+          response.recently_added = 0;
+          App.slypCollection.add(new Slyp(response, {parse: true}));
         },
         error: function(status, response){
           console.log(status);

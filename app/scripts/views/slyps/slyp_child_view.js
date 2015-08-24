@@ -32,6 +32,7 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       this.$(".user-icon").popover({trigger: "hover"});      
       this.$el.attr('data-engaged', +this.model.get("engaged"));
       this.$el.attr('data-unread-messages', this.model.get("unread_messages"));
+      this.$el.attr('data-recently-added', this.model.get("recently_added"));
       this.$el.attr('data-created-at', moment(this.model.get("created_at")).format('X'));
     },  
 

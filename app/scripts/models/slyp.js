@@ -15,7 +15,8 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       sitename: "",
       video_url: "",
       engaged: false,
-      topic: ""
+      topic: "",
+      recently_added: 1
     },
 
     parse: function(response){
@@ -28,7 +29,7 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       };
       users.add(response.users);
       this.set("users", users);
-      
+
       if(App.friends.length < 1){
         this.listenTo(App.friends, "sync", this.makeExcludedFriends, this);
       }else{
