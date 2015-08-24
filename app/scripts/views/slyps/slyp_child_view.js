@@ -1,7 +1,8 @@
 define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, userIconsView, addUserView, Isotope){
-  var slypView = Backbone.Marionette.ItemView.extend({
+  var slypView = Backbone.Marionette.LayoutView.extend({
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
+
     ui: {
       main: '.js-card-main',
       send : '.js-send-slyp',
@@ -19,6 +20,7 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       "mouseenter @ui.addUser" : 'sendSlypHover',
       "mouseout @ui.addUser" : 'sendSlypHoverOut',
       "click @ui.addUser": "sendSlyp",
+      "click .included-friends-icons .user-icon": "openSlypChat",
       "mouseleave": "removeSendSlyp"
     },
     removeSendSlyp: function(){ 
@@ -83,15 +85,23 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
         description: this.model.get('description'),
         text: this.model.get('text'),
         url: this.model.get('url'),
+        engaged: this.model.get('engaged'),
         users: this.model.genUserIcons(this.model.get('users')),
-        excluded_friends: this.model.get("excluded_friends")
+        excluded_friends: this.model.get("excluded_friends") ? this.model.get("excluded_friends").slice(0,8) : []
       }
     },
 
-    // choose a slyp and expand it to right then open chat
+    // choose a slyp and popup modal
     chosenByUser: function(event){
       $('body').addClass("no-scroll");
       this.model.select();
+      App.vent.trigger("showChat", this.model.id)
+    },
+
+    openSlypChat: function(ev){
+      $('body').addClass("no-scroll");
+      this.model.select();
+      App.vent.trigger("showChat", this.model.id, $(ev.target).data('slyp-chat-id'));
     },
 
     showAddUser: function(){

@@ -31,18 +31,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     addSlyp: function(data){
       this.fetch();
       // this.collection.add(data, {at: 0});
-    },
-
-    setCurrent: function(slyp){
-      if(this.currentSlypId != slyp.get("id")){
-        this.currentSlypId = slyp.get("id");
-        slyp.fetchChats();
-      }
-      this.trigger("slypSet");
-    },
-
-    currentSlyp: function(){
-      return this.get(this.currentSlypId);
     }
 
   });

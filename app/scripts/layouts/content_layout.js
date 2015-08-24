@@ -8,7 +8,7 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
       // could have a chat region here if it makes sense
     },
     initialize: function(options){
-      this.listenTo(App.slypCollection, "slypSet", this.showChatLayout, this);
+      this.listenTo(App.vent, "showChat", this.showChatLayout, this);
       this.listenTo(App.slypCollection, "sync", this.onShow, this);
       this.listenTo(App.vent, "recChatMsg", this.recSockMsg, this);
       App.vent.on("closeChat", this.closeChat, this);
@@ -26,8 +26,9 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
         this.mainRegion.show(new slypCollectionView({collection: App.slypCollection}));
     },
 
-    showChatLayout: function(){
-      this.chatRegion.show(new chatLayout());
+    showChatLayout: function(slypID, slypChatID){
+      this.closeChat();
+      this.chatRegion.show(new chatLayout({slypID: slypID, slypChatID: slypChatID}));
     },
     recSockMsg: function(data){
       if (App.slypCollection.currentSlypChat && App.slypCollection.currentSlypChat.id == data.slyp_chat_id){

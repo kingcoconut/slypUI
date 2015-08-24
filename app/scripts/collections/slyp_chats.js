@@ -8,9 +8,6 @@ define(["marionette", "models/slyp_chat"], function(Marionette, SlypChat){
       this.fetched = false;
       this.on("sync", function(){
         this.fetched = true;
-        if(this.first()){
-          this.first().setSelected();
-        }
       });
     },
     fetch: function(options) {

@@ -9,7 +9,7 @@ define(["marionette"], function(Marionette){
       var icon_data = {
         email: email, 
         id: this.model.get("users").first().get("id"), 
-        selected: this.model.get("selected"), 
+        selected: this.model.get("selected"),
         icon_color: this.model.get("users").first().getIconColor(),
         icon_letter: email[0],
       };

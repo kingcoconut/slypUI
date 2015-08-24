@@ -7,7 +7,7 @@ define(["marionette"], function(){
     },
 
     iconAttributes: function(){
-      return { id: this.id, user_color: this.getIconColor(), user_letter: this.get("email")[0], email: this.get("email"), unread_messages: this.get("unread_messages") };
+      return { id: this.id, user_color: this.getIconColor(), user_letter: this.get("email")[0], email: this.get("email"), unread_messages: this.get("unread_messages"), slyp_chat_id: this.get("slyp_chat_id") };
     },
 
     getIconColor: function(){

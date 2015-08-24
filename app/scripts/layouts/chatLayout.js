@@ -19,22 +19,26 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     },
 
     closeChat: function(){
+      this.slypChats.forEach(function(slyp_chat, index) {
+        slyp_chat.set("selected", false);
+      });
       App.vent.trigger("closeChat");
     },
 
     initialize: function(options){
       var that = this;
-      this.slypChats = App.slypCollection.currentSlyp().get('slyp_chats');
+      this.slyp = App.slypCollection.get(options.slypID)
+      this.slypChats = this.slyp.get('slyp_chats');
       this.slypChatID = options.slypChatID;
 
       // when a chat is selected, make that chat's messages appear
       this.listenTo(this.slypChats, "model:select", this.setNewChatID, this);
-      this.listenTo(this.slypChatID, "change", this.renderChatMessages, this);
+      this.listenTo(this.slypChats, "sync", this.renderChatMessages, this);
     },
 
     onShow: function(){
-      this.slypContainer.show(new SlypContainer({model: App.slypCollection.currentSlyp()}))
-      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: App.slypCollection.currentSlyp()}));
+      this.slypContainer.show(new SlypContainer({model: this.slyp}))
+      this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp}));
       this.renderChatMessages();
     },
 
@@ -48,6 +52,8 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
       if (this.slypChats){
         this.slypChat = this.slypChats.get(this.slypChatID) || this.slypChats.first();
         if(this.slypChat){
+          this.slypChat.set("selected", true);
+          this.slypChat.markAsRead();
           this.slypChatMessages = this.slypChat.get("slyp_chat_messages");
           App.slypCollection.currentSlypChat = this.slypChat;
           this.main.show(new Messages({collection: this.slypChatMessages, model: this.slypChat}));

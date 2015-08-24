@@ -99,9 +99,8 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       this.get("slyp_chats").fetch();
     },
 
-    select: function(){
-      if(this.collection)
-        this.collection.setCurrent(this);
+    select: function(slyp_chat_id){
+      this.fetchChats();
       if (!this.get('engaged')) {
         var that = this;
         $.ajax({
@@ -139,7 +138,6 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
 
           var slypChats = that.get("slyp_chats");
           slypChats.add(resp, {parse: true, at: 0});
-          slypChats.first().setSelected();
         },
         error: function(error, msg, status){
           alert(error.responseText);
