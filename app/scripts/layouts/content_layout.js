@@ -26,9 +26,9 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
         this.mainRegion.show(new slypCollectionView({collection: App.slypCollection}));
     },
 
-    showChatLayout: function(slypID, slypChatID){
+    showChatLayout: function(slypID, slypChatID, slypChatEmail){
       this.closeChat();
-      this.chatRegion.show(new chatLayout({slypID: slypID, slypChatID: slypChatID}));
+      this.chatRegion.show(new chatLayout({slypID: slypID, slypChatID: slypChatID, slypChatEmail: slypChatEmail}));
     },
     recSockMsg: function(data){
       if (App.slypCollection.currentSlypChat && App.slypCollection.currentSlypChat.id == data.slyp_chat_id){

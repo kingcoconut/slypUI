@@ -99,9 +99,17 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
     },
 
     openSlypChat: function(ev){
+      var slypChatID = $(ev.target).data('slyp-chat-id');
+      var slypChatEmail = $(ev.target).data('content');
+
       $('body').addClass("no-scroll");
       this.model.select();
-      App.vent.trigger("showChat", this.model.id, $(ev.target).data('slyp-chat-id'));
+
+      // slypChatID can be "" when the icon got into the top section by clicking on it from the dropdown
+      if(slypChatID != "")
+        this.model.get("users").chatRead(slypChatID);
+      
+      App.vent.trigger("showChat", this.model.id, slypChatID, slypChatEmail);
     },
 
     showAddUser: function(){
