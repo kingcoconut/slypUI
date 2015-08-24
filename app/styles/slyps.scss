@@ -2,7 +2,6 @@
   padding:20px 20px 0 20px;
   font-family: 'Lato', sans-serif;
   display: inline-block;
-  width: 31.5%;
   vertical-align: top;
   position: relative;
   margin: 10px;
@@ -225,5 +224,50 @@
     color: $red;
     position: absolute;
     top: -18px;
+  }
+}
+
+.container--post-box {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 1em;
+  text-align: center;
+}
+
+.post-box {
+  background-color: white;
+  position: relative;
+  display:inline-block;
+  width: 100%;
+  .form-control {
+    height: 50px;
+    word-break: break-word;
+    @media (min-width: 960px){
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 960px){
+    width: 28%;
+    left: -30px;
+  }
+}
+
+.container--slyped-by {
+  font-weight: 100;
+  text-align: right;
+  padding: 15px 20px;
+}
+
+.unengaged--slyp {
+  h4.title {
+    font-weight: 800;
+  }
+}
+
+.engaged--slyp {
+  h4.title {
+    font-weight: 300;
   }
 }

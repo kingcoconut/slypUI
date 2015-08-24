@@ -54,7 +54,7 @@
 
 .chat-container{
   z-index:3;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   width: 100%;
@@ -84,15 +84,22 @@
 
   .js-card{
     padding: 0 20px;
+
+    h4 {
+      font-size: 28px;
+    }
   }
 
   .image{
     img{
-      max-width:50%;
+      max-width: 100%;
     }
   }
 
   .content{
+    font-size: 20px;
+    line-height: 28px;
+    font-family: "adobe-caslon-pro",Times,Georgia,serif;
     padding: 25px 0;
   }
 }
