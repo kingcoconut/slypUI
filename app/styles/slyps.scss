@@ -240,14 +240,39 @@
   position: relative;
   display:inline-block;
   width: 100%;
+  border-radius: 6px;
+  p.title {
+    text-align: center;
+    background-color: #109fc7;
+    padding: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #fff;
+    border-radius: 2px;
+  }
+  form {
+    border: 1px solid;
+    border-top: #109fc7;
+    border-radius: 2px;
+  }
+  .form-group {
+    padding: 20px 20px 40px;
+  }
   .form-control {
     height: 50px;
     word-break: break-word;
     @media (min-width: 960px){
-      height: 150px;
+      height: 130px;
     }
   }
-
+  .form-post {
+    background-color: #109fc7;
+    color: #fff;
+    padding: 8px 22px;
+    right: 20px;
+    position: absolute;
+    margin-top: 9px;
+  }
   @media (min-width: 960px){
     width: 28%;
     left: -30px;
