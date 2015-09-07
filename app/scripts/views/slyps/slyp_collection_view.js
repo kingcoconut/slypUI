@@ -73,9 +73,8 @@ define(["marionette", "views/slyps/slyp_child_view", "isotope", 'imagesloaded'],
           created_at: '[data-created-at]',
           recently_added: '[data-recently-added]'
         },
-        sortBy: ['recently_added', 'unread_messages', 'engaged', 'created_at'],
+        sortBy: ['recently_added', 'unread_messages', 'created_at'],
         sortAscending: {
-          engaged: true,
           unread_messages: false,
           created_at: false
         },
