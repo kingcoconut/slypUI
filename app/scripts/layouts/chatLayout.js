@@ -27,6 +27,8 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
 
     initialize: function(options){
       var that = this;
+      this.isChatSet = false;
+
       this.slyp = App.slypCollection.get(options.slypID)
       this.slypChats = this.slyp.get('slyp_chats');
       this.slypChatID = options.slypChatID;
@@ -40,10 +42,16 @@ define(["marionette", "views/chat/sidebar", "views/chat/commandCenter", "views/c
     onShow: function(){
       this.slypContainer.show(new SlypContainer({model: this.slyp}))
       this.sideBar.show(new ChatSidebar({collection: this.slypChats, slyp: this.slyp}));
-      this.renderChatMessages();
+      //this.renderChatMessages();
     },
 
     setNewChatID: function(id){
+      if (!this.isChatSet){
+        $('.js-chat-slyp-container').parent().removeClass('col-sm-12');
+        $('.chat-left').parent().addClass('col-sm-5');
+        $('.js-chat-slyp-container').parent().addClass('col-sm-7');
+        this.isChatSet = true;
+      } 
       this.slypChatID = id;
       this.renderChatMessages();
     },
