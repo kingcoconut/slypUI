@@ -1,4 +1,4 @@
-define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/modals/sendSlyp", "isotope"], function(Marionette, moment, slimscroll, userIconsView, addUserView, Isotope){
+define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/modals/sendSlyp", "isotope", "models/user"], function(Marionette, moment, slimscroll, userIconsView, addUserView, Isotope, User){
   var slypView = Backbone.Marionette.LayoutView.extend({
     template: "#js-slyp-show-tmpl",
     className: 'js-single-slyp card',
@@ -87,7 +87,8 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
         url: this.model.get('url'),
         engaged: this.model.get('engaged'),
         users: this.model.genUserIcons(this.model.get('users')),
-        excluded_friends: this.model.get("excluded_friends") ? this.model.get("excluded_friends").slice(0,8) : []
+        excluded_friends: this.model.get("excluded_friends") ? this.model.get("excluded_friends").slice(0,8) : [],
+        sender: new User(this.model.get("sender")).iconAttributes()
       }
     },
 

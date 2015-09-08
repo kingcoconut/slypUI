@@ -51,7 +51,10 @@
       <% } %>
     </div>
     <div class="container--slyped-by">
-      <p>slyped by:</p>
+      slyped by:
+      <span class="user-icon <%- sender.user_color %> sender-icon" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- sender.email %>">
+        <%- sender.user_letter %>                
+      </span>
     </div>
   </div>
 </script>

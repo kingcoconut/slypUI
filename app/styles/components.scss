@@ -18,6 +18,14 @@
   }
 }
 
+.sender-icon{
+  font-size:10px !important;
+  line-height:22px !important;
+  width:20px !important;
+  height:20px !important;
+  border-radius: 20px !important;  
+}
+
 .user-icon{
   display: inline-block;
   text-transform: uppercase;
@@ -30,6 +38,8 @@
   text-align:center;
   margin: 0 2px;
   position:relative;
+
+
 
   .icon-unread-messages{
     position:absolute;

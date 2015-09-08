@@ -21,8 +21,7 @@ define(["marionette"], function(){
     	var length = str.length;
     	var val = str.charCodeAt(length-1) + str.charCodeAt(1) + str.charCodeAt(length/2)
     	return val;
-    },
-
+    }
   });
   return user;
 });
