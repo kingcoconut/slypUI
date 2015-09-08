@@ -1,12 +1,26 @@
-define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'bootstrap'], function(Mn, slypCollectionView, chatLayout, bootstrap){
+define(["marionette",
+  'views/slyps/slyp_collection_view',
+  'views/interface/grokBox',
+  'views/interface/filterBox',
+  './chatLayout',
+  'bootstrap'], function(
+    Mn,
+    slypCollectionView,
+    grokBox,
+    filterBox,
+    chatLayout,
+    bootstrap
+  ){
   var contentLayout = Backbone.Marionette.LayoutView.extend({
     template: "#js-interface-layout-tmpl",
 
     regions: {
-      mainRegion : ".js-main",
-      chatRegion : '.js-chat'
-      // could have a chat region here if it makes sense
+      mainRegion : ".js-main-reg",
+      chatRegion : '.js-chat-reg',
+      grokRegion : '.js-grok-reg',
+      filterRegion : '.js-filter-reg',
     },
+
     initialize: function(options){
       this.listenTo(App.vent, "showChat", this.showChatLayout, this);
       this.listenTo(App.slypCollection, "sync", this.onShow, this);
@@ -22,6 +36,8 @@ define(["marionette", 'views/slyps/slyp_collection_view', './chatLayout', 'boots
     },
 
     onShow: function(){
+      this.grokRegion.show(new grokBox({collection: App.slypCollection}));
+      this.filterRegion.show(new filterBox({collection: App.slypCollection}));
       if(App.slypCollection.length > 0)
         this.mainRegion.show(new slypCollectionView({collection: App.slypCollection}));
     },

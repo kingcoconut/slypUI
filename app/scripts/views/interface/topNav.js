@@ -1,6 +1,7 @@
 define(["marionette", "models/slyp"], function(Marionette, Slyp){
   var topNav = Backbone.Marionette.ItemView.extend({
     template: "#js-top-nav-tmpl",
+    className: 'blue--nav',
     id: "header",
 
     ui: {
