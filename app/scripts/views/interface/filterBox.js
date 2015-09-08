@@ -20,16 +20,17 @@ define(["marionette"], function(){
       this.ui.searchInput.removeClass('input_active');
       this.ui.listItem.removeClass('filter_active');
       $(event.target).addClass('filter_active');
+      //App.iso.filter()
     },
 
     addActiveInput: function(event){
       this.ui.listItem.removeClass('filter_active');
       $(event.target).addClass('input_active');
+      App.iso.filter()
     },
 
     removeInputActive: function(event){
       this.ui.searchInput.removeClass('input_active');
-      debugger;
       this.ui.listItem.first().addClass('filter_active');
       event.stopImmediatePropagation();
     },
