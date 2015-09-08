@@ -1,0 +1,47 @@
+.container--post-box {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 1em;
+  text-align: center;
+  background-color: $light-blue;
+  padding: 20px 0 60px;
+  font-family: 'Lato', sans-serif;
+  .title {
+    padding: 10px;
+    color: #fff;
+  }
+
+}
+.post-box {
+  background-color: white;
+  position: relative;
+  display:inline-block;
+  width: 100%;
+  border-radius: 6px;
+  max-width: 650px;
+  form {
+    border-radius: 2px;
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+  .form-control {
+    height: 45px;
+    word-break: break-word;
+    opacity: .6;
+  }
+  .form-post {
+    position: absolute;
+    background-color: $dark-blue;
+    color: #fff;
+    padding: 0 40px;
+    right: 0;
+    top: 0;
+    height: 45px;
+    @media (max-width:768px) {
+      position: relative;
+      width: 100%;
+    }
+  }
+}
