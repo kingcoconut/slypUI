@@ -21,8 +21,63 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       "mouseout @ui.addUser" : 'sendSlypHoverOut',
       "click @ui.addUser": "sendSlyp",
       "click .included-friends-icons .user-icon": "openSlypChat",
-      "mouseleave": "removeSendSlyp"
+      "mouseleave": "removeSendSlyp",
+      "click .itemIconStar" : "starSlyp",
+      "click .itemIconStarred": "starSlyp",
+      "click .itemIconDone" : "archiveSlyp",
+      "click .itemIconMarkedDone" : "archiveSlyp",
+
     },
+
+    initialize: function(){
+      this.model.on('change', this.setDataAttributes, this);
+      this.model.on('change:starred', this.toggleStar, this);
+      this.model.on('change:archived', this.toggleArchived, this);
+    },
+
+    toggleStar: function(){
+      //TODO: make this look nicer
+      var STARRED = "itemIconStarred"
+      var STAR = "itemIconStar"
+      if (this.$('.'+STAR).length > 0){
+        var el = this.$('.'+STAR);
+        el.removeClass(STAR);
+        el.addClass(STARRED);
+      }else if (this.$('.'+STARRED).length>0){
+        var el = this.$('.'+STARRED);
+        el.removeClass(STARRED);
+        el.addClass(STAR);
+      }
+    },
+
+    toggleArchived: function(){
+      //TODO: make this look nicer
+      var DONE = "itemIconDone";
+      var MARKED_DONE = "itemIconMarkedDone";
+      if (this.$('.'+DONE).length > 0){
+        var el = this.$('.'+DONE);
+        el.removeClass(DONE);
+        el.addClass(MARKED_DONE);
+      }else if (this.$('.'+MARKED_DONE).length>0){
+        var el = this.$('.'+MARKED_DONE);
+        el.removeClass(MARKED_DONE);
+        el.addClass(DONE);
+      }
+    },
+
+    starSlyp: function(){
+      this.model.star();
+    },
+
+    archiveSlyp: function(){
+      //FIXME: consolidate this logic in the collection/collection view..?
+
+      this.model.archive();
+
+
+      App.iso.arrange();
+    },
+
     removeSendSlyp: function(){ 
       if(this.addUser){
         this.addUser.destroy();
@@ -32,11 +87,17 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
     },
     onRender: function(){
       this.$(".user-icon").popover({trigger: "hover"});      
+      this.setDataAttributes();
+    },  
+
+    setDataAttributes: function(){
       this.$el.attr('data-engaged', +this.model.get("engaged"));
+      this.$el.attr('data-archived', +this.model.get("archived"))
+      this.$el.attr('data-starred', +this.model.get("starred"))
       this.$el.attr('data-unread-messages', this.model.get("unread_messages"));
       this.$el.attr('data-recently-added', this.model.get("recently_added"));
       this.$el.attr('data-created-at', moment(this.model.get("created_at")).format('X'));
-    },  
+    },
 
     checkVideoPresence: function(){
       if ( _.size(this.model.get('video_url')) > 2 ) {
@@ -88,7 +149,9 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
         engaged: this.model.get('engaged'),
         users: this.model.genUserIcons(this.model.get('users')),
         excluded_friends: this.model.get("excluded_friends") ? this.model.get("excluded_friends").slice(0,8) : [],
-        sender: new User(this.model.get("sender")).iconAttributes()
+        sender: new User(this.model.get("sender")).iconAttributes(),
+        archived: this.model.get('archived'),
+        starred: this.model.get('starred')
       }
     },
 

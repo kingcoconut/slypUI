@@ -15,13 +15,12 @@ define(["marionette", "views/slyps/slyp_child_view", "isotope", 'imagesloaded'],
         layoutMode: 'masonry',
         getSortData: {
           engaged: '[data-engaged]',
-          unread_messages: '[data-unread-messages]',
-          created_at: '[data-created-at]',
-          recently_added: '[data-recently-added]'
+          created_at: '[data-created-at]'
         },
-        sortBy: ['recently_added', 'unread_messages', 'created_at'],
+        sortBy: ['engaged', 'created_at'],
+        filter: "[data-archived='0']",
         sortAscending: {
-          unread_messages: false,
+          engaged: true,
           created_at: false
         },
         stamp: '.js-filter-bar'

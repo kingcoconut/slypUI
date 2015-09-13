@@ -17,7 +17,50 @@
   @media (min-width:320px) and (max-width: 650px) {
     width: 94%
   }
+
+  .actions {
+    display: inline-flex;
+
+  }
   
+  .itemIconDone {
+    background-image: url(//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/ic_mark-done_blk_24dp_r4_2x.png);
+  }
+
+  .itemIconStar {
+    background-image: url(//ssl.gstatic.com/ui/v1/star/star4.png);
+  }
+
+  .itemIconStarred {
+    background-image: url(//ssl.gstatic.com/ui/v1/star/star-lit4.png);
+  }
+
+  .itemIconMarkedDone {
+      background-image: url(//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/ic_mark-done_clr_24dp_r4_2x.png);
+  }
+
+  .itemIconPin {
+      background-image: url(//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/ic_mark-pinned_blk_24dp_r4_2x.png);
+  }
+
+  .itemIconPinned {
+      background-image: url(//ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/ic_mark-pinned_clr_24dp_r4_2x.png);
+  }
+
+  .actionIcon {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+    -webkit-user-drag: none;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0 8px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
   .title {
     margin-top:0;
   }
@@ -230,7 +273,7 @@
 .container--slyped-by {
   font-weight: 100;
   text-align: right;
-  padding: 15px 20px;
+  display: inline-block;
 }
 
 .unengaged--slyp {

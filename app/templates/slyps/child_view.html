@@ -50,11 +50,27 @@
         </div>
       <% } %>
     </div>
-    <div class="container--slyped-by">
-      slyped by:
-      <span class="user-icon <%- sender.user_color %> sender-icon" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- sender.email %>">
-        <%- sender.user_letter %>                
-      </span>
+
+    <div class="footer">
+      <div class="container--slyped-by">
+        slyped by:
+        <span class="user-icon <%- sender.user_color %> sender-icon" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="<%- sender.email %>">
+          <%- sender.user_letter %>                
+        </span>
+      </div>
+      <ul class="actions">
+        <% if (starred){ %>
+          <li class="action actionIcon itemIconStarred"/>
+        <% }else{ %>
+          <li class="action actionIcon itemIconStar"/>
+        <% } %>
+
+        <% if (archived){ %>
+          <li class="action actionIcon itemIconMarkedDone"/>
+        <% }else{ %>
+          <li class="action actionIcon itemIconDone"/>
+        <% } %>        
+      </ul>
     </div>
   </div>
 </script>

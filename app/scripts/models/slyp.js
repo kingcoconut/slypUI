@@ -15,8 +15,49 @@ define(["marionette", "collections/slyp_chats", "collections/users"], function(M
       sitename: "",
       video_url: "",
       engaged: false,
+      archived: false,
       topic: "",
       recently_added: 1
+    },
+
+    archive: function(){
+      var endpoint;
+      if(this.get("archived")){
+        endpoint = "unarchived";
+      }else{
+        endpoint = "archived";
+      }
+      var that = this;
+      $.ajax({
+        url: window.apiHost + "/slyps/"+endpoint+"/"+this.get("id"),
+        method: "PUT",
+        success: function(resp){
+          that.set("archived", !that.get("archived"));
+        },
+        error: function(error, msg, status){
+          console.log(error);
+        }
+      });
+    }, 
+
+    star: function(){
+      var endpoint;
+      if(this.get("starred")){
+        endpoint = "unstarred";
+      }else{
+        endpoint = "starred";
+      }
+      var that = this;
+      $.ajax({
+        url: window.apiHost + "/slyps/"+endpoint+"/"+this.get("id"),
+        method: "PUT",
+        success: function(resp){
+          that.set("starred", !that.get("starred"));
+        },
+        error: function(error, msg, status){
+          console.log(error);
+        }
+      });
     },
 
     parse: function(response){
