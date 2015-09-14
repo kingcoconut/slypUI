@@ -12,7 +12,6 @@ define(["marionette"], function(Marionette){
     },
     closeChat: function(){
     	App.vent.trigger("closeChat");
-    	$('body').removeClass("no-scroll");
     },
     // FIXME- will remove this once we generate userIcons after fetching data
     serializeData: function(){

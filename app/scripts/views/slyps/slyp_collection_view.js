@@ -14,10 +14,9 @@ define(["marionette", "views/slyps/slyp_child_view", "isotope", 'imagesloaded'],
         itemSelector: '.js-single-slyp',
         layoutMode: 'masonry',
         getSortData: {
-          engaged: '[data-engaged]',
           created_at: '[data-created-at]'
         },
-        sortBy: ['engaged', 'created_at'],
+        sortBy: ['created_at'],
         filter: "[data-archived='0']",
         sortAscending: {
           engaged: true,

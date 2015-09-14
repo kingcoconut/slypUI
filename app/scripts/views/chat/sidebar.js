@@ -14,6 +14,7 @@ define(["marionette", "views/chat/chatIcon"], function(Marionette, ChatIcon){
       this.slyp = this.options.slyp;
     },
     onRender: function(){
+      // this.$(".user-icon").popover({trigger: "hover"});
       var that = this;
       $('.js-chat-sidebar').slimScroll({
         height: window.innerHeight - (parseInt(($(".chat-container .row.chat-elements").css("margin"))) * 2)

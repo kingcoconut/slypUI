@@ -70,11 +70,7 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
     },
 
     archiveSlyp: function(){
-      //FIXME: consolidate this logic in the collection/collection view..?
-
       this.model.archive();
-
-
       App.iso.arrange();
     },
 
@@ -157,8 +153,6 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
 
     // choose a slyp and popup modal
     chosenByUser: function(event){
-      $('body').addClass("no-scroll");
-      this.model.select();
       App.vent.trigger("showChat", this.model.id)
     },
 
@@ -166,13 +160,9 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
       var slypChatID = $(ev.target).data('slyp-chat-id');
       var slypChatEmail = $(ev.target).data('content');
 
-      $('body').addClass("no-scroll");
-      this.model.select();
-
       // slypChatID can be "" when the icon got into the top section by clicking on it from the dropdown
       if(slypChatID != "")
         this.model.get("users").chatRead(slypChatID);
-      
       App.vent.trigger("showChat", this.model.id, slypChatID, slypChatEmail);
     },
 
