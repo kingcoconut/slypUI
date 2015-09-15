@@ -8,7 +8,6 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
       this.listenTo(App.vent, "recSlyp", this.addSlyp);
     },
 
-
     createFromUrl: function(slyp_url){
       $.ajax({
         url: window.blacksmithHost + "/slyps",
@@ -29,8 +28,11 @@ define(["marionette", "models/slyp"], function(Marionette, Slyp){
     },
 
     addSlyp: function(data){
-      this.fetch();
-      // this.collection.add(data, {at: 0});
+      //FIXME: make a new Slyp model from the data (do we get enough data from the socket here?) 
+      // and then add the slyp to position 0
+      s = new Slyp(data, {parse: true});
+      // this.fetch();
+      this.collection.add(s, {at: 0});
     }
 
   });
