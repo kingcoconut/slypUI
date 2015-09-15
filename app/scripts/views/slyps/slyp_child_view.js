@@ -48,6 +48,8 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
         el.removeClass(STARRED);
         el.addClass(STAR);
       }
+
+      this.setDataAttributes();
     },
 
     toggleArchived: function(){
@@ -63,6 +65,8 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
         el.removeClass(MARKED_DONE);
         el.addClass(DONE);
       }
+      this.setDataAttributes();
+      App.iso.arrange();
     },
 
     starSlyp: function(){
@@ -71,7 +75,6 @@ define(["marionette", "moment", "slimscroll", "views/slyps/user_icons", "views/m
 
     archiveSlyp: function(){
       this.model.archive();
-      App.iso.arrange();
     },
 
     removeSendSlyp: function(){ 
